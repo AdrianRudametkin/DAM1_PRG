@@ -36,11 +36,11 @@ public class Ejercicio7 {
     public static void main(String[] args) throws IOException {
         // Primero impreme por pantalla para indicar al usuario
         System.out.println("Introduzca un texto: ");
-        // Entramos en un bucle infinito (de momento)
+        // Entramos en un bucle infinito hasta que read() lance una excepcion.
         while(true){
             // Se lee la letra como entero de la consola
             int letra = System.in.read();
-            // 
+            // Imprimir el entero como caracter haciendo un casting
             System.out.println((char)letra);
         }
     }
