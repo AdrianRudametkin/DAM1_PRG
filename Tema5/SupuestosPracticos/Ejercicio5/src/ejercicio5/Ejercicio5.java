@@ -37,25 +37,25 @@ public class Ejercicio5 {
         int n;
         Scanner s = new Scanner(System.in);
         
+        // Preguntar por el tamaño de la piramide
         System.out.print("Enter the size of your pyramid: ");
         n = s.nextInt();
         
+        // Entrar en un bucle del tamaño de n
         for(int i=0; i<n; i++){
-            if(i<n){
-                for(int j=n; j>0; j--){
-                    if(i<j) System.out.print(" ");
-                    else System.out.print("*");
-                }
-                System.out.print("*");
-                for(int j=0; j<=n; j++){
-                    if(i>j) System.out.print("*");
-                    else System.out.print(" ");
-                }
-            }else{
-                for(int j=0; j<n; j++){
-                    System.out.print("*");
-                }
+            // Imprimir la parte izquierda
+            for(int j=n; j>0; j--){
+                if(i<j) System.out.print(" ");
+                else System.out.print("*");
             }
+            // Imprimir el trozo del medio
+            System.out.print("*");
+            // Imprimir la parte derecha
+            for(int j=0; j<=n; j++){
+                if(i>j) System.out.print("*");
+                else System.out.print(" ");
+            }
+            // Pasar a la siguente linea
             System.out.println("");
         }
     }
