@@ -38,7 +38,7 @@ public class Ejercicio1 {
         String fn, ln1, ln2, allNames;
         int indexMax, indexMin = 0;
         
-        System.out.print("Enter your first and second, then your name: ");
+        System.out.print("Enter your first and second lastname, then your name: ");
         allNames = s.nextLine();
         
         indexMax = allNames.indexOf(" ");
