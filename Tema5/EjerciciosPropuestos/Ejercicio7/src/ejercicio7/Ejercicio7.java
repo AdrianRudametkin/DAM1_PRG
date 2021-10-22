@@ -46,7 +46,6 @@ public class Ejercicio7 {
                 case 1: numR="M"; break;
                 case 2: numR="MM"; break;
                 case 3: numR="MMM"; break;
-                case 4: numR="M[V]"; break;
                 default: numR=" ";
             }
             switch(numD/100%10){
