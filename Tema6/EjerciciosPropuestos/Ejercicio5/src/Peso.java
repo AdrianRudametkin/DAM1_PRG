@@ -75,15 +75,15 @@ public class Peso {
     }
 
     public double getPeso(String unidad) {
-        return switch(unidad.toLowerCase()) {
-            case "lb" -> this.peso / LB_KG;
-            case "li" -> this.peso / LI_KG;
-            case "oz" -> this.peso / OZ_KG;
-            case "p" -> this.peso / P_KG;
-            case "q" -> this.peso / Q_KG;
-            case "k" -> this.peso;
-            case "g" -> this.peso * 1000.0;
-            default -> -1.0;
-        };
+        switch(unidad.toLowerCase()) {
+            case "lb": return this.peso / LB_KG;
+            case "li": return this.peso / LI_KG;
+            case "oz": return this.peso / OZ_KG;
+            case "p": return this.peso / P_KG;
+            case "q": return this.peso / Q_KG;
+            case "k": return this.peso;
+            case "g": return this.peso * 1000.0;
+            default: return -1.0;
+        }
     }
 }

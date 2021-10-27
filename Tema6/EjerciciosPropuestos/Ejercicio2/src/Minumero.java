@@ -18,6 +18,7 @@
  * Contact me through e-mail : 10377573@ieselgrao.org
  *
  */
+
 /**
  *
  * @author  Rogelio Rodriguez
@@ -55,26 +56,15 @@ public class Minumero {
         return (numero * 4);
     }
 
-    //*** Getters & Setters ***
-    public int getNum_doble() {
-        return num_doble;
-    }
-
-    public int getNum_triple() {
-        return num_triple;
-    }
-
-    public int getNum_cuadruple() {
-        return num_cuadruple;
-    }
+    
 
     //*** Metodo principal ***
     public static void main(String[] args) {
         Minumero x = new Minumero(20);
         
-        System.out.println("Doble: "+x.getNum_doble());
-        System.out.println("Triple: "+x.getNum_triple());
-        System.out.println("Cuadruple: "+x.getNum_cuadruple());
+        System.out.println("Doble: "+x.num_doble);
+        System.out.println("Triple: "+x.num_triple);
+        System.out.println("Cuadruple: "+x.num_cuadruple);
     }
 
 }
