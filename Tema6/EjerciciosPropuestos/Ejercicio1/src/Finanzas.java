@@ -26,7 +26,7 @@
  *
  */
 public class Finanzas {
-
+    // Atributos
     private double dolarEuro;
 
     // Constructores
@@ -40,7 +40,8 @@ public class Finanzas {
 
     // Metodo que cambia de dolares a euros
     public double dolarsToEuros(double dolares) {
-        return (dolares * dolarEuro);
+        double calculo = dolares*dolarEuro;
+        return calculo;
     }
 
     // Metodo que cambia de euros a dolares
