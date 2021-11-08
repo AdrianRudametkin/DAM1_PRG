@@ -57,9 +57,10 @@ public class Satelite {
                 + ", meridiano "+meridiano
                 +", a una distancia de la tierra de "+distancia_tierra+ " kilómetros");
     }
-    public void variaAltura(double desplazamiento){ 
-        if((this.distancia_tierra + desplazamiento) >= 0)
-            this.distancia_tierra += desplazamiento;
+    public void variaAltura(double desplazamiento){
+    	this.distancia_tierra += desplazamiento;
+        if(this.distancia_tierra >= 0)
+            this.distancia_tierra = 0;
     }
     public boolean enOrbita(){
         return this.distancia_tierra == 0;

@@ -29,7 +29,7 @@
  */
 public class Persona {
     // *** ATRIBUTOS ***
-    private final char sexo_default = 'H';
+    private final char SEXO_DEFAULT = 'H';
     // De clase:
     private static int numPersonas;    // Contador de objetos Persona
     // De objeto:
@@ -43,7 +43,7 @@ public class Persona {
     public Persona(){
         this.nombre = "";
         this.edad   = 0;
-        this.sexo   = sexo_default;
+        this.sexo   = SEXO_DEFAULT;
         this.peso   = 0.0;
         this.altura = 0.0;
         
@@ -90,7 +90,7 @@ public class Persona {
         return this.sexo;
     }
     public void setSexo(char sexo){
-        this.sexo = sexo;
+        comprobarSexo(sexo);
     }
     
     public double getPeso(){
@@ -122,7 +122,7 @@ public class Persona {
         if(sexo == 'H' || sexo == 'M'){
             this.sexo = sexo;
         }else{
-            this.sexo = sexo_default;
+            this.sexo = SEXO_DEFAULT;
         }
     }
     

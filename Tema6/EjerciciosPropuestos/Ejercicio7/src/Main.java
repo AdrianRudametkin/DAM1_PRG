@@ -33,11 +33,14 @@ public class Main {
         Consumo c1 = new Consumo(1340,232,123.33,1.082);
         
         System.out.println(c1.consumoEuros());
-        System.out.println(c1.cousumoMedio());
-        System.out.println(c1.getPGas());
-        System.out.println(c1.getKms());
-        System.out.println(c1.getTiempo());
-        System.out.println(c1.getVmed());
+        System.out.println(c1.consumoMedio());
+        c1.setPGas(1.99);
+        c1.setKms(0);
+        c1.setVmed(0.0);
+        c1.setLitros(0);
+        
+        System.out.println(c1.consumoEuros());
+        System.out.println(c1.consumoMedio());
     }
 
 }
