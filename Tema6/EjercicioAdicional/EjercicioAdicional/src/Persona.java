@@ -1,3 +1,6 @@
+
+import java.util.Random;
+
 /*--------------------------
  This code was created for 
  educational purposes only!
@@ -38,6 +41,7 @@ public class Persona {
     private char    sexo;          // Solo un caracter: 'H' o 'M'
     private double  peso;
     private double  altura;
+    private String  dni;
     
     // *** CONSTRUCTORES ***
     public Persona(){
@@ -46,6 +50,7 @@ public class Persona {
         this.sexo   = SEXO_DEFAULT;
         this.peso   = 0.0;
         this.altura = 0.0;
+        this.dni    = generaDNI();
         
         numPersonas++;
     }
@@ -56,6 +61,7 @@ public class Persona {
         comprobarSexo(sexo);
         this.peso   = 0.0;
         this.altura = 0.0;
+        this.dni    = generaDNI();
         
         numPersonas++;
     }
@@ -66,6 +72,7 @@ public class Persona {
         comprobarSexo(sexo);
         this.peso   = peso;
         this.altura = altura;
+        this.dni    = generaDNI();
         
         numPersonas++;
     }
@@ -107,6 +114,10 @@ public class Persona {
         this.altura = altura;
     }
     
+    public String getDNI(){
+        return this.dni;
+    }
+    
     // getter de clase
     public int getNumPersonas(){
         return this.numPersonas;
@@ -114,7 +125,7 @@ public class Persona {
     
     // Calcular si es mayor de edad
     public boolean esMayorDeEdad(){
-        return edad>18;
+        return edad>=18;
     }
     
     // Compobar que el sexo sea el correcto (metodo interno)
@@ -146,5 +157,37 @@ public class Persona {
                 "\nSexo: "+this.sexo+
                 "\nPeso: "+this.peso+" kg"+
                 "\nAltura: "+this.altura+" metros");
+    }
+    
+    // Generar un DNI aleatorio para el usuario
+    private String generaDNI(){
+        String dni_a = "";
+        
+        dni_a += generarNumero();
+        dni_a += "-";
+        dni_a += generarLetra(dni_a.substring(0,7));
+        
+        return dni_a;
+    }
+    
+    // Generar un numero en formato cadena de 8 caracteres
+    private String generarNumero(){
+        String numero = "";
+        Random r = new Random();
+        
+        for(int i=0; i<8; i++){
+            int temp = r.nextInt(10);
+            numero += String.valueOf(temp);
+        }
+            
+        return numero;
+    }
+    
+    // Generar una letra para el DNI
+    private char generarLetra(String numero){
+        final char[] tabla = {'T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'};
+        int num = Integer.valueOf(numero);
+        return tabla[num%23];
+        
     }
 }
