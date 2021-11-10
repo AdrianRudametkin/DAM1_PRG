@@ -26,6 +26,8 @@
  * @version 1.0
  *
  */
+
+// Clase que contiene informacion de un coche
 public class Coche {
 
     //*** Atributos ***

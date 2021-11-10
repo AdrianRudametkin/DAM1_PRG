@@ -31,13 +31,15 @@ import java.util.Scanner;
  * @version 1.0
  * 
  */
+
+// Programa que lee hasta que se introduce la palabra FIN
 public class Ejercicio2 {
 
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         String key = "FIN", temp = "";
         
-        System.out.print("Enter the key: "); 
+        System.out.print("Introduce algo: "); 
         while(!temp.equals(key)){
             temp = s.nextLine();
         }

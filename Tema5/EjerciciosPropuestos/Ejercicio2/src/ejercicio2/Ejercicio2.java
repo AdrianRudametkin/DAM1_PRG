@@ -29,6 +29,8 @@ package ejercicio2;
  * @version 1.0
  * 
  */
+
+// Programa que hace un triangulo
 public class Ejercicio2 {
 
     public static void main(String[] args) {

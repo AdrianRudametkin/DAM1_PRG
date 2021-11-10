@@ -30,12 +30,16 @@ import java.util.*;
  * @version 1.0
  * 
  */
+
+// Programa que saque un numero aleatorio entre 100 y 200 e indicar si es par
 public class Ejercicio6 {
 
     public static void main(String[] args) {
         Random rnd = new Random();
         int valor = rnd.nextInt(101) + 100;
-        System.out.println(valor);       
+        System.out.println(valor);
+        if(valor%2==0) System.out.println("Es par.");
+        else System.out.println("Es impar.");
     }
 
 }

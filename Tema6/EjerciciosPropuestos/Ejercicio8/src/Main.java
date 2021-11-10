@@ -27,6 +27,8 @@
  * @version 1.0
  * 
  */
+
+// Clase que calcula la cantidad de platillos que puede hacer un restaurante
 public class Main {
     //*** Atributos ***
     private static double kPapas;
@@ -60,11 +62,13 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        showChocos();
+    	System.out.println("Empezamos con nada...");
+    	showChocos();
         showPapas();
         System.out.println("El numero de comensales es: "+getComensales());
         
         System.out.println("");
+        System.out.println("Se añaden 1kg de chocos y 1kg de papas...");
         addChocos(1);
         addPapas(1);
         showChocos();
@@ -72,6 +76,7 @@ public class Main {
         System.out.println("El numero de comensales es: "+getComensales());
         
         System.out.println("");
+        System.out.println("Se añaden 3kg de chocos y 9kg de papas...");
         addChocos(3);
         addPapas(9);
         showChocos();

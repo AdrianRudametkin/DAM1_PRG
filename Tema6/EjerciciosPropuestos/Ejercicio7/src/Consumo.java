@@ -27,6 +27,8 @@
  * @version 1.0
  * 
  */
+
+// Clase que almacena y calcula los parametros del viaje de un coche
 public class Consumo {
     //*** Atributos ***
     private int kms;

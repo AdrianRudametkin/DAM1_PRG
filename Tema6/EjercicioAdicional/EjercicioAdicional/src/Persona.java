@@ -32,7 +32,11 @@ import java.util.Random;
  */
 public class Persona {
     // *** ATRIBUTOS ***
-    private final char SEXO_DEFAULT = 'H';
+	// Constantes: 
+    private final char 	SEXO_DEFAULT 	= 'H';
+    private final int	SOBREPESO		= 1;
+    private final int	BAJOPESO		= -1;
+    private final int	PESONORMAL		= 0;
     // De clase:
     private static int numPersonas;    // Contador de objetos Persona
     // De objeto:
@@ -141,11 +145,11 @@ public class Persona {
     public int calcularIMC(){
         double imc = this.peso/Math.pow(this.altura, 2.0);
         if(imc < 20)
-            return -1;
+            return this.BAJOPESO;
         else if(imc > 25)
-            return 1;
+            return this.SOBREPESO;
         else
-            return 0;
+            return this.PESONORMAL;
         
     }
     

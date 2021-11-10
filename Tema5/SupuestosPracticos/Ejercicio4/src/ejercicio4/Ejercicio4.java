@@ -31,6 +31,8 @@ import java.util.Scanner;
  * @version 1.0
  * 
  */
+
+// Programa que simula un calculadora primitiva
 public class Ejercicio4 {
 
     public static void main(String[] args) {
@@ -38,20 +40,23 @@ public class Ejercicio4 {
         int num1, num2, result;
         String option;
         
-        System.out.print("Type the first number: ");
+        System.out.print("Introduce el primer numero: ");
         num1 = s.nextInt();
-        System.out.print("Type the second number: ");
+        System.out.print("Introduce el segundo numero: ");
         num2 = s.nextInt();
         option = s.nextLine();
-        System.out.print("What do you want to do? Add, subtract, multiply, divide, or power: ");
+        System.out.print("¿Que quieres hacer? Sumar, restar, multiplicar, dividir o elevar: ");
         option = s.nextLine();
         
         switch(option.toLowerCase().replace(" ", "")){
-            case "add": System.out.println("Result: " + (num1 + num2)); break;
-            case "subtract": System.out.println("Result: " + (num1 - num2)); break;
-            case "multiply": System.out.println("Result: " + (num1 * num2)); break;
-            case "divide": System.out.println("Result: " + (num1 / num2)); break;
-            case "power": System.out.println("Result: " + ((int)Math.pow((double)num1, (double)num2))); break;
+            case "sumar": System.out.println("Result: " + (num1 + num2)); break;
+            case "restar": System.out.println("Result: " + (num1 - num2)); break;
+            case "multiplicar": System.out.println("Result: " + (num1 * num2)); break;
+            case "dividir":
+            	if(num2==0) System.out.println("La division por 0 no es posible.");
+            	else System.out.println("Result: " + (num1 / num2)); 
+            	break;
+            case "elevar": System.out.println("Result: " + ((int)Math.pow((double)num1, (double)num2))); break;
             default: System.out.println("Not a valid option.");
         }
     }

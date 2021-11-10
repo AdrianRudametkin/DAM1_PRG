@@ -29,6 +29,8 @@ package ejercicio3;
  * @version 1.0
  * 
  */
+
+// Programa que hace un rombo
 public class Ejercicio3 {
 
     public static void main(String[] args) {

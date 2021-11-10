@@ -52,9 +52,10 @@ public class Main {
 //        altura = sc.nextFloat();
 //        
 //        System.out.println("");
-        
+//		  Persona p1 = new Persona(nombre, edad, sexo, peso, altura);
+//	      Persona p2 = new Persona(nombre,edad,sexo);
         // Construir los objetos
-        Persona p1 = new Persona("Sobrepeso_M", 18, 'M', 98.2, 1.23);
+    	Persona p1 = new Persona("Sobrepeso_M", 18, 'M', 82.2, 1.23);
         Persona p2 = new Persona("Bajopeso_H",12,'H');
         Persona p3 = new Persona();
         
@@ -118,7 +119,7 @@ public class Main {
         System.out.println("");
         
         // Ver el numero de objetos
-        System.out.println("Se han adscrito "+ p1.getNumPersonas());
+        System.out.println("Se han adscrito "+ p1.getNumPersonas()+"pacientes");
         
         System.out.println("");
         

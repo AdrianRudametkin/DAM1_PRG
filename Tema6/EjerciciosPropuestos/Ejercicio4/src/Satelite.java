@@ -27,6 +27,8 @@
  * @version 1.0
  * 
  */
+
+// Clase que mueve un satelite en la tierra
 public class Satelite {
     //*** Atributos ***
     private double meridiano;
@@ -55,11 +57,12 @@ public class Satelite {
     public void printPosicion(){
         System.out.println("El satellite se encuentra en el paralelo "+paralelo
                 + ", meridiano "+meridiano
-                +", a una distancia de la tierra de "+distancia_tierra+ " kilómetros");
+                +", a una distancia de la tierra de "
+                +distancia_tierra+" kilómetros");
     }
     public void variaAltura(double desplazamiento){
     	this.distancia_tierra += desplazamiento;
-        if(this.distancia_tierra >= 0)
+        if(this.distancia_tierra <= 0)
             this.distancia_tierra = 0;
     }
     public boolean enOrbita(){

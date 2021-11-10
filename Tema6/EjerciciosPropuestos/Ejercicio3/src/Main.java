@@ -27,6 +27,8 @@
  * @version 1.0
  * 
  */
+
+// Comprueba la clase Numero
 public class Main {
 
     public static void main(String[] args) {

@@ -31,6 +31,8 @@ import java.util.Scanner;
  * @version 1.0
  * 
  */
+
+// Programa que muestra una piramide de altura designada por el usuario
 public class Ejercicio5 {
 
     public static void main(String[] args) {
@@ -38,22 +40,22 @@ public class Ejercicio5 {
         Scanner s = new Scanner(System.in);
         
         // Preguntar por el tamaño de la piramide
-        System.out.print("Enter the size of your pyramid: ");
+        System.out.print("Introduce la altura de la piramide: ");
         n = s.nextInt();
         
         // Entrar en un bucle del tamaño de n
         for(int i=0; i<n; i++){
             // Imprimir la parte izquierda
             for(int j=n; j>0; j--){
-                if(i<j) System.out.print(" ");
+                if(i<j) System.out.print("-");
                 else System.out.print("*");
             }
             // Imprimir el trozo del medio
             System.out.print("*");
             // Imprimir la parte derecha
-            for(int j=0; j<=n; j++){
+            for(int j=0; j<n; j++){
                 if(i>j) System.out.print("*");
-                else System.out.print(" ");
+                else System.out.print("-");
             }
             // Pasar a la siguente linea
             System.out.println("");

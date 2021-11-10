@@ -25,6 +25,8 @@
  * @version 1.0
  *
  */
+
+// Clase que hace conversiones de peso
 public class Peso {
 
     //*** Atributos Constantes ***

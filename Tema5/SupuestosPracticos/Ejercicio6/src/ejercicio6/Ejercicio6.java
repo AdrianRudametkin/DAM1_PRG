@@ -32,7 +32,7 @@ import java.util.Scanner;
  * 
  */
 
-// Indicar mes a partir de un numero tecleado
+// Programa que indica el mes a partir de un numero tecleado
 public class Ejercicio6 {
 
     public static void main(String[] args) {

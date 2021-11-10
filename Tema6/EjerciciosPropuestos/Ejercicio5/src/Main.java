@@ -27,13 +27,16 @@
  * @version 1.0
  * 
  */
+
+// Clase que comprueba la clase Peso
 public class Main {
 
     public static void main(String[] args) {
         Peso p =  new Peso(1,"lb");
         
-        System.out.println(p.getLibras());
-        System.out.println(p.getPeso("g"));
+        System.out.printf("%.2f\n",p.getLibras());
+        System.out.printf("%.2f\n",p.getLingotes());
+        System.out.printf("%.2f\n",p.getPeso("OZ"));
     }
 
 }

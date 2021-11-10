@@ -27,6 +27,8 @@
  * @version 1.0
  * 
  */
+
+// Clase que modifica y devuelve operaciones de un numero
 public class Numero {
     //*** Atributos ***
     private int valor;

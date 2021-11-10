@@ -31,26 +31,28 @@ import java.util.Scanner;
  * @version 1.0
  * 
  */
+
+// Programa que muestra el mayor y menor de 3 numeros
 public class Ejercicio1 {
 
     public static void main(String[] args) {
         int a, b, c;
         Scanner s = new Scanner(System.in);
         
-        System.out.print("Type first number: ");
+        System.out.print("Introduce el primer numero: ");
         a = s.nextInt();
-        System.out.print("Type second number: ");
+        System.out.print("Introduce el segundo numero: ");
         b = s.nextInt();
-        System.out.print("Type third number: ");
+        System.out.print("Introduce el tercer numeror: ");
         c = s.nextInt();
         
-        if(a>b && a>c) System.out.println("The greater number is: " + a);
-        else if(b>c) System.out.println("The greater number is: " + b);
-        else System.out.println("The greater number is: " + c);
+        if(a>b && a>c) System.out.println("El mayor es: " + a);
+        else if(b>c) System.out.println("El mayor es: " + b);
+        else System.out.println("El mayor es: " + c);
         
-        if(a<b && a<c) System.out.println("The smallest number is: " + a);
-        else if(b<c) System.out.println("The smallest number is: " + b);
-        else System.out.println("The smallest number is: " + c);
+        if(a<b && a<c) System.out.println("El menor es: " + a);
+        else if(b<c) System.out.println("El menor es: " + b);
+        else System.out.println("El menor es: " + c);
     }
 
 }

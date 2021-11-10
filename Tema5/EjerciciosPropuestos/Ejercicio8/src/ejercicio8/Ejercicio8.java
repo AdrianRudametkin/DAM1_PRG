@@ -31,18 +31,20 @@ import java.util.Scanner;
  * @version 1.0
  * 
  */
+
+// Programa que detecta si un numero es OMIRP
 public class Ejercicio8 {
 
     public static void main(String[] args) {
         int num,rev;
         Scanner s = new Scanner(System.in);
         
-        System.out.print("Type a number: ");
+        System.out.print("Introduce un numero: ");
         num = s.nextInt();
         
-        if(!isPrime(num)) System.out.println(num+" is not prime.");
-        else if(!isPrime(reverseInt(num))) System.out.println(num+" is prime, but " +reverseInt(num)+ " is not.");
-        else System.out.println(num+" is prime, and " +reverseInt(num)+ " is also prime!!");
+        if(!isPrime(num)) System.out.println(num+" no es primo.");
+        else if(!isPrime(reverseInt(num))) System.out.println(num+" es primo, pero " +reverseInt(num)+ " no lo es. No es OMIRP");
+        else System.out.println(num+" es primo y " +reverseInt(num)+ " tambien. Es OMIRP!!");
     }
     
     public static boolean isPrime(int num){

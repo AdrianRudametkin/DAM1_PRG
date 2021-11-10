@@ -29,6 +29,8 @@ import java.util.Scanner;
  * @version 1.0
  *
  */
+
+// Programa que transforma numeros del 0 al 3999 a numeros romanos
 public class Ejercicio7 {
 
     public static void main(String[] args) {
@@ -36,17 +38,17 @@ public class Ejercicio7 {
         String numR = "";
         Scanner s = new Scanner(System.in);
         
-        System.out.print("Type a number: ");
+        System.out.print("Introduce un numero: ");
         numD = s.nextInt();
         
-        if(numD>4000) System.out.println("Number too big for Romans.");
+        if(numD>=4000) System.out.println("Numero demasiado grande para los romanos.");
         else{
             switch(numD/1000%10){
                 case 0: numR=""; break;
                 case 1: numR="M"; break;
                 case 2: numR="MM"; break;
                 case 3: numR="MMM"; break;
-                default: numR=" ";
+                default:
             }
             switch(numD/100%10){
                 case 0: numR+=""; break;
@@ -59,7 +61,7 @@ public class Ejercicio7 {
                 case 7: numR+="DCC"; break;
                 case 8: numR+="DCCC"; break;
                 case 9: numR+="CM"; break;
-                default: numR+=" ";
+                default:
             }
             switch(numD/10%10){
                 case 0: numR+=""; break;
@@ -72,7 +74,7 @@ public class Ejercicio7 {
                 case 7: numR+="LXX"; break;
                 case 8: numR+="LXXX"; break;
                 case 9: numR+="XC"; break;
-                default: numR+=" ";
+                default:
             }
             switch(numD%10){
                 case 0: numR+=""; break;
@@ -85,11 +87,9 @@ public class Ejercicio7 {
                 case 7: numR+="VII"; break;
                 case 8: numR+="VIII"; break;
                 case 9: numR+="IX"; break;
-                default: numR+=" ";
+                default:
             }
             System.out.println(numR);
-        }
-        
+        }   
     }
-
 }

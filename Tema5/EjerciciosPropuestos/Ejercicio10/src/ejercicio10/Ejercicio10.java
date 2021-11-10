@@ -29,6 +29,8 @@ package ejercicio10;
  * @version 1.0
  * 
  */
+
+// Programa que muestra los numeros del 1-100 menos los multiplos de 5
 public class Ejercicio10 {
 
     public static void main(String[] args) {

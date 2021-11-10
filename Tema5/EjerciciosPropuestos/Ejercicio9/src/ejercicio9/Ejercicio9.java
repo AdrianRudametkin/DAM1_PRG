@@ -29,6 +29,8 @@ package ejercicio9;
  * @version 1.0
  * 
  */
+
+// Programa que muestra los primeros 50 numeros pares
 public class Ejercicio9 {
 
     public static void main(String[] args) {

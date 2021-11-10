@@ -25,6 +25,8 @@
  * @version 1.0
  *
  */
+
+// Clase que convierte euros a dolares y viceversa
 public class Finanzas {
     // Atributos
     private double dolarEuro;

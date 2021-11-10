@@ -28,6 +28,8 @@ package ejercicio5_2;
  * @version 1.0
  * 
  */
+
+// Programa que muestra las tablas de multiplicar del 1 al 10
 public class Ejercicio5_2 {
 
     public static void main(String[] args) {

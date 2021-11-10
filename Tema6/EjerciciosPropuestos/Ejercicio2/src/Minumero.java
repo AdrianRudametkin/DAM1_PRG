@@ -26,34 +26,32 @@
  * @version 1.0
  *
  */
+
+// Clase que muestra varias formas de un numero
 public class Minumero {
 
     //*** Atributos ***
-    private int num_doble;
-    private int num_triple;
-    private int num_cuadruple;
+    private int numero;
 
     //*** Constructor ***
     public Minumero(int numero) {
-        this.num_doble = doble(numero);
-        this.num_triple = triple(numero);
-        this.num_cuadruple = cuadruple(numero);
+    	this.numero =  numero;
     }
 
     //*** Metodos ***
     // Metodo para el doble
-    private int doble(int numero) {
-        return (numero * 2);
+    private int doble() {
+        return (this.numero * 2);
     }
 
     // Metodo para el triple
-    private int triple(int numero) {
-        return (numero * 3);
+    private int triple() {
+        return (this.numero * 3);
     }
 
     // Metodo para el cuadruple
-    private int cuadruple(int numero) {
-        return (numero * 4);
+    private int cuadruple() {
+        return (this.numero * 4);
     }
 
     
@@ -62,9 +60,9 @@ public class Minumero {
     public static void main(String[] args) {
         Minumero x = new Minumero(20);
         
-        System.out.println("Doble: "+x.num_doble);
-        System.out.println("Triple: "+x.num_triple);
-        System.out.println("Cuadruple: "+x.num_cuadruple);
+        System.out.println("Doble: "+x.doble());
+        System.out.println("Triple: "+x.triple());
+        System.out.println("Cuadruple: "+x.cuadruple());
     }
 
 }

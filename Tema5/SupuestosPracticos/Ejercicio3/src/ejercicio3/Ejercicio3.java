@@ -31,13 +31,15 @@ import java.util.Scanner;
  * @version 1.0
  * 
  */
+
+// Programa que calcula si un año es bisiesto
 public class Ejercicio3 {
 
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         int year;
         
-        System.out.print("Type a year: ");
+        System.out.print("Introduce un año: ");
         year = s.nextInt();
         
         String answer = algoritmo_bisiesto(year)?"es":"no es";

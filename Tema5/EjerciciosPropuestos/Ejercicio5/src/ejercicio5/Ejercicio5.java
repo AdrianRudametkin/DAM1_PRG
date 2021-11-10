@@ -31,6 +31,8 @@ import java.util.Scanner;
  * @version 1.0
  * 
  */
+
+// Programa que te saca la tabla de multiplicar que quieras
 public class Ejercicio5 {
 
     public static void main(String[] args) {

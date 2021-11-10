@@ -31,6 +31,8 @@ import java.util.Scanner;
  * @version 1.0
  * 
  */
+
+// Programa que pida primero apellidoS y nombre, para luego ordenarlo
 public class Ejercicio1 {
 
     public static void main(String[] args) {
@@ -38,7 +40,7 @@ public class Ejercicio1 {
         String fn, ln1, ln2, allNames;
         int indexMax, indexMin = 0;
         
-        System.out.print("Enter your first and second lastname, then your name: ");
+        System.out.print("Introduce tus apellidos y luego tu nombre: ");
         allNames = s.nextLine();
         
         indexMax = allNames.indexOf(" ");

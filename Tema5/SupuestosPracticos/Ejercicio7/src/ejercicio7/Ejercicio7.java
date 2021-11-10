@@ -31,6 +31,8 @@ import java.io.IOException;
  * @version 1.0
  * 
  */
+
+// Predecir el comportamiento de este programa
 public class Ejercicio7 {
 
     public static void main(String[] args) throws IOException {

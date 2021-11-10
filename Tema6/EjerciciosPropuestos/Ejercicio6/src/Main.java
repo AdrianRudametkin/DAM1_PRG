@@ -27,6 +27,8 @@
  * @version 1.0
  * 
  */
+
+// Clase que comprueba la clase Coche
 public class Main {
 
     public static void main(String[] args) {

@@ -31,6 +31,8 @@ import java.util.Scanner;
  * @version 1.0
  * 
  */
+
+// Programa que saca tu numero de la suerte a partir de tu fecha de nacimiento
 public class Ejercicio4 {
 
     public static void main(String[] args) {
@@ -38,11 +40,11 @@ public class Ejercicio4 {
         String numString;
         Scanner s = new Scanner(System.in);
         
-        System.out.print("Type your day of birth: ");
+        System.out.print("Introduce el dia de tu cumple: ");
         day = s.nextInt();
-        System.out.print("Type your month of birth: ");
+        System.out.print("Introduce el mes de tu cumple: ");
         month = s.nextInt();
-        System.out.print("Type your year of birth: ");
+        System.out.print("Introduce el año de tu cumple: ");
         year = s.nextInt();
         
         temp = day + month + year;
@@ -56,7 +58,7 @@ public class Ejercicio4 {
             temp = 0;
         }
         
-        System.out.println("Your Lucky Number is: " + numString);
+        System.out.println("Tu numero de la suerte es: " + numString);
     }
 
 }
