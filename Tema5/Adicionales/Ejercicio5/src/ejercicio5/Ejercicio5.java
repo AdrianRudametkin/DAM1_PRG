@@ -37,7 +37,7 @@ public class Ejercicio5 {
         int num;
         Scanner s = new Scanner(System.in);
         
-        System.out.print("Enter a number: ");
+        System.out.print("Introduzca un numero: ");
         num = s.nextInt();
         
         for(int i=0; i<10; i++){

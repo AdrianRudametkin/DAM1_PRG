@@ -11,7 +11,7 @@
  *
  * Ejercicio10.java
  *
- * Created on Oct 8, 2021 At 12:20:00 AM
+ * Created on Nov 13, 2021 At 10:12:22 PM
  * 
  * Developed by Rogelio Rodriguez for IES El Grao
  *
@@ -19,18 +19,14 @@
  *
 */
 
-package ejercicio10;
-
 
 /**
  *
  * @author  Rogelio Rodriguez
- * @date    Oct 8, 2021
+ * @date    Nov 13, 2021
  * @version 1.0
  * 
  */
-
-// Programa que muestra los numeros del 1-100 menos los multiplos de 5
 public class Ejercicio10 {
 
     public static void main(String[] args) {

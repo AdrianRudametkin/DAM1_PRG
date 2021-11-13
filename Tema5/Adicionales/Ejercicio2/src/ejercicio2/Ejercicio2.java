@@ -41,7 +41,7 @@ public class Ejercicio2 {
         int totalNum=0, totalSum=0;
         boolean exit;
         
-        System.out.print("Type a number: ");
+        System.out.print("Introduzca un numero: ");
         temp = s.nextInt();
         // Maximums and minimums
         numMax = temp;
@@ -66,14 +66,14 @@ public class Ejercicio2 {
         totalSum+=temp;
         do{
             s.nextLine();
-            System.out.println("Type another number?(y/n)");
+            System.out.println("¿Introducir otro numero?(s/n)");
             String answer = s.nextLine();
             
             if(answer.toLowerCase().equals("n")){
                 exit = true;
-            }else if(answer.toLowerCase().equals("y")){
+            }else if(answer.toLowerCase().equals("s")){
                 exit = false;
-                System.out.print("Type a number: ");
+                System.out.print("Introducir un numero: ");
                 temp = s.nextInt();
                 // Maximums and minimums
                 if(temp > numMax) numMax = temp;
@@ -97,21 +97,21 @@ public class Ejercicio2 {
                 totalNum++;
                 totalSum+=temp;
             }else{
-                System.out.print("Type either y (for yes) or n (for no): ");
+                System.out.print("Introduzca s (para s) o n (para no): ");
                 exit = false;
             }
         }while(!exit);
         
         System.out.printf("\n\n");
         System.out.printf("**---MAX & MIN---**\n");
-        System.out.printf(" The max number is: %d\n", numMax);
-        System.out.printf(" The min number is: %d\n", numMin);
-        System.out.printf("**---SUMS---**\n");
-        System.out.printf(" For %d positive numbers, the sum is: %d\n",numPos, sumPos);
-        System.out.printf(" For %d negative numbers, the sum is: %d\n", numNeg, sumNeg);
-        System.out.printf(" For %d even numbers, the sum is: %d\n", numEven, sumEven);
-        System.out.printf(" For %d odd numbers, the sum is: %d\n", numOdd, sumOdd);
-        System.out.printf("**---AVERAGE---**\n");
-        System.out.printf(" For %d numbers, the average is: %.2f\n", totalNum, (double)totalSum/totalNum);
+        System.out.printf(" El maximo es: %d\n", numMax);
+        System.out.printf(" El minimo es: %d\n", numMin);
+        System.out.printf("**---SUMAS---**\n");
+        System.out.printf(" Para %d numeros positivos, la suma es: %d\n",numPos, sumPos);
+        System.out.printf(" Para %d numeros negativos, la suma es: %d\n", numNeg, sumNeg);
+        System.out.printf(" Para %d numeros pares, la suma es: %d\n", numEven, sumEven);
+        System.out.printf(" Para %d numeros impares, la suma es: %d\n", numOdd, sumOdd);
+        System.out.printf("**---MEDIA---**\n");
+        System.out.printf(" Para %d numeros, la media es: %.2f\n", totalNum, (double)totalSum/totalNum);
     }
 }

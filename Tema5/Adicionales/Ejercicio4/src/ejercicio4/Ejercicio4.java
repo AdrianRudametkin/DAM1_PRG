@@ -42,10 +42,10 @@ public class Ejercicio4 {
             System.out.print("Introduzca la contraseña: ");
             input = s.nextLine();
             if(input.equals(password)){
-                System.out.println("Congratulations ☆*:.o(≧▽≦)o.:*☆");
+                System.out.println("Felicidades ☆*:.o(≧▽≦)o.:*☆");
                 break;
             }
-            else System.out.println("That's not the password (¬.¬)");
+            else System.out.println("Esa no es la contraseña (¬.¬)");
         }
         s.close();
     }

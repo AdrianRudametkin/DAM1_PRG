@@ -34,21 +34,21 @@ public class Ejercicio8 {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         int d, m, y;
-        System.out.print("Enter the day: ");
+        System.out.print("Introducir el dia: ");
         d = s.nextInt();
         while (d > 31 && d < 1) {
-            System.out.println("Enter a valid day (1-30): ");
+            System.out.println("Introduzca un dia valido (1-30): ");
         }
 
-        System.out.print("Enter the month: ");
+        System.out.print("Introducir el mes: ");
         m = s.nextInt();
         while (m > 12 && m < 1) {
-            System.out.println("Enter a valid day (1-30): ");
+            System.out.println("Introduzca un mes valido (1-12): ");
         }
-        System.out.print("Enter the year: ");
+        System.out.print("Introducir el año: ");
         m = s.nextInt();
-        while (m > 12 && m < 1) {
-            System.out.println("Enter a valid day (1-30): ");
+        while (m < 0) {
+            System.out.println("Introduzca un año(0-inf): ");
         }
     }
 

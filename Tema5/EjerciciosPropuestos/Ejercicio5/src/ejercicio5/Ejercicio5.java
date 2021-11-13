@@ -39,7 +39,7 @@ public class Ejercicio5 {
         int n;
         Scanner s = new Scanner(System.in);
         
-        System.out.print("Enter a number from 1 to 10: ");
+        System.out.print("Introduce un numero del 1 al 10: ");
         n = s.nextInt();
         
         for(int i=1; i<=10; i++){

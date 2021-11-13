@@ -38,11 +38,11 @@ public class Ejercicio7 {
         String op;
         Scanner s = new Scanner(System.in);
         
-        System.out.print("Type the first number: ");
+        System.out.print("Introduzca el primer numero: ");
         num1 = s.nextInt();
-        System.out.print("Type the second number: ");
+        System.out.print("Introduzca el primer numero: ");
         num2 = s.nextInt();
-        System.out.print("Type the operation (+ - * / ^ %): ");
+        System.out.print("Introduzca la operacion (+ - * / ^ %): ");
         op = s.nextLine();
         op = s.nextLine();
         
@@ -53,13 +53,16 @@ public class Ejercicio7 {
     
     public static void operation(String op, int num1, int num2){
         switch(op){
-            case "+": System.out.printf("The resulting operation is: %d\n",num1 + num2); break;
-            case "-": System.out.printf("The resulting operation is: %d\n",num1 - num2); break;
-            case "*": System.out.printf("The resulting operation is: %d\n",num1 * num2); break;
-            case "/": System.out.printf("The resulting operation is: %.2f\n",(double)(num1 / num2)); break;
-            case "^": System.out.printf("The resulting operation is: %d\n", Math.pow(num1, num2)); break;
-            case "%": System.out.printf("The resulting operation is: %.2f\n",(double)(num1 % num2)); break;
-            default: System.out.printf("The operation is invalid!!\n");
+            case "+": System.out.printf("El resultado es: %d\n",num1 + num2); break;
+            case "-": System.out.printf("El resultado es: %d\n",num1 - num2); break;
+            case "*": System.out.printf("El resultado es: %d\n",num1 * num2); break;
+            case "/": 
+                if(num2==0) System.out.printf("La operacion es invalida!!\n");
+                else System.out.printf("El resultado es: %.2f\n",(double)(num1 / num2)); 
+                break;
+            case "^": System.out.printf("El resultado es: %.0f\n", Math.pow(num1, num2)); break;
+            case "%": System.out.printf("El resultado es: %.2f\n",(double)(num1 % num2)); break;
+            default: System.out.printf("La operacion es invalida!!\n");
         }        
     }
 

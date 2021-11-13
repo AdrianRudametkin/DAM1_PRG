@@ -18,9 +18,6 @@
  * Contact me through e-mail : 10377573@ieselgrao.org
  *
 */
-
-package ejercicio1;
-
 import java.util.Scanner;
 
 

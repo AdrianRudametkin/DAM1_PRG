@@ -119,7 +119,7 @@ public class Main {
         System.out.println("");
         
         // Ver el numero de objetos
-        System.out.println("Se han adscrito "+ p1.getNumPersonas()+"pacientes");
+        System.out.println("Se han adscrito "+ p1.getNumPersonas()+" pacientes");
         
         System.out.println("");
         
