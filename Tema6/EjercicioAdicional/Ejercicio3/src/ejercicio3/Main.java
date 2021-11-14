@@ -21,6 +21,8 @@
 
 package ejercicio3;
 
+import java.util.Scanner;
+
 
 /**
  *
@@ -32,8 +34,12 @@ package ejercicio3;
 public class Main {
 
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("Longitud de la contraseña 1: [default]");
         Password p1 = new Password();
-        Password p2 = new Password(20);
+        System.out.println("Introduce la longitud de la contraseña 2: ");
+        Password p2 = new Password(sc.nextInt());
         
         System.out.println("Contraseña 1: " + p1.getContrasenya());
         System.out.println("Contraseña 2: " + p2.getContrasenya());

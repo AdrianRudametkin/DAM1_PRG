@@ -33,14 +33,15 @@ import java.util.Random;
  */
 public class Password {
     // *** Atributos ***
-    
+    //  Atributos constantes
+    private final int LONGITUD_DEF = 8;
     //  Atributos de clase
     private int longitud;
     private String contrasenya;
     
     // *** Constructores ***
     public Password(){
-        this.longitud = 8;
+        this.longitud = this.LONGITUD_DEF;
         this.contrasenya = generarPassword(this.longitud);
     }
     
