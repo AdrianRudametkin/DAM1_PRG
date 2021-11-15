@@ -32,14 +32,14 @@ import java.util.Random;
  */
 public class Persona {
     // *** ATRIBUTOS ***
-	// Constantes: 
-    private final char 	SEXO_DEFAULT 	= 'H';
-    private final int	SOBREPESO		= 1;
-    private final int	BAJOPESO		= -1;
-    private final int	PESONORMAL		= 0;
-    // De clase:
+    //  Constantes: 
+    private static final char 	SEXO_DEFAULT 	= 'H';
+    private static final int	SOBREPESO	= 1;
+    private static final int	BAJOPESO	= -1;
+    private static final int	PESONORMAL	= 0;
+    //  De clase:
     private static int numPersonas;    // Contador de objetos Persona
-    // De objeto:
+    //  De objeto:
     private String  nombre;
     private int     edad;
     private char    sexo;          // Solo un caracter: 'H' o 'M'
@@ -82,7 +82,12 @@ public class Persona {
     }
     
     // *** METODOS ***
-    // getters and settes (de objeto)
+    //  Metodos de clase
+    public static int getNumPersonas(){
+        return Persona.numPersonas;
+    }
+    
+    //  Getters & Setters
     public String getNombre(){
         return this.nombre;
     }
@@ -122,17 +127,13 @@ public class Persona {
         return this.dni;
     }
     
-    // getter de clase
-    public int getNumPersonas(){
-        return this.numPersonas;
-    }
-    
-    // Calcular si es mayor de edad
+    //  Metodos de objeto
+    //      Calcular si es mayor de edad
     public boolean esMayorDeEdad(){
         return edad>=18;
     }
     
-    // Compobar que el sexo sea el correcto (metodo interno)
+    //      Compobar que el sexo sea el correcto (metodo interno)
     private void comprobarSexo(char sexo){
         if(sexo == 'H' || sexo == 'M'){
             this.sexo = sexo;
@@ -141,19 +142,19 @@ public class Persona {
         }
     }
     
-    // Calcular el IMC: IMC = (peso en kilos)/(altura en m)^2
+    //      Calcular el IMC: IMC = (peso en kilos)/(altura en m)^2
     public int calcularIMC(){
         double imc = this.peso/Math.pow(this.altura, 2.0);
         if(imc < 20)
-            return this.BAJOPESO;
+            return BAJOPESO;
         else if(imc > 25)
-            return this.SOBREPESO;
+            return SOBREPESO;
         else
-            return this.PESONORMAL;
+            return PESONORMAL;
         
     }
     
-    // Devolver cadena de la informacion del paciente
+    //      Devolver cadena de la informacion del paciente
     @Override
     public String toString(){
         return("\nPaciente: "+this.nombre+
@@ -163,7 +164,7 @@ public class Persona {
                 "\nAltura: "+this.altura+" metros");
     }
     
-    // Generar un DNI aleatorio para el usuario
+    //      Generar un DNI aleatorio para el usuario
     private String generaDNI(){
         String dni_a = "";
         
@@ -174,7 +175,7 @@ public class Persona {
         return dni_a;
     }
     
-    // Generar un numero en formato cadena de 8 caracteres
+    //      Generar un numero en formato cadena de 8 caracteres
     private String generarNumero(){
         String numero = "";
         Random r = new Random();
@@ -187,7 +188,7 @@ public class Persona {
         return numero;
     }
     
-    // Generar una letra para el DNI
+    //      Generar una letra para el DNI
     private char generarLetra(String numero){
         final char[] tabla = {'T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'};
         int num = Integer.valueOf(numero);

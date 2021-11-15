@@ -32,31 +32,30 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-//        String nombre;
-//        int edad;
-//        char sexo;
-//        double peso, altura;
-//        
-//        // Pedir informacion al usuario
-//        Scanner sc = new Scanner(System.in);
-//        System.out.println("***PACIENTE NUEVO***");
-//        System.out.println("Introduzca nombre: ");
-//        nombre = sc.nextLine();
-//        System.out.println("Introduzca la edad: ");
-//        edad = sc.nextInt();
-//        System.out.println("Introduzca el sexo");
-//        sexo = sc.next().charAt(0);
-//        System.out.println("Introduza el peso: ");
-//        peso = sc.nextDouble();
-//        System.out.println("Introduzca la altura: ");
-//        altura = sc.nextFloat();
-//        
-//        System.out.println("");
-//		  Persona p1 = new Persona(nombre, edad, sexo, peso, altura);
-//	      Persona p2 = new Persona(nombre,edad,sexo);
+        String nombre;
+        int edad;
+        char sexo;
+        double peso, altura;
+        
+        // Pedir informacion al usuario
+        Scanner sc = new Scanner(System.in);
+        System.out.println("***PACIENTE NUEVO***");
+        System.out.println("Introduzca nombre: ");
+        nombre = sc.nextLine();
+        System.out.println("Introduzca la edad: ");
+        edad = sc.nextInt();
+        System.out.println("Introduzca el sexo");
+        sexo = sc.next().charAt(0);
+        System.out.println("Introduza el peso: ");
+        peso = sc.nextDouble();
+        System.out.println("Introduzca la altura: ");
+        altura = sc.nextFloat();
+        
+        System.out.println("");
+		  
         // Construir los objetos
-    	Persona p1 = new Persona("Sobrepeso_M", 18, 'M', 82.2, 1.23);
-        Persona p2 = new Persona("Bajopeso_H",12,'H');
+        Persona p1 = new Persona(nombre, edad, sexo, peso, altura);
+	Persona p2 = new Persona(nombre,edad,sexo);
         Persona p3 = new Persona();
         
         p2.setPeso(25.00);

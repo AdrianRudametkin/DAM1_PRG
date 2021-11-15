@@ -42,12 +42,12 @@ public class Password {
     // *** Constructores ***
     public Password(){
         this.longitud = this.LONGITUD_DEF;
-        this.contrasenya = generarPassword(this.longitud);
+        this.contrasenya = generarPassword();
     }
     
     public Password(int longitud){
         this.longitud = longitud;
-        this.contrasenya = generarPassword(longitud);
+        this.contrasenya = generarPassword();
     }
     
     // *** Metodos ***
@@ -57,7 +57,7 @@ public class Password {
     }
     public void setLongitud(int longitud){
         this.longitud = longitud;
-        this.contrasenya = generarPassword(longitud);
+        this.contrasenya = generarPassword();
     }
     
     public String getContrasenya(){
@@ -66,11 +66,11 @@ public class Password {
     
     //  Metodos publicos
     //      Metodo que genera una contraseña aleatoria de una longitud
-    private String generarPassword(int longitud){
+    private String generarPassword(){
         Random r = new Random();
         String pswd = "";
         
-        for(int i=0; i<longitud; i++){
+        for(int i=0; i<this.longitud; i++){
             // Los caracteres que queremos en UNICODE van de d48 a d122 (exluyendo 58-64 y 91-96)
             int ch = (r.nextInt(75)+48);        // *75 para incluir el 74º numero
             
