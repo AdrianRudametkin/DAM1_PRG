@@ -34,9 +34,9 @@ public class Persona {
     // *** ATRIBUTOS ***
     //  Constantes: 
     private static final char 	SEXO_DEFAULT 	= 'H';
-    private static final int	SOBREPESO	= 1;
-    private static final int	BAJOPESO	= -1;
-    private static final int	PESONORMAL	= 0;
+    public static final int	SOBREPESO	= 1;
+    public static final int	BAJOPESO	= -1;
+    public static final int	PESONORMAL	= 0;
     //  De clase:
     private static int numPersonas;    // Contador de objetos Persona
     //  De objeto:
@@ -55,7 +55,7 @@ public class Persona {
         this.peso   = 0.0;
         this.altura = 0.0;
         this.dni    = generaDNI();
-        
+      
         numPersonas++;
     }
     
@@ -157,9 +157,14 @@ public class Persona {
     //      Devolver cadena de la informacion del paciente
     @Override
     public String toString(){
+        String sexo;
+        if(this.sexo == 'M')
+            sexo = "Mujer";
+        else
+            sexo = "Hombre";
         return("\nPaciente: "+this.nombre+
                 "\nEdad: "+this.edad+" años"+
-                "\nSexo: "+this.sexo+
+                "\nSexo: "+sexo+
                 "\nPeso: "+this.peso+" kg"+
                 "\nAltura: "+this.altura+" metros");
     }

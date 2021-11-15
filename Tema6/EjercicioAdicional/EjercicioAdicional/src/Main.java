@@ -49,7 +49,7 @@ public class Main {
         System.out.println("Introduza el peso: ");
         peso = sc.nextDouble();
         System.out.println("Introduzca la altura: ");
-        altura = sc.nextFloat();
+        altura = sc.nextDouble();
         
         System.out.println("");
 		  
@@ -70,23 +70,23 @@ public class Main {
         
         // Ver las condiciones de IMC de todos los pacientes
         switch (p1.calcularIMC()) {
-            case -1: System.out.println(p1.getNombre()+" (P1) tiene bajo peso."); break;
-            case 0: System.out.println(p1.getNombre()+" (P1) tiene el peso adecuado."); break;
-            case 1: System.out.println(p1.getNombre()+" (P1) tiene sobrepeso."); break;
+            case Persona.BAJOPESO: System.out.println(p1.getNombre()+" (P1) tiene bajo peso."); break;
+            case Persona.PESONORMAL: System.out.println(p1.getNombre()+" (P1) tiene el peso adecuado."); break;
+            case Persona.SOBREPESO: System.out.println(p1.getNombre()+" (P1) tiene sobrepeso."); break;
             default: break;
         }
         
         switch (p2.calcularIMC()) {
-            case -1: System.out.println(p2.getNombre()+" (P2) tiene bajo peso."); break;
-            case 0: System.out.println(p2.getNombre()+" (P2) tiene el peso adecuado."); break;
-            case 1: System.out.println(p3.getNombre()+" (P2) tiene sobrepeso."); break;
+            case Persona.BAJOPESO: System.out.println(p2.getNombre()+" (P2) tiene bajo peso."); break;
+            case Persona.PESONORMAL: System.out.println(p2.getNombre()+" (P2) tiene el peso adecuado."); break;
+            case Persona.SOBREPESO: System.out.println(p3.getNombre()+" (P2) tiene sobrepeso."); break;
             default: break;
         }
         
         switch (p3.calcularIMC()) {
-            case -1: System.out.println(p3.getNombre()+" (P3) tiene bajo peso."); break;
-            case 0: System.out.println(p3.getNombre()+" (P3) tiene el peso adecuado."); break;
-            case 1: System.out.println(p3.getNombre()+" (P3) tiene sobrepeso."); break;
+            case Persona.BAJOPESO: System.out.println(p3.getNombre()+" (P3) tiene bajo peso."); break;
+            case Persona.PESONORMAL: System.out.println(p3.getNombre()+" (P3) tiene el peso adecuado."); break;
+            case Persona.SOBREPESO: System.out.println(p3.getNombre()+" (P3) tiene sobrepeso."); break;
             default: break;
         }
         
