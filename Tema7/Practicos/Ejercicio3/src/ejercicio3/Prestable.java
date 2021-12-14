@@ -9,9 +9,9 @@
 
 /*
  *
- * Encargado.java
+ * Prestable.java
  *
- * Created on Dec 13, 2021 At 9:49:14 AM
+ * Created on Dec 14, 2021 At 1:15:45 PM
  * 
  * Developed by Rogelio Rodriguez for IES El Grao
  *
@@ -19,24 +19,19 @@
  *
 */
 
-package ejercicio8;
+package ejercicio3;
 
 
 /**
  *
  * @author  Rogelio Rodriguez
- * @date    Dec 13, 2021
+ * @date    Dec 14, 2021
  * @version 1.0
  * 
  */
-public class Encargado extends Empleado{
-    
-    public Encargado(double sueldo){
-        super(sueldo);
-    }
-    
-    @Override
-    public double getSueldo(){
-        return (super.getSueldo() * 1.1);
-    }
+
+public interface Prestable {
+    public void prestar();
+    public void devolover();
+    public boolean prestado();
 }

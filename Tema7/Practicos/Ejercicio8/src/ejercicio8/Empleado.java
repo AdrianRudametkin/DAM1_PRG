@@ -30,10 +30,14 @@ package ejercicio8;
  * 
  */
 public class Empleado {
-    private int sueldo;
+    private double sueldo;
     private String trabajo;
     
-    public Empleado(){
-        
+    public Empleado(double sueldo){
+        this.sueldo = sueldo;
+    }
+    
+    public double getSueldo(){
+        return sueldo;
     }
 }

@@ -32,7 +32,12 @@ package ejercicio8;
 public class Main {
 
     public static void main(String[] args) {
+        double sueldo = 1000;
+        Empleado e1 = new Empleado(sueldo);
+        Encargado e2 = new Encargado(sueldo);
         
+        System.out.println("Sueldo empleado: "+e1.getSueldo());
+        System.out.println("Sueldo empleado: "+e2.getSueldo());
     }
 
 }

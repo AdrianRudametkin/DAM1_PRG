@@ -9,9 +9,9 @@
 
 /*
  *
- * Encargado.java
+ * Revista.java
  *
- * Created on Dec 13, 2021 At 9:49:14 AM
+ * Created on Dec 14, 2021 At 1:13:23 PM
  * 
  * Developed by Rogelio Rodriguez for IES El Grao
  *
@@ -19,24 +19,27 @@
  *
 */
 
-package ejercicio8;
+package ejercicio3;
 
 
 /**
  *
  * @author  Rogelio Rodriguez
- * @date    Dec 13, 2021
+ * @date    Dec 14, 2021
  * @version 1.0
  * 
  */
-public class Encargado extends Empleado{
+public class Revista extends Publicacion{
+    private int numero;
     
-    public Encargado(double sueldo){
-        super(sueldo);
+    public Revista(int codigo, String titulo, int anyo, int numero){
+        super(codigo, titulo, anyo);
+        this.numero = numero;
     }
     
     @Override
-    public double getSueldo(){
-        return (super.getSueldo() * 1.1);
+    public String toString(){
+        return(super.toString()+
+                "\n·Numero: "+ numero);
     }
 }
