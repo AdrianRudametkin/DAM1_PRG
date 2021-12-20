@@ -21,6 +21,8 @@
 
 package ejercicio4;
 
+import tools.Fecha;
+
 
 /**
  *
@@ -29,7 +31,31 @@ package ejercicio4;
  * @version 1.0
  * 
  */
-public class Refrigerados extends Producto{
-    private int cod_EU;
-    private double temp_mant;
+public class Refrigerados extends Temperados{
+    // Atributos
+    private int codUE;
+    
+    // Constructores
+    public Refrigerados(int codUE, double tempMant, Fecha f_cad, int lote, Fecha f_env, String paisOrigen) {    
+        super(tempMant, f_cad, lote, f_env, paisOrigen);
+        this.codUE = codUE;
+    }
+
+    // Getters y Setters
+    public int getCodUE() {
+        return codUE;
+    }
+
+    public void setCodUE(int codUE) {
+        this.codUE = codUE;
+    }
+
+    
+    // Metodo que devuelve informacion del producto
+    @Override
+    public String toString(){
+        return ("\nPRODUCTO REFRIGERADO"+
+                super.toString()+
+                "\n Codigo del Organismo de Supervision Alimentaria: "+codUE);
+    }    
 }

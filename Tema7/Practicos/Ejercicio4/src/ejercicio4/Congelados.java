@@ -21,6 +21,8 @@
 
 package ejercicio4;
 
+import tools.Fecha;
+
 
 /**
  *
@@ -30,5 +32,8 @@ package ejercicio4;
  * 
  */
 public class Congelados extends Producto{
-    private double temp_mant;
+    // Constructores
+    public Congelados(Fecha f_cad, int lote, Fecha f_env, String paisOrigen) {
+        super(f_cad, lote, f_env, paisOrigen);
+    }
 }

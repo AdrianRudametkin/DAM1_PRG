@@ -21,6 +21,9 @@
 
 package ejercicio4;
 
+import java.util.Date;
+import tools.Fecha;
+
 
 /**
  *
@@ -30,16 +33,27 @@ package ejercicio4;
  * 
  */
 public abstract class Producto {
-    private String f_cad;
+    // Atributos
+    private Fecha f_cad;
     private int lote;
-    private String f_env;
-    private String pais_origen;
+    private Fecha f_env;
+    private String paisOrigen;
+    
+    // Constructores
 
-    public String getF_cad() {
+    public Producto(Fecha f_cad, int lote, Fecha f_env, String paisOrigen) {
+        this.f_cad = f_cad;
+        this.lote = lote;
+        this.f_env = f_env;
+        this.paisOrigen = paisOrigen;
+    }
+
+    // Getters y Setters
+    public Fecha getF_cad() {
         return f_cad;
     }
 
-    public void setF_cad(String f_cad) {
+    public void setF_cad(Fecha f_cad) {
         this.f_cad = f_cad;
     }
 
@@ -50,6 +64,29 @@ public abstract class Producto {
     public void setLote(int lote) {
         this.lote = lote;
     }
+
+    public Fecha getF_env() {
+        return f_env;
+    }
+
+    public void setF_env(Fecha f_env) {
+        this.f_env = f_env;
+    }
+
+    public String getPais_origen() {
+        return paisOrigen;
+    }
+
+    public void setPais_origen(String pais_origen) {
+        this.paisOrigen = pais_origen;
+    }
     
-    
+    // Metodo que devuelve informacion del producto
+    @Override
+    public String toString(){
+        return ("\n Numero de Lote: "+lote+
+                "\n Fecha de Envasado: "+f_env.toString()+
+                "\n Fecha de Caducidad: "+f_cad.toString()+
+                "\n Pais de Origen: "+paisOrigen);
+    }
 }
