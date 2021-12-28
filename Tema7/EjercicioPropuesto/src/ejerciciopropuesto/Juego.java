@@ -109,7 +109,10 @@ public abstract class Juego {
     }
 
     public void setNumCopias(int numCopias) {
-        this.numCopias = numCopias;
+        if(numCopias<0)
+            this.numCopias = 0;
+        else
+            this.numCopias = numCopias;
     }
     
     
@@ -132,10 +135,12 @@ public abstract class Juego {
     public String toString(){
         return ("\nTitulo: "+titulo+
                 "\nFabricante: "+fabricante+
-                "\nAño: "+anyo);
+                "\nAño: "+anyo+
+                "\nNº Copias disponibles: "+numCopias+
+                "\nPrecio: "+precio+" €");
     }
     
-    // Metodo que comprueba si un objeto de la misma clase son iguales es igual
+    // Metodo que comprueba si un objeto de la misma clase es igual
     // a este.
     public boolean equals(Juego o){
         return (titulo.equals(o.titulo) &&
@@ -143,8 +148,7 @@ public abstract class Juego {
                 anyo==o.anyo);
     }
     
-    // Metodo que compruba si otro objeto de la misma clase es menor(1), 
-    // mayor (-1) o igual (0) a este.
+    // Metodo que compruba si este es menor(-1), mayor (1) o igual (0) a otro.
     public int compareTo(Juego o){
         
         if(titulo.compareTo(o.titulo)>0) return 1;

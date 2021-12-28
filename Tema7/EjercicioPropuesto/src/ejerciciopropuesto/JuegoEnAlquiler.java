@@ -29,13 +29,16 @@ package ejerciciopropuesto;
  * @version 1.0
  * 
  */
-public class JuegoEnAlquiler extends Juego{
+public class JuegoEnAlquiler extends Juego implements Alquilable{
+    // Valores por defecto
+    private final static int DIAS_ALQUILA_DEF = 0;
     //*** ATRIBUTOS ***
     private int diasAlquila;
     
     //*** CONSTRUCTORES ***
     public JuegoEnAlquiler(){
         super();
+        diasAlquila = DIAS_ALQUILA_DEF;
     }
 
     public JuegoEnAlquiler(String titulo, String fabricante, int anyo, double precio, int numCopias, int diasAlquila) {
@@ -49,8 +52,42 @@ public class JuegoEnAlquiler extends Juego{
         
         diasAlquila = o.diasAlquila;
     }
+
+    //*** METODOS ***
+    public int getDiasAlquila() {
+        return diasAlquila;
+
+    }
+    public void setDiasAlquila(int diasAlquila) {    
+        this.diasAlquila = diasAlquila;
+    }
+
+    @Override
+    public void alquilar() {
+        int copias = this.getNumCopias();
+        if(copias==0)
+            throw new IllegalArgumentException("No hay mas copias!");
+        copias--;
+        this.setNumCopias((copias));
+    }
+
+    @Override
+    public void devolver() {
+        int copias = this.getNumCopias();
+        copias++;
+        this.setNumCopias(copias);
+    }
+
+    @Override
+    public double precioFinal() {
+        double precio = this.getPrecio();
+        
+        return ((double)diasAlquila * precio);
+    }
     
-    
-    
-    
+    @Override
+    public String toString(){
+        return(super.toString()+
+                "\nDias alquilado: "+diasAlquila+(diasAlquila==1?" dia":" dias"));
+    }
 }
