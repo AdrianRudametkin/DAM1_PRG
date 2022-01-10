@@ -58,7 +58,7 @@ public abstract class Juego {
         numCopias = DEF_NUMCOPIAS;
         
         numJuegos++;
-    }
+    }   
 
     public Juego(String titulo, String fabricante, int anyo, double precio, int numCopias) {
         this.titulo = titulo;
@@ -123,7 +123,7 @@ public abstract class Juego {
     
     // Metodo que comprueba si el año introducido es correto
         // Solo utilizable en esta clase y no se puede sobreescribir
-    private void comprobarAnyo(int anyo){
+    private final void comprobarAnyo(int anyo){
         if(anyo<1970 || anyo>Calendar.getInstance().get(Calendar.YEAR))
             this.anyo = DEF_ANYO;
         else
@@ -151,7 +151,7 @@ public abstract class Juego {
     // Metodo que compruba si este es menor(-1), mayor (1) o igual (0) a otro.
     public int compareTo(Juego o){
         
-        if(titulo.compareTo(o.titulo)>0) return 1;
+        if(titulo.compareTo(o.titulo)>0)    return 1;
         else if(titulo.compareTo(o.titulo)<0) return -1;
         else{
             if(fabricante.compareTo(o.fabricante)>0) return 1;
