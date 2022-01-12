@@ -49,6 +49,7 @@ public abstract class Juego {
     private double precio;
     private int numCopias;
     
+    
     //*** CONSTRUCTORES ***
     public Juego(){
         titulo = DEF_TITULO;
