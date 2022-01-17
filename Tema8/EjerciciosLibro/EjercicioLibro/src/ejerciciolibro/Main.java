@@ -46,8 +46,8 @@ public class Main {
 
     private static void printArray(int array[]){
         int suma = 0;
-        for(int i=array.length-1; i>=0; i--){
-            suma = suma+array[i];
+        for(int i: array){
+            suma = suma+i;
         }
         System.out.println(suma);
     }
