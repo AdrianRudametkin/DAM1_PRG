@@ -44,12 +44,49 @@ public class Main {
             s.nextLine();
             switch(mi){
                 case 1:
-                    System.out.print("Introduzca alumn@ para añadir:");
-                    lista = addElement(lista, s.nextLine());
+                    printAddMenu();
+                    int add = s.nextInt();
+                    s.nextLine();
+                    switch(add){
+                        case 1:
+                            System.out.println("Introduzca alumn@ a añadir:");
+                            lista = addElement(lista, s.nextLine());
+                            break;
+                        case 2:
+                            System.out.println("Introduzca la posicion:");
+                            int i = s.nextInt();
+                            s.nextLine();
+                            System.out.println("Introduzca alumn@ a añadir:");
+                            lista = addElement(lista, s.nextLine(), i);
+                            break;
+                        default:
+                            System.out.println("Introduzca un numero valido.");
+                            System.out.println("");
+                    }
                     break;
                 case 2:
-                    System.out.print("Introduzca alumn@ para quitar:");
-                    lista = removeElement(lista, s.nextLine());
+                    printRemoveMenu();
+                    int rem = s.nextInt();
+                    switch(rem){
+                        case 1:
+                            System.out.println("Introduzca alumn@ a quitar:");
+                            lista = removeElement(lista, s.nextLine());
+                            break;
+                        case 2:
+                            System.out.println("Introduzca posicion a quitar:");
+                            lista = removeElement(lista, s.nextLine());
+                            break;
+                        case 3:
+                            System.out.println("Introduzca posicion a quitar:");
+                            int j = s.nextInt();
+                            s.nextLine();
+                            System.out.println("Introduzca alumn@ a quitar:");
+                            lista = removeElement(lista, j, s.nextLine());
+                            break;
+                        default:
+                            System.out.println("Introduzca un numero valido.");
+                            System.out.println("");
+                    }
                     break;
                 case 3:
                     lista = orderElements(lista);
@@ -72,6 +109,7 @@ public class Main {
         }
     }
     
+    // Añadir Elemento al final
     private static String[] addElement(String[] array, String element){
         if(array==null){
             System.out.println("La lista no existe...");
@@ -89,6 +127,30 @@ public class Main {
         return newArray;
     }
     
+    // Añadir Elemento en una posicion
+    private static String[] addElement(String[] array, String element, int pos){
+        if(array==null){
+            System.out.println("La lista no existe...");
+            System.out.println("");
+            return array;
+        }
+        if(pos > array.length-1){
+            System.out.println("La lista no es tan larga...");
+            System.out.println("");
+            return array;
+        }        
+        String newArray[] = new String[array.length+1];
+        
+        System.arraycopy(array, 0, newArray, 0, pos);
+        newArray[pos]=element;
+        System.arraycopy(array, pos, newArray, pos+1, array.length-pos);
+        
+        System.out.println("  ::Alumn@ añadid@");
+        System.out.println("");
+        return newArray;
+    }
+    
+    // Quitar elemento por nombre
     private static String[] removeElement(String[] array, String element){
         if(array==null || array.length==0){
             System.out.println("La lista esta vacia o no existe... nada que quitar");
@@ -111,6 +173,53 @@ public class Main {
         return array;
     }
     
+    // Quitar elemento por posicion
+    private static String[] removeElement(String[] array, int pos){
+        if(array==null || array.length==0){
+            System.out.println("La lista esta vacia o no existe... nada que quitar");
+            System.out.println("");
+            return array;
+        }
+        if(pos > array.length-1){
+            System.out.println("La lista no es tan larga...");
+            System.out.println("");
+            return array;
+        }
+        String newArray[] = new String[array.length-1];
+        System.arraycopy(array, 0, newArray, 0, pos);
+        System.arraycopy(array, pos+1, newArray, pos, newArray.length-pos);
+        System.out.println("  ::Alumn@ borrad@...");
+        System.out.println("");
+        return newArray;
+    }
+    
+    // Quitar elemento por posicion y por nombre
+    private static String[] removeElement(String[] array, int pos, String element){
+        if(array==null || array.length==0){
+            System.out.println("La lista esta vacia o no existe... nada que quitar");
+            System.out.println("");
+            return array;
+        }
+        if(pos > array.length-1){
+            System.out.println("La lista no es tan larga...");
+            System.out.println("");
+            return array;
+        }
+        if(array[pos].equals(element)){
+            String newArray[] = new String[array.length-1];
+            System.arraycopy(array, 0, newArray, 0, pos);
+            System.arraycopy(array, pos+1, newArray, pos, newArray.length-pos);
+            System.out.println("  ::Alumn@ borrad@...");
+            System.out.println("");
+            return newArray;
+        }else{
+            System.out.println("  ::Alumn@ no en la posicion descrita");
+            System.out.println("");
+            return array;
+        }
+    }
+    
+    // Ordenar alfabeticamente los elementos
     private static String[] orderElements(String[] array){
         if(array==null || array.length==0){
             System.out.println("La lista esta vacia o no existe... nada que ordenar");
@@ -143,6 +252,8 @@ public class Main {
         System.out.println("");
         return ordered;
     }
+    
+    // Imprimir lista de elementos
     private static void printElements(String[] array){
         if(array==null || array.length==0){
             System.out.println("La lista esta vacia o no existe... nada que mostrar");
@@ -158,6 +269,8 @@ public class Main {
         }
         System.out.println("");
     }
+    
+    // Imprimir menu pricipal
     private static void printMenu(){
         System.out.println("");
         System.out.println("***MENU PRINCIPAL***");
@@ -166,6 +279,24 @@ public class Main {
         System.out.println(" 3 -Ordenar la lista.");
         System.out.println(" 4 -Imprimir la lista.");
         System.out.println(" 5 -Hacer una lista nueva.");
+        System.out.print("Selecionar una opcion: ");
+    }
+    
+    // Imprimir menu de añadir
+    private static void printAddMenu(){
+        System.out.println("Añadir alumn@ en:");
+        System.out.println(" 1 -Al final de la lista.");
+        System.out.println(" 2 -En una posicion especifica.");
+        System.out.print("Selecionar una opcion: ");
+    }
+    
+    // Imprimir menu de quitar
+    
+    private static void printRemoveMenu(){
+        System.out.println("Quitar alumn@ en:");
+        System.out.println(" 1 -Por nombre.");
+        System.out.println(" 2 -Por posicion.");
+        System.out.println(" 3 -Por posicion y nombre.");
         System.out.print("Selecionar una opcion: ");
     }
 }
