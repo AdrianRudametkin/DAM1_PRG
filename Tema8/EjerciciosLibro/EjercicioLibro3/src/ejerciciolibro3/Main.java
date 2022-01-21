@@ -42,6 +42,7 @@ public class Main {
             printMenu();
             mi = s.nextInt();
             s.nextLine();
+            System.out.println("");
             switch(mi){
                 case 1:
                     printAddMenu();
@@ -49,50 +50,55 @@ public class Main {
                     s.nextLine();
                     switch(add){
                         case 1:
-                            System.out.println("Introduzca alumn@ a añadir:");
+                            System.out.print("Introduzca alumn@ a añadir:");
                             lista = addElement(lista, s.nextLine());
                             break;
                         case 2:
-                            System.out.println("Introduzca la posicion:");
+                            System.out.print("Introduzca la posicion:");
                             int i = s.nextInt();
                             s.nextLine();
-                            System.out.println("Introduzca alumn@ a añadir:");
+                            System.out.print("Introduzca alumn@ a añadir:");
                             lista = addElement(lista, s.nextLine(), i);
                             break;
                         default:
                             System.out.println("Introduzca un numero valido.");
                             System.out.println("");
                     }
+                    System.out.println("");
                     break;
                 case 2:
                     printRemoveMenu();
                     int rem = s.nextInt();
+                    s.nextLine();
                     switch(rem){
                         case 1:
-                            System.out.println("Introduzca alumn@ a quitar:");
+                            System.out.print("Introduzca alumn@ a quitar:");
                             lista = removeElement(lista, s.nextLine());
                             break;
                         case 2:
-                            System.out.println("Introduzca posicion a quitar:");
-                            lista = removeElement(lista, s.nextLine());
+                            System.out.print("Introduzca posicion a quitar:");
+                            lista = removeElement(lista, s.nextInt());
                             break;
                         case 3:
-                            System.out.println("Introduzca posicion a quitar:");
+                            System.out.print("Introduzca posicion a quitar:");
                             int j = s.nextInt();
                             s.nextLine();
-                            System.out.println("Introduzca alumn@ a quitar:");
+                            System.out.print("Introduzca alumn@ a quitar:");
                             lista = removeElement(lista, j, s.nextLine());
                             break;
                         default:
                             System.out.println("Introduzca un numero valido.");
                             System.out.println("");
                     }
+                    System.out.println("");
                     break;
                 case 3:
                     lista = orderElements(lista);
+                    System.out.println("");
                     break;
                 case 4:
                     printElements(lista);
+                    System.out.println("");
                     break;
                 case 5:
                     System.out.print("De cuant@s alumn@s sera la lista:");
@@ -102,6 +108,7 @@ public class Main {
                         System.out.print("Introduzca alumn@ "+(i+1)+": ");
                         lista[i] = s.nextLine();
                     }
+                    System.out.println("");
                     break;
                 default: System.out.println("Introduzca un numero valido.");
                 System.out.println("");
