@@ -32,7 +32,12 @@ package ejerciciolibro4;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(args.length);
+        String[][] array;
+        int i = 0;
+        for(String s: args){
+            
+        }
+        System.out.println();
     }
 
 }
