@@ -30,14 +30,46 @@ package ejerciciolibro4;
  * 
  */
 public class Main {
-
-    public static void main(String[] args) {
-        String[][] array;
-        int i = 0;
+    
+    // Argumentos:
+    // "Hola hola HOLA adios buenas ADIos" "Jorge jorge Juan roge alumno PROFE carmen" "hola" "piña" "locomotora locoMotora"
+    public static void main(String[] args) {        
+        // Un array con todas las palabras, pasando por todos los argumentos
+        String[] palabras = new String[0];
         for(String s: args){
-            
+            palabras = addElement(palabras,s.split(" "));
         }
-        System.out.println();
+        
+        for(String s: palabras){
+            System.out.println(s);
+        }
+        
+        System.out.println(palabras.length);
+        
     }
-
+    
+    // Metodo para concatenar arrays
+    private static String[] addElement(String[] array, String[] elements){
+        String newArray[] = array;
+        
+        int i=0;
+        for(String s: elements){
+            newArray=addElement(newArray,s);
+            i++;
+        } 
+        return newArray;
+    }
+    // Añadir un elemento que no exista (ignorando may/min) en el array de entrada
+    private static String[] addElement(String[] array, String element){        
+        String newArray[] = new String[array.length+1];
+        
+        for(String s: array){
+            if(s.equalsIgnoreCase(element)){
+                return array;
+            }
+        }
+        System.arraycopy(array, 0, newArray, 0, array.length);
+        newArray[newArray.length-1]=element;
+        return newArray;
+    }
 }
