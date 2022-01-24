@@ -36,13 +36,18 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String cadena;
-        int[] arr1, arr2;
+        int[] arr1, arr2, arr;
         System.out.println("Introduzca los numero del array 1: ");
         cadena = sc.nextLine();
         arr1 = parseArray(cadena);
         System.out.println("Introduzca los numero del array 2: ");
         cadena = sc.nextLine();
         arr2 = parseArray(cadena);
+        
+        System.out.println("Cadena ordenada: ");
+        arr=ordenar(arr1,arr2);
+        for(int i: arr)
+            System.out.print(i+", ");
     }
     
     // concatenar y ordenar dos arrays de enteros
@@ -54,8 +59,9 @@ public class Main {
         //      hasta que sea mayor.
         //   4-continuar con el siguente elemento
         int[] arrayR = new int[(array1.length + array2.length)];
-        System.arraycopy(arrayR, 0, array1, 0, array1.length);
-        System.arraycopy(arrayR, array1.length-1, array2, 0, array2.length);
+        System.arraycopy(array1, 0, arrayR, 0, array1.length);
+        System.arraycopy(array2, 0, arrayR, array1.length-1, array2.length);
+        
         int key,j;
         
         for(int i=1; i<arrayR.length; i++){
