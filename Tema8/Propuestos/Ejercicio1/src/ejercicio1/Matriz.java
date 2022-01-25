@@ -183,11 +183,10 @@ public class Matriz {
     // Mostar la matriz
     public void mostrarMatriz(){
         for(int filas[]: matriz){
-            System.out.print("|");
             for(int elemento: filas){
-                System.out.print(elemento+"\t");
+                System.out.printf("%3d ",elemento);
             }
-            System.out.println("|");
+            System.out.println("");
         }
     }
     
@@ -196,5 +195,65 @@ public class Matriz {
         this.matriz = matriz;
         numFilas = matriz.length;
         numColumnas = matriz[0].length;
+    }
+    
+    public static void main(String[] args) {
+        Matriz m1 = new Matriz();
+        Matriz m2 = new Matriz();
+        
+        Scanner sc = new Scanner(System.in);
+        int op;
+        while(true){
+            printMenu();
+            op = sc.nextInt();
+            if(op == 6){
+                return;
+            }else if(op<3){
+                System.out.println("Matriz 1:");
+                m1.solicitarTamanyo();
+                m1.asignarDatos();
+                System.out.println("Matriz 2:");
+                m2.solicitarTamanyo();
+                m2.asignarDatos();
+            }else{
+                System.out.println("Matriz:");
+                m1.solicitarTamanyo();
+                m1.asignarDatos();
+            }
+            System.out.println("");
+            
+            switch(op){
+                case 1:
+                    m1.sumar(m2);
+                    break;
+                case 2:
+                    m1.producto(m2);
+                    break;
+                case 3:
+                    m1.traspuesta();
+                    break;
+                case 4:
+                    System.out.print("Maximo matriz: "+m1.maximo());
+                    System.out.println("");
+                    break;
+                case 5:
+                    System.out.print("Maximo matriz: "+m1.minimo());
+                    System.out.println("");
+                    break;
+                default: 
+                    System.out.println("Eliga una opcion valida!");
+                    break;
+            }
+        }
+    }
+    
+    public static void printMenu(){
+        System.out.println("\nElige un opcion:"
+                + "\n 1-Sumar 2 matrizes."
+                + "\n 2-Multiplicar 2 matrices."
+                + "\n 3-Transpuesta de una matriz."
+                + "\n 4-Numero maximo de una matriz."
+                + "\n 5-Numero minimo de una matriz."
+                + "\n 6-Salir.");
     }
 }
