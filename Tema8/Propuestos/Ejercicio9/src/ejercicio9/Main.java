@@ -33,13 +33,16 @@ public class Main {
 
     public static void main(String[] args) {
         int[] array = crearVector(100, 1, 100);
+        
+        System.out.println("Vector aleatorio: ");
         for(int i: array)
-            System.out.print(i+" ");
+            System.out.print(i+", ");
         System.out.println("");
         
+        System.out.println("Vector ordenado: ");
         array = ordenar(array);
         for(int i: array)
-            System.out.print(i+" ");
+            System.out.print(i+", ");
         System.out.println("");
         
         numerosNoMostrados(array);
@@ -85,11 +88,19 @@ public class Main {
     private static void numerosNoMostrados(int[] arr) {        
         // averiguar cuales no estan
         System.out.println("Los valores no existentes son: ");
-        int key = 0;
-        for(int i=0; i<=100; i++){
-            while(key<i){
-                
+        boolean tmp = false;
+        for(int i=1; i<=100; i++){
+            for(int j: arr){
+                if(j==i){
+                    tmp = false;
+                    break;
+                }
+                tmp = true;
             }
+            if(tmp){
+                System.out.print(i+", ");
+            }
+                
         }
     }
 
