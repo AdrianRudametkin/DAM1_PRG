@@ -49,10 +49,17 @@ public class Main {
     }
     
     // creacion del codigo de usuario
-    public static String crearUsuario(String nombre, String apellido1, String apellido2){
-        return (nombre.substring(0,3) + 
-                apellido1.substring(0,3) + 
-                apellido2.substring(0,3)
+    public static String crearUsuario(String nom, String ape1, String ape2){
+        boolean stringsNoValidas = nom.length() < 3  
+                                    || ape1.length() < 3 
+                                    || ape2.length() < 3;
+        if(stringsNoValidas){
+            System.out.println("Los nombres y apellidos tiene que tener mas de 3 caracteres :D");
+            return null;
+        }
+        return (nom.substring(0,3) + 
+                ape1.substring(0,3) + 
+                ape2.substring(0,3)
                 ).toUpperCase();
     }
 }

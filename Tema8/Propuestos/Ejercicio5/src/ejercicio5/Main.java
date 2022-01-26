@@ -47,11 +47,15 @@ public class Main {
     
     // imprimir numero de vocales
     public static void vocales(String s){
-        System.out.println("Numero de A's: "+letras(s, "a"));
-        System.out.println("Numero de I's: "+letras(s, "i"));
-        System.out.println("Numero de U's: "+letras(s, "u"));
-        System.out.println("Numero de E's: "+letras(s, "e"));
-        System.out.println("Numero de O's: "+letras(s, "o"));
+        if(s==null || s.trim().equals("")){
+            System.out.println("Si no escribes nada, no habra vocales :/");
+        }else{
+            System.out.println("Numero de A's: "+letras(s, "a"));
+            System.out.println("Numero de I's: "+letras(s, "i"));
+            System.out.println("Numero de U's: "+letras(s, "u"));
+            System.out.println("Numero de E's: "+letras(s, "e"));
+            System.out.println("Numero de O's: "+letras(s, "o"));
+        }
     }
     
     // contar letras en una cadena

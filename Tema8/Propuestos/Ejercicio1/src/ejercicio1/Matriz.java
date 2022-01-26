@@ -43,14 +43,19 @@ public class Matriz {
         Scanner sc = new Scanner(System.in);
         System.out.print("Introduzca el numero de filas: ");
         numFilas = sc.nextInt();
-        System.out.print("Introduzca el numero de columnas:");
+        System.out.print("Introduzca el numero de columnas: ");
         numColumnas = sc.nextInt();
         
         matriz = new int[numFilas][numColumnas];
+        asignarDatos();
+        
+        // Mostrar Matriz
+        System.out.println("");
+        this.mostrarMatriz();
     }
     
     // metodo que rellena la matriz con numeros aleatoreos
-    public void asignarDatos(){
+    private void asignarDatos(){
         if(matriz==null){
             System.out.println("No hay matriz...");
             return;
@@ -58,7 +63,7 @@ public class Matriz {
         
         for(int i=0; i<numFilas; i++){
             for(int j=0; j<numColumnas; j++){
-                matriz[i][j] = (int)(Math.random()*99+1);
+                matriz[i][j] = (int)(Math.random()*100+1);
             }
         }
     }
@@ -100,11 +105,7 @@ public class Matriz {
             System.out.println("No se pueden sumar matrices de distinto tamaño...");
             return;
         }
-        // Imprimir matrices
-        System.out.println(" > MATRIZ A :");
-        this.mostrarMatriz();
-        System.out.println(" > MATRIZ B :");
-        matriz.mostrarMatriz();
+        
         // Sumar cada elemento con su correspondiente
         for(int i=0; i<numFilas; i++){
             for(int j=0; j<numColumnas; j++){
@@ -112,6 +113,7 @@ public class Matriz {
             }
         }
         
+        // Mostrar Matriz
         modificarMatriz(this.matriz);
         System.out.println(">> A + B :");
         this.mostrarMatriz();
@@ -127,11 +129,6 @@ public class Matriz {
             return;
         }
         
-        // Imprimir matrices
-        System.out.println(" > MATRIZ A :");
-        this.mostrarMatriz();
-        System.out.println(" > MATRIZ B :");
-        matriz.mostrarMatriz();
         // Matriz cuadrada resultate
         int[][] res = new int[numFilas][matriz.numColumnas];
         
@@ -155,6 +152,7 @@ public class Matriz {
             }
         }
         
+        // Mostrar Matriz
         modificarMatriz(res);
         System.out.println(">> A * B :");
         this.mostrarMatriz();
@@ -166,25 +164,24 @@ public class Matriz {
     public void traspuesta(){
         // Transpuesta de una matriz:
         // Reordenacion de la matriz cambiando la filas por las columnas y viceversa
-        // Imprimir matriz original
-        System.out.println(" > Matriz :");
-        this.mostrarMatriz();
         int[][] trp = new int[numColumnas][numFilas];
         for(int i=0; i<trp.length; i++){
             for(int j=0; j<trp[0].length; j++){
                 trp[i][j] = matriz[j][i];
             }
         }
+        
+        // Mostrar la matriz
         modificarMatriz(trp);
         System.out.println(">> Matriz traspuesta :");
         this.mostrarMatriz();
         System.out.println("");
     }
     // Mostar la matriz
-    public void mostrarMatriz(){
+    private void mostrarMatriz(){
         for(int filas[]: matriz){
             for(int elemento: filas){
-                System.out.printf("%3d ",elemento);
+                System.out.printf("\t%d",elemento);
             }
             System.out.println("");
         }
@@ -211,14 +208,11 @@ public class Matriz {
             }else if(op<3){
                 System.out.println("Matriz 1:");
                 m1.solicitarTamanyo();
-                m1.asignarDatos();
                 System.out.println("Matriz 2:");
                 m2.solicitarTamanyo();
-                m2.asignarDatos();
             }else{
                 System.out.println("Matriz:");
                 m1.solicitarTamanyo();
-                m1.asignarDatos();
             }
             System.out.println("");
             

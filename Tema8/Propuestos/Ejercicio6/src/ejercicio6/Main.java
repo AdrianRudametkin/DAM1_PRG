@@ -35,6 +35,10 @@ public class Main {
 
     public static void main(String[] args) {
         String s = pedirCadena();
+        if(s==null || s.trim().equals("")){
+            System.out.println("No puedo hacer mi trabajo si no escribes nada :/");
+            return;
+        }
         
         if(palindromo(s)){
             System.out.println("La frase '"+s+"' SI es un palindromo.");
