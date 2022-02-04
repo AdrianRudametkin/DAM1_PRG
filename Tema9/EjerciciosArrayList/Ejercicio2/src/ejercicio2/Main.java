@@ -145,7 +145,7 @@ public class Main {
     
     // Inserta un numero en una posicion, recorriendo los numeros subsecuentes
     private static void insertarNumero(){
-        System.out.println("Introduzca el numero a insertar: ");
+        System.out.print("Introduzca el numero a insertar: ");
         double num = pedirNumero();
         System.out.println("Introduzca la posicion: ");
         int pos = (int)pedirNumero();
@@ -153,7 +153,7 @@ public class Main {
         if(pos<lista.size() && pos>=0){
             lista.add(pos, num);
         }else{
-            System.out.println("Introduzca una posicion valida. "
+            System.out.print("Introduzca una posicion valida. "
                     + "Para esta lista de 0 a "+lista.size()+".");
         }
     }
