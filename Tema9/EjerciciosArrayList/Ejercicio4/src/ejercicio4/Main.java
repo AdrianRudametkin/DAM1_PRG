@@ -40,10 +40,11 @@ public class Main {
 
     public static void main(String[] args) {
         int option;
-        personas = new ArrayList<Persona>();
+        personas = new ArrayList<>();
         do{
             printMenu();
             option = sc.nextInt();
+            System.out.println("");
             switch(option){
                 case 1:
                     introducirPersona();
@@ -55,6 +56,9 @@ public class Main {
                     eliminarPersona();
                     break;
                 case 4:
+                    ordenarPersonas();
+                    break;
+                case 5:
                     mostrarPersonas();
                     break;
                 case 0:
@@ -68,13 +72,15 @@ public class Main {
     }
     
     private static void printMenu(){
-        System.out.print("\n[1] Introducir persona"
+        System.out.println("");
+        System.out.print("\n-----------------------------------"
+                + "\n[1] Introducir persona"
                 + "\n[2] Buscar persona"
                 + "\n[3] Eliminar persona"
                 + "\n[4] Ordenar personas por apellidos"
-                + "\n[4] Mostrar todas las personas"
+                + "\n[5] Mostrar todas las personas"
                 + "\n[0] Salir"
-                + "\n\nIntroducir una opcion: ");
+                + "\n Introducir una opcion: ");
     }
     
     private static void introducirPersona(){
@@ -87,10 +93,11 @@ public class Main {
         do{
             System.out.print("Introducir sexo: ");
             p.setSexo(sc.nextLine());
-        }while(p.getSexo()!=null);
-        do
-        System.out.print("Introducir edad: ");
-        p.setEdad(sc.nextInt());
+        }while(p.getSexo()==null);
+        do{
+            System.out.print("Introducir edad: ");
+            p.setEdad(sc.nextInt());
+        }while(p.getEdad()<0);
         personas.add(p);
     }
     
@@ -126,12 +133,13 @@ public class Main {
             return p1.getApellidos().compareToIgnoreCase(p2.getApellidos());
         };
         Collections.sort(personas, apellidos);
+        System.out.println("Personas ordenadas por apellido.");
     }
     
     private static void mostrarPersonas(){
         System.out.println("*** Lista De Personas ***");
         personas.forEach(p -> {
-            System.out.println(p.toString());
+            System.out.print(p.toString());
         });
     }
 }

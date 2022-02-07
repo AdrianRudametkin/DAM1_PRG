@@ -146,13 +146,14 @@ public class Persona {
             this.edad = edad;
         }else{
             System.out.println("No puedes tener menos de 0 años...");
+            this.edad = -1;
         }    
     }
     
     //  metodos publicos
     @Override
     public String toString(){
-        return ("\n"+DNI+"\t "+sexo.toUpperCase()+" - "
+        return ("\n"+DNI+"   ["+sexo.toUpperCase()+"] - "
                 +apellidos.toUpperCase()+", "+nombres.toUpperCase()+" - "
                 +edad+" años");
     }
