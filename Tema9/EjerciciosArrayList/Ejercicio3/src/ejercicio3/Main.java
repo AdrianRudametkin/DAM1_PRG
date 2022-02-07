@@ -43,10 +43,11 @@ public class Main {
         notas1DAM = new ArrayList<>();
         
         do{
-            System.out.println("\n[0] para salir"
+            System.out.print("\n[0] para salir"
                     + "\n[1] para añadir mas"
                     + "\n[2] para mostar lista por orden alfabetico"
-                    + "\n[3] para mostar lista por orden de nota");
+                    + "\n[3] para mostar lista por orden de nota"
+                    + "\nintroducir accion: ");
             option = sc.nextInt();
             switch(option){
                 case 2:
@@ -69,7 +70,7 @@ public class Main {
 
     private static void ordenarAlfa() {
         Comparator<Alumno> compareByName = (Alumno a1, Alumno a2) -> 
-                    a1.getNombre().compareTo(a2.getNombre());
+                    a1.getNombre().toLowerCase().compareTo(a2.getNombre().toLowerCase());
         Collections.sort(notas1DAM, compareByName);
     }
 
@@ -77,9 +78,9 @@ public class Main {
     private static void ordenarNota() {
         Comparator<Alumno> compareByGrade = (Alumno a1, Alumno a2) ->{
             if(a1.getNota()<a2.getNota())
-                return -1;
-            else if(a1.getNota()>a2.getNota())
                 return 1;
+            else if(a1.getNota()>a2.getNota())
+                return -1;
             else
                 return 0;
         };
@@ -87,6 +88,7 @@ public class Main {
     }
     
     private static void mostrar() {
+        System.out.println("");
         System.out.println("NOMBRE \tNOTA");
         notas1DAM.forEach(a1 -> {
             System.out.println(a1.getNombre() + "\t" + a1.getNota());
