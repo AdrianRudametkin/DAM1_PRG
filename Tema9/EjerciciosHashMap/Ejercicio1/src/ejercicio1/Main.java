@@ -21,9 +21,12 @@
 
 package ejercicio1;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
@@ -60,10 +63,10 @@ public class Main {
                     consultarTel();
                     break;
                 case 4:
-                    consultarNom();
+                    modificar();
                     break;
                 case 5:
-                    modificar();
+                    consultarNom();
                     break;
                 case 6:
                     borrar();
@@ -88,7 +91,7 @@ public class Main {
     }
     
     private static void printMenu(){
-        System.out.print("\n *** Contactos ***"
+        System.out.print("\n\n\n *** Contactos ***"
                 + "\n[ 1] Agendar un amig@"
                 + "\n[ 2] Numero de contactos"
                 + "\n[ 3] Consultar numero de amig@"
@@ -99,28 +102,24 @@ public class Main {
                 + "\n[ 8] Mostrar tod@s tus amig@s"
                 + "\n[ 9] Ordenar contactos por nombre"
                 + "\n[10] Ordenar contactos por telefono"
+                + "\n[11] Salir"
                 + "\n>>Introduzca una opcion: ");
     }
 
     private static void agendar() {
+        // Pedir el nombre al usuario del nuevo contacto
         String tel, nom;
-        System.out.print("Introduce el nombre de tu amig@: ");
+        sc.nextLine();
+        System.out.print("\nIntroduce el nombre de tu amig@: ");
         nom = sc.nextLine();
+        
         // Comprobar que no existe el contacto
-        if(agenda.containsValue(nom.toLowerCase())){
-            System.out.print(nom + " ya existe en tus contactos. Crear igualmente?(s/n): "); 
-            String s = sc.nextLine();
-            if(s.toLowerCase().contains("n")){
-                return;
-            }else{
-                String newNom;
-                do{
-                    System.out.print("Introduce un nombre diferente para tu amig@: ");
-                    newNom = sc.nextLine();
-                }while(nom.equalsIgnoreCase(newNom));
-                nom = newNom;
-            }
+        if(agenda.containsValue(nom.toUpperCase())){
+            System.out.print(nom + " ya existe en tus contactos. Crea otro contacto[1] con un nombre difrenciador."); 
+            return;
         }
+        
+        // Solicitar el numero de telefono
         System.out.print("Introduzca su numero de telefono: ");
         tel = sc.nextLine();
         // Comprobar que no exista el numero de telefono
@@ -129,102 +128,116 @@ public class Main {
             System.out.println("Puede modificar su numero[4] o eliminarlo[6] en el menu principal");
             return;
         }
-        agenda.put(tel, nom.toLowerCase());
+        
+        // Añadir el telefono y nombre a la agenda
+        agenda.put(tel, nom.toUpperCase());
     }
 
     private static void numContactos() {
+        // Mirar el tamaño de la agenda
         int i = agenda.size();
+        // Mensaje presonalizado dependiendo del numero de entradas
         switch (i) {
             case 0:
-                System.out.println("No tienes amig@s :(");
+                System.out.println("\nNo tienes amig@s :(");
                 break;
             case 1:
-                System.out.println("Tienes 1 amig@.");
+                System.out.println("\nTienes 1 amig@.");
                 break;
             default:
-                System.out.println("Tienes "+i+" amig@s.");
+                System.out.println("\nTienes "+i+" amig@s.");
                 break;
         }
     }
 
     private static void consultarTel() {
-        System.out.println("Introduzca el nombre que quiere buscar: ");
-        String s = sc.nextLine();
+        // Solicitar el nombre del que se quiera saber el numero
+        sc.nextLine();
+        System.out.print("\nIntroduzca el nombre de su amig@: ");
+        String nom = sc.nextLine();
         // Comprobar que el nombre existe
-        if(agenda.containsValue(s.toLowerCase())){
-            agenda.entrySet().stream().filter(e -> (Objects.equals(s, e.getValue()))).forEachOrdered(e -> {
-                System.out.println("El telefono de "+e.getValue()+" es "+e.getKey());
-            });
+        if(agenda.containsValue(nom.toUpperCase())){
+            // Si existe, mostar que numero tiene el contacto
+            for(Entry<String, String> e : agenda.entrySet()){
+                if(e.getValue().equals(nom.toUpperCase())){
+                    System.out.println(e.getValue()+" tiene el numero "+e.getKey());
+                }
+            }
         }else{
-            System.out.println("No existe '"+s+"' amig@...");
+            System.out.println("'"+nom+"' NO es tu amig@...");
         }
+    }
+    
+    private static void modificar() {
+        // Solicitar el nombre a modificar
+        sc.nextLine();
+        System.out.print("\nQue contacto quiere modificar? (escriba su nombre): ");
+        String nom = sc.nextLine();
+
+        // Buscar cual es el telefono (key) de esta persona
+        String key = null;
+        if(agenda.containsValue(nom.toUpperCase())){
+            for(Entry<String, String> e : agenda.entrySet()){
+                key = e.getKey();
+            }
+        }else{
+            System.out.println("'"+nom+"' NO es tu amig@...");
+            return;
+        }
+        
+        // Solicitar el numero nuevo (tel) a modificar
+        System.out.println("Modificando contacto: "+agenda.get(key)+" - "+key);
+        System.out.print("Introducir numero nuevo: ");
+        String tel = sc.nextLine();
+        if(tel.equals(key)){
+            System.out.println("No has cambiado el numero... contacto no modificado.");
+            return;
+        }
+        // Añadir el nuevo telefono (tel) con el nombre viejo
+        agenda.put(tel, agenda.get(key).toUpperCase());
+        // Quitar el contacto antiguo
+        agenda.remove(key);
     }
 
     private static void consultarNom() {
-        System.out.println("Introduzca el numero de telefono: ");
-        String s = sc.nextLine();
+        // Solicitar el numero de telefono del que se quiera saber el nombre
+        sc.nextLine();
+        System.out.print("\nIntroduzca el numero de telefono: ");
+        String tel = sc.nextLine();
         // Comprobar que el numero existe
-        if(agenda.containsKey(s)){
-            System.out.println("El numero de telefono '"+s+"' es de "+agenda.get(s)+".");
+        if(agenda.containsKey(tel)){
+            // Si existe, mostrar a quien le pertenece el numero
+            System.out.println("El numero de telefono '"+tel+"' es de "+agenda.get(tel)+".");
         }else{
             System.out.println("Ese numero de telefono no esta agendado...");
         }
     }
 
-    private static void modificar() {
-        System.out.println("Que contacto quiere modificar? (escriba su nombre o numero de telefono)");
-        String key = sc.nextLine();
-        
-        if(!agenda.containsKey(key)){
-            if(agenda.containsValue(key.toLowerCase())){
-                for(Entry<String, String> e : agenda.entrySet()){
-                    key = e.getKey();
-                }
-            }else{
-                System.out.println("No existe un contacto con esos datos...");
-                return;
-            }
-        }
-        String nom, tel;
-        System.out.println("Modificando contacto: "+agenda.get(key)+" - "+key);
-        System.out.println("(dejar en blanco si no desea modificar el campo)");
-        System.out.print("Introducir nombre nuevo: ");
-        nom = sc.nextLine();
-        System.out.print("Introducir numero nuevo: ");
-        tel = sc.nextLine();
-        
-        if(nom == null || nom.trim().equals("")){
-            nom = agenda.get(key);
-        }
-        if(tel == null || nom.trim().equals("")){
-            tel = key;
-        }
-        agenda.remove(key);
-        agenda.put(tel, nom);
-    }
+    
 
     private static void borrar() {
-        System.out.println("Que contacto quiere eliminar? (escriba su nombre o numero de telefono)");
-        String key = sc.nextLine();
+        sc.nextLine();
+        System.out.print("\nQue contacto quiere eliminar? (escriba su nombre): ");
+        String nom = sc.nextLine();
         
-        if(!agenda.containsKey(key)){
-            if(agenda.containsValue(key.toLowerCase())){
-                for(Entry<String, String> e : agenda.entrySet()){
-                    agenda.remove(e.getKey());
-                    System.out.println("Contacto eliminado...");
-                }
-            }else{
-                System.out.println("No existe un contacto con esos datos...");
+        // Comprobar que exista el contacto
+        if(agenda.containsValue(nom.toUpperCase())){
+            // Si existe, buscar su telefono(key) para poder eliminarlo
+            for(Entry<String, String> e : agenda.entrySet()){
+                agenda.remove(e.getKey());
+                System.out.println("Contacto eliminado...");
             }
         }else{
-            agenda.remove(key);
+            System.out.println("'"+nom+"' NO es tu amig@...");
         }
+
     }
 
     private static void mostarTodo() {
         System.out.print("\nLista de contactos:"
-                         + "\n-------------------"
-                + "\nNombre\tTelefono");
+                + "\nNombre\tTelefono"
+                + "\n______\t________");
+        
         agenda.entrySet().forEach(e -> {
             System.out.print("\n"+e.getValue()+"\t"+e.getKey());
         });
@@ -232,24 +245,54 @@ public class Main {
 
     private static void mostrarNom() {
         System.out.print("\nLista de contactos:"
-                         + "\n-------------------"
-                + "\nNombre");
+                + "\nNombre"
+                + "\n_____");
+        
         agenda.entrySet().forEach(e -> {
             System.out.print("\n"+e.getValue());
         });
     }
 
     private static void ordenarNom() {
-        Comparator porNom = new Comparator<Map.Entry<String, String>>(){
-            @Override
-            public int compare(Map.Entry<String, String> m1, Map.Entry<String, String m2>){
-                return 
+        // Crear el comparador que compara los valores (nombres) de un Entry
+        Comparator porNom = (
+            (Comparator<Map.Entry<String, String>>) 
+                (Map.Entry<String, String> m1, Map.Entry<String, String> m2) -> 
+                    m1.getValue().compareTo(m2.getValue())
+            );
+        // Copiar la agenda a una Lista
+        List<Map.Entry<String, String>> ordered = new ArrayList<>(agenda.entrySet());
+        // Ordenar la lista con el comparador
+        Collections.sort(ordered, porNom);
+        // Borrar la agenda
+        agenda.clear();
+        // Agregar los objetos de la lista a la agenda por orden
+        ordered.forEach(e ->{
+                agenda.put(e.getKey(), e.getValue());
             }
-        };
+        );
+        System.out.println("\nLista ordenado por nombre.");
     }
 
     private static void ordenarTel() {
-        
+        // Crear el comparador que compara los keys (telefono) de un Entry
+        Comparator porNom = (
+            (Comparator<Map.Entry<String, String>>) 
+                (Map.Entry<String, String> m1, Map.Entry<String, String> m2) -> 
+                    m1.getKey().compareTo(m2.getKey())
+            );
+        // Copiar la agenda a una Lista
+        List<Map.Entry<String, String>> ordered = new ArrayList<>(agenda.entrySet());
+        // Ordenar la lista con el comparador
+        Collections.sort(ordered, porNom);
+        // Borrar la agenda
+        agenda.clear();
+        // Agregar los objetos de la lista a la agenda por orden
+        ordered.forEach(e ->{
+                agenda.put(e.getKey(), e.getValue());
+            }
+        );
+        System.out.println("\nLista ordenado por telefono.");
     }
 
 }
