@@ -32,6 +32,33 @@ package ejercicio2;
 public class Main {
 
     public static void main(String[] args) {
+        Colegio c = new Colegio();
+        
+        c.addAlumno("España");
+        c.addAlumno("Portugal");
+        c.addAlumno("España");
+        c.addAlumno("alemania");
+        c.addAlumno("españA");
+        c.addAlumno("PORTUGAL");
+        
+        c.showAll();
+        System.out.println("");
+        
+        c.showNacionalidad("España");
+        c.showNacionalidad("francia");
+        System.out.println("");
+        
+        c.cuantos();
+        System.out.println("");
+        
+        c.borrarNacionalidad("portugal");
+        c.borrarNacionalidad("francia");
+        c.showAll();
+        System.out.println("");
+        
+        c.borrarAll();
+        c.cuantos();
+        c.showAll();
         
     }
 

@@ -2,9 +2,10 @@
  This code was created for 
  educational purposes only!
  
- If any legal problems en-
- coutered, please contact
- the author, thank you \(^o^)/ 
+ If any legal are problems
+ encoutered, please contact
+ the author.
+ Thank you \(^o^)/ 
 --------------------------*/
 
 /*
@@ -24,12 +25,10 @@ package ejercicio1;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Objects;
 import java.util.Scanner;
 
 
@@ -40,6 +39,7 @@ import java.util.Scanner;
  * @version 1.0
  * 
  */
+
 public class Main {
     private static LinkedHashMap<String, String> agenda;
     private static Scanner sc;
@@ -105,8 +105,15 @@ public class Main {
                 + "\n[11] Salir"
                 + "\n>>Introduzca una opcion: ");
     }
-
-    private static void agendar() {
+    
+    /**
+     * 
+     * Metodo que pide al usuario por pantalla el nombre y telefono del contacto
+     * que se quiere agragar a la angeda.
+     * 
+     * @see java.lang.String
+     */
+    public static void agendar() {
         // Pedir el nombre al usuario del nuevo contacto
         String tel, nom;
         sc.nextLine();
