@@ -32,7 +32,9 @@ package examen2021;
 public class Main {
 
     public static void main(String[] args) {
-        
+        Tienda t = new Tienda();
+        t.init();
+        t.loop();
     }
 
 }

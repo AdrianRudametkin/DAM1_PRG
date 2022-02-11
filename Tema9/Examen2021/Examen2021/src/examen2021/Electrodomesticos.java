@@ -72,27 +72,27 @@ public abstract class Electrodomesticos {
         precioBase = PRECIOBASE_DEF;
         peso = PESO_DEF;
         consEnerg = CONSENERG_DEF;
-        rellenarLetras();
+        numElectrodomesticos ++;
     }
 
     /**
      * Constructor que inicializa los parametros con los valores introducidos.
      * @param modelo Modelo/Marca del electrodomestico.
-     * @param precioBase Precio del electrodomestico.
-     * @param peso Peso total del electrodomestico.
+     * @param precioBase Precio del electrodomestico en €.
+     * @param peso Peso total del electrodomestico en KG.
      * @param consEnerg Consumo energetico del electrodomestico.
      */
     public Electrodomesticos(String modelo, double precioBase, double peso, Character consEnerg) {
         this.modelo = modelo;
         this.precioBase = precioBase;
         this.peso = peso;
-        this.consEnerg = consEnerg;
-        rellenarLetras();
+        comprobarConsumo(consEnerg);
+        numElectrodomesticos ++;
     }
     
     // ***METODS***
     //  metodo para rellenar el atributo estatico 'precioPorCons'
-    private static void rellenarLetras(){
+    public final static void rellenarLetras(){
         precioPorCons = new HashMap<>();
         precioPorCons.put('A', 100.0);
         precioPorCons.put('B', 80.0);
@@ -139,10 +139,17 @@ public abstract class Electrodomesticos {
         if(c.equals('A') || c.equals('B') || c.equals('C')
         || c.equals('D') || c.equals('E') || c.equals('F')){
             consEnerg = c;
+        }else{
+            consEnerg = CONSENERG_DEF;
         }
     }
     
     //  metodos publicos
+    /**
+     * Metodo que calcula el incremento de precio dependiendo del peso del 
+     * electrodomestico.
+     * @return precio que se tiene que incrementar
+     */
     public final double incrementoPrecio(){
         // Devolver el incremento del precio dependiendo del peso y consumo energetico
         double aumento = 0;
@@ -164,13 +171,12 @@ public abstract class Electrodomesticos {
      * Metodo sobreescrito que devuelve una cadena de texto con toda la
      * informacion del objeto.
      * @return String con toda la informacion del electrodomestico.
-     * @see java.lang.Object.toString()
      */
     @Override
     public String toString(){
-        return("\nModelo: " + modelo
-                + "\nPrecio Base: " + precioBase + "€"
-                + "\nConsumo Energetico: " + consEnerg
-                + "\nPeso: " + peso + "kg");
-    }
+        return("\n Modelo: " + modelo
+                + "\n -Precio Base: " + precioBase + "€"
+                + "\n -Consumo Energetico: " + consEnerg
+                + "\n -Peso: " + peso + "KG");
+    }   
 }
