@@ -9,7 +9,7 @@
 
 /*
  *
- * Electrodomesticos.java
+ * Electrodomestico.java
  *
  * Created on Feb 11, 2022 At 11:43:35 AM
  * 
@@ -35,18 +35,24 @@ import java.util.HashMap;
  * Clase abstracta que guarda informacion general sobre los electrodomesticos.
  * @author Rogelio Rodriguez
  */
-public abstract class Electrodomesticos {
+public abstract class Electrodomestico {
     // Valores por defecto
     private final static String MODELO_DEF = "Desconocido";
     private final static double PRECIOBASE_DEF = 0.0;
     private final static Character CONSENERG_DEF = 'F';
     private final static double PESO_DEF = 5.0;
+    private final static String COLOR_DEF = "blanco";
+    
+    private final static String[] COLORES_VALIDOS= {
+        "blanco", "negro", "rojo", "azul", "gris"
+    };
     
     // ***ATRIBUTOS***
     //  de objeto
     private String modelo;
     private double precioBase;      // En Euros
     private double peso;            // En kilogramos
+    private String color;
     //  de paquete
     protected Character consEnerg;
     //  de clase
@@ -68,26 +74,46 @@ public abstract class Electrodomesticos {
      * Constructor de clase estableciendo el elctrodomestico con los valores por
      * defecto.
      */
-    public Electrodomesticos() {
+    public Electrodomestico() {
         modelo = MODELO_DEF;
         precioBase = PRECIOBASE_DEF;
         peso = PESO_DEF;
         consEnerg = CONSENERG_DEF;
+        color = COLOR_DEF;
         numElectrodomesticos ++;
     }
 
     /**
-     * Constructor que inicializa los parametros con los valores introducidos.
-     * @param modelo Modelo/Marca del electrodomestico.
-     * @param precioBase Precio del electrodomestico en €.
-     * @param peso Peso total del electrodomestico en KG.
-     * @param consEnerg Consumo energetico del electrodomestico.
+     * Constructor que inicializa los parametros con los valores introducidos y 
+     * el resto por defecto.
+     * @param precioBase precio del electrodomestico en €.
+     * @param peso peso total del electrodomestico en kg.
      */
-    public Electrodomesticos(String modelo, double precioBase, double peso, Character consEnerg) {
+    public Electrodomestico(double precioBase, double peso) {
+        this.precioBase = precioBase;
+        this.peso = peso;
+        modelo = MODELO_DEF;
+        consEnerg = CONSENERG_DEF;
+        color = COLOR_DEF;
+        numElectrodomesticos ++;
+    }
+    
+    
+
+    /**
+     * Constructor que inicializa los parametros con los valores introducidos.
+     * @param modelo modelo/Marca del electrodomestico.
+     * @param precioBase precio del electrodomestico en €.
+     * @param peso peso total del electrodomestico en KG.
+     * @param consEnerg consumo energetico del electrodomestico.
+     * @param color color del electrodomestico
+     */
+    public Electrodomestico(String modelo, double precioBase, double peso, Character consEnerg, String color) {
         this.modelo = modelo;
         this.precioBase = precioBase;
         this.peso = peso;
         comprobarConsumo(consEnerg);
+        comprobarColor(color);
         numElectrodomesticos ++;
     }
     
@@ -136,13 +162,20 @@ public abstract class Electrodomesticos {
         return consEnerg;
     }
     /**
+     * Metodo que devuelve el atributo 'color' del objeto.
+     * @return el color del electrodomestico.
+     */
+    public String getColor() {
+        return color;
+    }
+    /**
      * Metodo que devuelve el atributo 'numElectrodomesticos' de la clase.
      * @return el numero de objetos electrodomesticos creados.
      */
     public static int getNumElectrodomesticos() {
         return numElectrodomesticos;
     }
-
+    
     /**
      * Metodo que modifica el atributo 'modelo' del objeto.
      * @param modelo modelo del electrodomestico
@@ -165,13 +198,22 @@ public abstract class Electrodomesticos {
         this.peso = peso;
     }
     /**
-     * Metodo que modifica el atributo 'carga' del objeto.
+     * Metodo que modifica el atributo 'consEnerg' del objeto.
      * Este metodo no modifica el atributo directamente. Pasa por un metodo interno
      * que comprubea si la letra es correcta.
      * @param consEnerg letra del consumo energetico del electrodomestico.
      */
     public void setConsEnerg(Character consEnerg) {
         comprobarConsumo(consEnerg);
+    }
+    /**
+     * Metodo que modifica el atributo 'color' del objeto.
+     * Este metodo no modifica el atributo directamente. Pasa por un metodo interno
+     * que comprubea si el color es correcto.
+     * @param color color del electrodomestico.
+     */
+    public void setConsEnerg(String color) {
+        comprobarColor(color);
     }
     
     //  metodos privados
@@ -192,6 +234,24 @@ public abstract class Electrodomesticos {
             System.out.println(" *No valido: estableciendo parametro por defecto '"+CONSENERG_DEF+"'.");
             consEnerg = CONSENERG_DEF;
         }
+    }
+    
+    /**
+     * Metodo que compruba si el color esta incluido en la lista de validos, ignorando
+     *  mayus/minusculas, y actualiza el atributo 'color'.
+     * En caso de que no sea correcto, mostrara un mensaje de error por pantalla
+     * y asignara el valor por defecto al atributo.
+     * @param color 
+     */
+    private void comprobarColor(String color) {
+        for(String c: COLORES_VALIDOS){
+            if(c.equalsIgnoreCase(color)){
+                this.color = color.toLowerCase();
+                return;
+            }
+        }
+        System.out.println(" *No valido: estableciendo parametro por defecto '"+COLOR_DEF+"'.");
+        this.color = COLOR_DEF;
     }
     
     //  metodos publicos
@@ -228,5 +288,5 @@ public abstract class Electrodomesticos {
                 + "\n -Precio Base: " + precioBase + "€"
                 + "\n -Consumo Energetico: " + consEnerg
                 + "\n -Peso: " + peso + "KG");
-    }   
+    }
 }

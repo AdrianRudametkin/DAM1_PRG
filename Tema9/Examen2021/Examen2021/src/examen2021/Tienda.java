@@ -38,7 +38,7 @@ import java.util.Scanner;
  */
 public class Tienda {
     // ***ATRIBUTOS***
-    private static ArrayList<Lavadora> lavadoras;
+    private static ArrayList<Electrodomestico> electrodomesticos;
     private static Scanner sc;
     
     // ***METODOS***
@@ -64,7 +64,7 @@ public class Tienda {
         lav.setCarga(sc.nextDouble());
         
         // Comprobar si la lavadora ya existe
-        for(Lavadora e: lavadoras){
+        for(Electrodomestico e: electrodomesticos){
             if(e.equals(lav)){
                 System.out.print("\nEsta lavadora ya existe. Quiere añadirla de todas formas(si/no)? ");
                 sc.nextLine();
@@ -74,7 +74,68 @@ public class Tienda {
                 }
             }
         }
-        lavadoras.add(lav);
+        electrodomesticos.add(lav);
+        
+        System.out.println("--Lavadora añadida--");
+    }
+    
+    /**
+     * Metodo que pide al usuario los datos de la lavadora y la agrega a la lista
+     * de la tienda.
+     */
+    private void agregar(){
+        System.out.println("\n\n--Agregando Electrodomestico--");
+        Electrodomestico elec;
+        
+        // Comprobar el tipo de electrodomestico
+        System.out.print("Introduzca el tipo de electrodomestico: ");
+        sc.nextLine();
+        String tipo = sc.nextLine();
+        if(tipo.equalsIgnoreCase("lavadora")){
+            elec = new Lavadora();
+        }else if(tipo.equalsIgnoreCase("television")){
+            elec = new Television();
+        }else{
+            System.out.println(" *Error: Ese tipo no existe.");
+            return;
+        }
+        
+        
+        System.out.print("Introducir el modelo: ");
+        sc.nextLine();
+        elec.setModelo(sc.nextLine());
+        System.out.print("Introducir el precio base: ");
+        elec.setPrecioBase(sc.nextDouble());
+        System.out.print("Introducir el consumo electrico (A-F): ");
+        sc.nextLine();
+        elec.setConsEnerg(sc.nextLine().charAt(0));
+        System.out.print("Introducir el peso: ");
+        elec.setPeso(sc.nextDouble());
+        
+        if(tipo.equalsIgnoreCase("lavadora")){
+            System.out.print("Introducir la carga maxima de la lavadora: ");
+            elec.setCarga(sc.nextDouble());
+        }else if(tipo.equalsIgnoreCase("television")){
+            System.out.print("Introducir la resolucion en pulgadas: ");
+            elec.setResolucion(sc.nextDouble());
+            System.out.print("Tiene sintonizador TDT? ");
+            
+            elec.setTieneTDT(sc.nextDouble());
+        }
+        
+        
+        // Comprobar si la lavadora ya existe
+        for(Electrodomestico e: electrodomesticos){
+            if(e.equals(elec)){
+                System.out.print("\nEste electrodomestico ya existe. Quiere añadirla de todas formas(si/no)? ");
+                sc.nextLine();
+                if(sc.nextLine().toLowerCase().charAt(0)=='n'){
+                    System.out.println("--Lavadora NO añadida--");
+                    return;
+                }
+            }
+        }
+        electrodomesticos.add(el);
         
         System.out.println("--Lavadora añadida--");
     }
@@ -92,7 +153,7 @@ public class Tienda {
         
         ArrayList<Integer> lista = new ArrayList<>();
         int i = 0;
-        for(Lavadora e: lavadoras){
+        for(Electrodomestico e: electrodomesticos){
             if(e.getModelo().equalsIgnoreCase(modelo)){
                 lista.add(i);
             }
@@ -107,14 +168,14 @@ public class Tienda {
      */
     private boolean encontradas(ArrayList<Integer> lista){
         if(lista.isEmpty()){
-            System.out.print("\nNo se ha encontrado ninguna lavadora de ese modelo.");
+            System.out.print("\nNo se ha encontrado ningun electrodomestico de ese modelo.");
             return false;
         }
-        System.out.print("\nSe han encontado "+lista.size()+" lavadora(s).\n");
+        System.out.print("\nSe ha(n) encontado "+lista.size()+" electrodomestico(s).\n");
         int i=1;
         for(int e : lista){
-            System.out.print("\nLavadora "+i+":");
-            System.out.print(lavadoras.get(e).toString() + "\n");
+            System.out.print("\nElectrodomestico "+i+":");
+            System.out.print(electrodomesticos.get(e).toString() + "\n");
             i++;
         }
         return true;
@@ -132,10 +193,10 @@ public class Tienda {
         System.out.print("\n\nCual desea modificar (1-"+lista.size()+"): ");
         int num = sc.nextInt();
         if(num<0 || num>lista.size()){
-            System.out.print("\nSolo hay "+lista.size()+" lavadora(s)...");
+            System.out.print("\nSolo hay "+lista.size()+" electrodomestico(s)...");
         }else{
             System.out.print("\nIntroduca el nuevo precio base: ");
-            lavadoras.get(num).setPrecioBase(sc.nextDouble());
+            electrodomesticos.get(num).setPrecioBase(sc.nextDouble());
         }
     }
     
@@ -151,10 +212,10 @@ public class Tienda {
         System.out.print("\n\nCual desea modificar (1-"+lista.size()+"): ");
         int num = sc.nextInt();
         if(num<0 || num>lista.size()){
-            System.out.print("\nSolo hay "+lista.size()+" lavadora(s)...");
+            System.out.print("\nSolo hay "+lista.size()+" electrodomestico(s)...");
         }else{
             System.out.print("\nIntroduca el nuevo precio base: ");
-            lavadoras.remove(lavadoras.get(num));
+            electrodomesticos.remove(electrodomesticos.get(num));
         }
     }
     
@@ -162,9 +223,9 @@ public class Tienda {
      * Metodo que muestra todas las lavadoras en 'lavadoras'.
      */
     private void mostrarTodo(){
-        System.out.print("\nHay "+lavadoras.size()+" lavadora(s).\n");
+        System.out.print("\nHay "+electrodomesticos.size()+" lavadora(s).\n");
         int i=1;
-        for(Lavadora e : lavadoras){
+        for(Electrodomestico e : electrodomesticos){
             System.out.print("\nLavadora "+i+":");
             System.out.print(e.toString() + "\n");
             i++;
@@ -176,14 +237,14 @@ public class Tienda {
      * @return devuelve el numero de la opccion que el usuario ha elegido.
      */
     private int menu(){
-        System.out.print("\n\n\n\n\n::--TIENDA DE LAVADORAS--::"
+        System.out.print("\n\n\n\n\n::--TIENDA DE ELECTRODOMESTICOS--::"
                 + "\n--OPCIONES--"
-                + "\n[1] Agregar lavadora."
-                + "\n[2] Buscar lavadora por modelo."
-                + "\n[3] Modificar el precio base de una lavadora."
-                + "\n[4] Eliminar una lavadora"
-                + "\n[5] Mostrar todas las lavadoras."
-                + "\n[6] Mostrar el numero de lavadoras solo."
+                + "\n[1] Agregar electrodomestico."
+                + "\n[2] Buscar electrodomestico por modelo."
+                + "\n[3] Modificar el precio base de un electrodomestico."
+                + "\n[4] Eliminar un electrodomestico"
+                + "\n[5] Mostrar todas los electrodomesticos."
+                + "\n[6] Mostrar el numero de electrodomesticos solo."
                 + "\n[7] Salir."
                 + "\nSeleccionar una opcion: ");
         return sc.nextInt(); 
@@ -193,8 +254,8 @@ public class Tienda {
      * Metodo que muestra el numero de electrodomesticos en la tienda.
      */
     private void mostarNum() {
-        System.out.println("Hay "+Electrodomesticos.numElectrodomesticos+
-                (Electrodomesticos.numElectrodomesticos==1?" lavadora":" lavadoras")+
+        System.out.println("Hay "+Electrodomestico.numElectrodomesticos+
+                (Electrodomestico.numElectrodomesticos==1?" electrodomestico":" electrodomesticos")+
                 " en la tienda.");
     }
     
@@ -203,9 +264,9 @@ public class Tienda {
      * Metodo para inicializar la tienda y sus variables.
      */
     public void init(){
-        lavadoras = new ArrayList<>();
+        electrodomesticos = new ArrayList<>();
         sc = new Scanner(System.in);
-        Electrodomesticos.rellenarLetras();
+        Electrodomestico.rellenarLetras();
         // codigo para descargar la base de datos en las variables
     }
     

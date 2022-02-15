@@ -38,16 +38,16 @@ public class ElectrodomesticosTest {
     }
 
     /**
-     * Test of rellenarLetras method, of class Electrodomesticos.
+     * Test of rellenarLetras method, of class Electrodomestico.
      */
     @Test
     public void testRellenarLetras() {
         System.out.println("rellenarLetras");
-        Electrodomesticos.rellenarLetras();
-        if(Electrodomesticos.precioPorCons == null){
+        Electrodomestico.rellenarLetras();
+        if(Electrodomestico.precioPorCons == null){
             fail("No se rellenaron las letras.");
         }
-        for(Entry<Character,Double> e : Electrodomesticos.precioPorCons.entrySet()){
+        for(Entry<Character,Double> e : Electrodomestico.precioPorCons.entrySet()){
             System.out.print(e.getKey()+" "+e.getValue()+" |-|");
         }
         System.out.println("");

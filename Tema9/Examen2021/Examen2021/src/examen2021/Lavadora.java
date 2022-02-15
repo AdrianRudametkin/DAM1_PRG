@@ -30,10 +30,10 @@ package examen2021;
  * 
  */
 /**
- * Clase de Electrodomesticos que guarda informacion sobre Lavadoras.
+ * Clase de Electrodomestico que guarda informacion sobre Lavadoras.
  * @author Rogelio Rodriguez
  */
-public class Lavadora extends Electrodomesticos{
+public final class Lavadora extends Electrodomestico{
     // Valores por defecto
     private static final double CARGA_DEF = 5.0;
     
@@ -48,25 +48,38 @@ public class Lavadora extends Electrodomesticos{
         super();
         carga = CARGA_DEF;
     }
+
+    /**
+     * Contructor que inicializa los parametros con los valores introduciodes y
+     * los valores por defecto.
+     * @param precioBase precio del lavadora en €.
+     * @param peso peso total de la lavadore en kg.
+     */
+    public Lavadora(double precioBase, double peso) {
+        super(precioBase, peso);
+        carga = CARGA_DEF;
+    }
+    
     /**
      * Constructor que inicializa los parametros con los valores introducidos.
-     * @param modelo Modelo/Marca del electrodomestico.
-     * @param precioBase Precio del electrodomestico en €.
-     * @param peso Peso total del electrodomestico en KG.
-     * @param consEnerg Consumo energetico del electrodomestico.
-     * @param carga Carge en kg que aguanta la lavadora.
+     * @param modelo modelo/Marca del electrodomestico.
+     * @param precioBase precio del electrodomestico en €.
+     * @param peso peso total del electrodomestico en KG.
+     * @param consEnerg consumo energetico del electrodomestico.
+     * @param color color de la lavadora.
+     * @param carga carga en kg que aguanta la lavadora.
      */
-    public Lavadora(String modelo, double precioBase, double peso, Character consEnerg, double carga) {
-        super(modelo, precioBase, peso, consEnerg);
+    public Lavadora(String modelo, double precioBase, double peso, Character consEnerg,  String color, double carga) {
+        super(modelo, precioBase, peso, consEnerg, color);
         this.carga = carga;
     }
     
     /**
      * Constructor que copia un objeto 'lavadora' ya creado a otro neuvo.
-     * @param l Objeto ya inicializado del la clase Lavadora
+     * @param l objeto ya inicializado del la clase Lavadora
      */
     public Lavadora(Lavadora l){
-        super(l.getModelo(),l.getPrecioBase(),l.getPeso(),l.consEnerg);
+        super(l.getModelo(),l.getPrecioBase(),l.getPeso(),l.consEnerg, l.getColor());
         this.carga = l.carga;
     }
     
@@ -124,9 +137,11 @@ public class Lavadora extends Electrodomesticos{
      * (ignorando mayus/minus en String). Y falso en caso contrario.
      * @param lav objeto del que se quiere comparar.
      * @return true si son iguales. False en caso contrario
-
      */
     public boolean equals(Lavadora lav){
+        if(lav.getClass() != this.getClass()){
+            return false;
+        }
         return this.getModelo().equalsIgnoreCase(lav.getModelo())
                 && this.getPrecioBase() == lav.getPrecioBase()
                 && this.consEnerg.equals(lav.consEnerg)
