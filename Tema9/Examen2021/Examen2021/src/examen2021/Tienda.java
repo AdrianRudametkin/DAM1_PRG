@@ -171,6 +171,10 @@ public class Tienda {
         }
     }
     
+    /**
+     * Metodo que imprime el menu principal por pantalla.
+     * @return devuelve el numero de la opccion que el usuario ha elegido.
+     */
     private int menu(){
         System.out.print("\n\n\n\n\n::--TIENDA DE LAVADORAS--::"
                 + "\n--OPCIONES--"
@@ -185,6 +189,9 @@ public class Tienda {
         return sc.nextInt(); 
     }
     
+    /**
+     * Metodo que muestra el numero de electrodomesticos en la tienda.
+     */
     private void mostarNum() {
         System.out.println("Hay "+Electrodomesticos.numElectrodomesticos+
                 (Electrodomesticos.numElectrodomesticos==1?" lavadora":" lavadoras")+
@@ -235,7 +242,5 @@ public class Tienda {
                     System.out.println("Eliga una opcion valida...");
             }
         }while(option != 7);
-    }
-
-    
+    }    
 }

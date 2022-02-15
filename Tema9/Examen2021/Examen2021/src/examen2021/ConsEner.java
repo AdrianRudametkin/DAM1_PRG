@@ -11,6 +11,7 @@ package examen2021;
 /**
  * Enumerador que establece las letras de eficiencia energetica.
  * @author Rogelio Rodriguez
+ * @deprecated 
  */
 public enum ConsEner {
     A,B,C,D,E,F,G

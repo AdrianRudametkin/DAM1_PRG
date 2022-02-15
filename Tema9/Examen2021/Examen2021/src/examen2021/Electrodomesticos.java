@@ -41,6 +41,7 @@ public abstract class Electrodomesticos {
     private final static double PRECIOBASE_DEF = 0.0;
     private final static Character CONSENERG_DEF = 'F';
     private final static double PESO_DEF = 5.0;
+    
     // ***ATRIBUTOS***
     //  de objeto
     private String modelo;
@@ -91,7 +92,10 @@ public abstract class Electrodomesticos {
     }
     
     // ***METODS***
-    //  metodo para rellenar el atributo estatico 'precioPorCons'
+    /**
+     * Metodo que rellena la tabla interna 'precioPorCons', que indica
+     * el precio por cada letra del consumo energetico.
+     */
     public final static void rellenarLetras(){
         precioPorCons = new HashMap<>();
         precioPorCons.put('A', 100.0);
@@ -103,36 +107,81 @@ public abstract class Electrodomesticos {
     }
     
     //  getters y setters
+    /**
+     * Metodo que devuelve el atributo 'modelo' del objeto.
+     * @return el modelo del electrodomestico
+     */
     public String getModelo() {
         return modelo;
     }
+    /**
+     * Metodo que devuelve el atributo 'precioBase' del objeto.
+     * @return el precio base del electrodomestico en €.
+     */
     public double getPrecioBase() {
         return precioBase;
     }
+    /**
+     * Metodo que devuelve el atributo 'peso' del objeto.
+     * @return el peso del electrodomestico en kg.
+     */
     public double getPeso() {
         return peso;
     }
+    /**
+     * Metodo que devuelve el atributo 'consEnerg' del objeto.
+     * @return la letra del consumo energetico del electrodomestico.
+     */
     public Character getConsEnerg() {
         return consEnerg;
     }
+    /**
+     * Metodo que devuelve el atributo 'numElectrodomesticos' de la clase.
+     * @return el numero de objetos electrodomesticos creados.
+     */
     public static int getNumElectrodomesticos() {
         return numElectrodomesticos;
     }
 
+    /**
+     * Metodo que modifica el atributo 'modelo' del objeto.
+     * @param modelo modelo del electrodomestico
+     */
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
+    /**
+     * Metodo que modifica el atributo 'precioBase' del objeto.
+     * @param precioBase precio base del electrodomestico en €.
+     */
     public void setPrecioBase(double precioBase) {
         this.precioBase = precioBase;
     }
+    /**
+     * Metodo que modifica el atributo 'peso' del objeto.
+     * @param peso peso del electrodomestico en kg.
+     */
     public void setPeso(double peso) {
         this.peso = peso;
     }
+    /**
+     * Metodo que modifica el atributo 'carga' del objeto.
+     * Este metodo no modifica el atributo directamente. Pasa por un metodo interno
+     * que comprubea si la letra es correcta.
+     * @param consEnerg letra del consumo energetico del electrodomestico.
+     */
     public void setConsEnerg(Character consEnerg) {
         comprobarConsumo(consEnerg);
     }
     
     //  metodos privados
+    /**
+     * Metodo que comprueba si la letra pasado por parametro se encuentra entre
+     * la 'A' y la 'F', ignorando mayus/minusculas, y actualiza el atributo 'consEnerg'.
+     * En caso de que no sea correcto, mostrara un mensaje de error por pantalla
+     * y asignara el valor por defecto al atributo.
+     * @param letra letra que se quiera comprobar.
+     */
     private void comprobarConsumo(char letra){
         // Comprobar que la letra pasada es valida y escribirla al atributo de objeto
         Character c = Character.toUpperCase(letra);
@@ -140,6 +189,7 @@ public abstract class Electrodomesticos {
         || c.equals('D') || c.equals('E') || c.equals('F')){
             consEnerg = c;
         }else{
+            System.out.println(" *No valido: estableciendo parametro por defecto '"+CONSENERG_DEF+"'.");
             consEnerg = CONSENERG_DEF;
         }
     }

@@ -36,6 +36,7 @@ package examen2021;
 public class Lavadora extends Electrodomesticos{
     // Valores por defecto
     private static final double CARGA_DEF = 5.0;
+    
     // ***ATRIBUTOS***
     private double carga;
     
@@ -61,7 +62,7 @@ public class Lavadora extends Electrodomesticos{
     }
     
     /**
-     * Constructor que copia un objeto ya creado a otro neuvo.
+     * Constructor que copia un objeto 'lavadora' ya creado a otro neuvo.
      * @param l Objeto ya inicializado del la clase Lavadora
      */
     public Lavadora(Lavadora l){
@@ -73,9 +74,17 @@ public class Lavadora extends Electrodomesticos{
 
     // ***METODOS***
     //  setters y getters
+    /**
+     * Metodo que modifica el atributo 'carga' del objeto.
+     * @param carga carga maxima de la lavadora
+     */
     public void setCarga(double carga) {    
         this.carga = carga;
     }
+    /**
+     * Metodo que devuelve el atributo 'carga' del objeto.
+     * @return la carga maxima de la lavadora.
+     */
     public double getCarga(){
         return carga;
     }
@@ -111,10 +120,11 @@ public class Lavadora extends Electrodomesticos{
     
     /**
      * Metodo que comprueba si ambos objetos son iguales.
+     * Devolvera true cuando se cumpla que todos sus atributos sean identicos 
+     * (ignorando mayus/minus en String). Y falso en caso contrario.
      * @param lav objeto del que se quiere comparar.
      * @return true si son iguales. False en caso contrario
-     * Devolvera true cuando se cumpla que todos sus atributos sean identicos 
-     *  (ignorando mayus/minus en String). Y falso en caso contrario.
+
      */
     public boolean equals(Lavadora lav){
         return this.getModelo().equalsIgnoreCase(lav.getModelo())
@@ -123,7 +133,4 @@ public class Lavadora extends Electrodomesticos{
                 && this.getPeso() == lav.getPeso()
                 && carga == lav.getCarga();
     }
-    
-    
-    
 }
