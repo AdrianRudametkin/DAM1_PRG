@@ -37,7 +37,7 @@ public class Main {
         vocales(pedirCadena());
     }
     
-    // pedir al usuario una cadena
+    // pedir al usuario una cadena i
     public static String pedirCadena(){
         Scanner sc = new Scanner(System.in);
         

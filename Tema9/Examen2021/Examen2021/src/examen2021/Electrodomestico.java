@@ -231,7 +231,7 @@ public abstract class Electrodomestico {
         || c.equals('D') || c.equals('E') || c.equals('F')){
             consEnerg = c;
         }else{
-            System.out.println(" *No valido: estableciendo parametro por defecto '"+CONSENERG_DEF+"'.");
+            System.out.println(" *CONSUMO No valido: estableciendo parametro por defecto '"+CONSENERG_DEF+"'.");
             consEnerg = CONSENERG_DEF;
         }
     }
@@ -250,7 +250,7 @@ public abstract class Electrodomestico {
                 return;
             }
         }
-        System.out.println(" *No valido: estableciendo parametro por defecto '"+COLOR_DEF+"'.");
+        System.out.println(" *COLOR No valido: estableciendo parametro por defecto '"+COLOR_DEF+"'.");
         this.color = COLOR_DEF;
     }
     

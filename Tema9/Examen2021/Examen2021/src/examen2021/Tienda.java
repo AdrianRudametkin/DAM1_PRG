@@ -21,7 +21,9 @@
 
 package examen2021;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -43,41 +45,6 @@ public class Tienda {
     
     // ***METODOS***
     //  metodos privados
-    /**
-     * Metodo que pide al usuario los datos de la lavadora y la agrega a la lista
-     * de la tienda.
-     */
-    private void agregar(){
-        System.out.println("\n\n--Agregando Lavadora--");
-        Lavadora lav = new Lavadora();
-        System.out.print("Introducir el modelo: ");
-        sc.nextLine();
-        lav.setModelo(sc.nextLine());
-        System.out.print("Introducir el precio base: ");
-        lav.setPrecioBase(sc.nextDouble());
-        System.out.print("Introducir el consumo electrico (A-F): ");
-        sc.nextLine();
-        lav.setConsEnerg(sc.nextLine().charAt(0));
-        System.out.print("Introducir el peso: ");
-        lav.setPeso(sc.nextDouble());
-        System.out.print("Introducir la carga maxima de la lavadora: ");
-        lav.setCarga(sc.nextDouble());
-        
-        // Comprobar si la lavadora ya existe
-        for(Electrodomestico e: electrodomesticos){
-            if(e.equals(lav)){
-                System.out.print("\nEsta lavadora ya existe. Quiere añadirla de todas formas(si/no)? ");
-                sc.nextLine();
-                if(sc.nextLine().toLowerCase().charAt(0)=='n'){
-                    System.out.println("--Lavadora NO añadida--");
-                    return;
-                }
-            }
-        }
-        electrodomesticos.add(lav);
-        
-        System.out.println("--Lavadora añadida--");
-    }
     
     /**
      * Metodo que pide al usuario los datos de la lavadora y la agrega a la lista
@@ -85,59 +52,150 @@ public class Tienda {
      */
     private void agregar(){
         System.out.println("\n\n--Agregando Electrodomestico--");
-        Electrodomestico elec;
         
         // Comprobar el tipo de electrodomestico
         System.out.print("Introduzca el tipo de electrodomestico: ");
         sc.nextLine();
         String tipo = sc.nextLine();
-        if(tipo.equalsIgnoreCase("lavadora")){
-            elec = new Lavadora();
-        }else if(tipo.equalsIgnoreCase("television")){
-            elec = new Television();
-        }else{
+        boolean cond = tipo.equalsIgnoreCase("lavadora")||tipo.equalsIgnoreCase("television");
+        if(!cond){
             System.out.println(" *Error: Ese tipo no existe.");
             return;
         }
         
+        // Sacar los datos del electrodomestico
+        String modelo, color;
+        double precioBase, peso;
+        Character consEnerg;
         
+        // Introducir modelo
         System.out.print("Introducir el modelo: ");
+        modelo = sc.nextLine();
+        // Introducir precio, comprobando que sea un numero
+        precioBase = -1;
+        do{
+            try{
+                System.out.print("Introducir el precio base: ");
+                precioBase = sc.nextDouble();
+                if(precioBase<0){
+                    System.out.print("Tiene que ser mayor a 0. ");
+                }
+            }catch(InputMismatchException e){
+                System.out.print("Tiene que ser un numero. ");
+                sc.nextLine();
+            }
+        }while(precioBase<0);
+        // Introducir el peso
+        peso = -1;
+        do{
+            try{
+                System.out.print("Introducir el peso: ");
+                peso = sc.nextDouble();
+                if(peso<0){
+                    System.out.print("Tiene que ser mayor a 0. ");
+                }
+            }catch(InputMismatchException e){
+                System.out.print("Tiene que ser un numero. ");
+                sc.nextLine();
+            }
+        }while(peso<0);
+        // Introducir consumo energetico
         sc.nextLine();
-        elec.setModelo(sc.nextLine());
-        System.out.print("Introducir el precio base: ");
-        elec.setPrecioBase(sc.nextDouble());
-        System.out.print("Introducir el consumo electrico (A-F): ");
-        sc.nextLine();
-        elec.setConsEnerg(sc.nextLine().charAt(0));
-        System.out.print("Introducir el peso: ");
-        elec.setPeso(sc.nextDouble());
+        consEnerg = null;
+        do{
+            try{
+                System.out.print("Introducir el consumo electrico (A-F): ");
+                consEnerg = sc.nextLine().charAt(0);
+            }catch(StringIndexOutOfBoundsException e){
+                System.out.print("Tienes que poner algo. ");
+            }
+        }while(consEnerg==null);
+        // Introducir color
+        System.out.print("Introducir el color: ");
+        color = sc.nextLine();
+        
         
         if(tipo.equalsIgnoreCase("lavadora")){
-            System.out.print("Introducir la carga maxima de la lavadora: ");
-            elec.setCarga(sc.nextDouble());
+            Lavadora lav = crearLavadora(modelo, precioBase, peso, consEnerg, color);
+            electrodomesticos.forEach(e-> {
+                if(lav.equals(e))
+                    System.out.print("\nEsta lavadora ya existe.");
+                else
+                    electrodomesticos.add(lav);
+            });
         }else if(tipo.equalsIgnoreCase("television")){
-            System.out.print("Introducir la resolucion en pulgadas: ");
-            elec.setResolucion(sc.nextDouble());
-            System.out.print("Tiene sintonizador TDT? ");
-            
-            elec.setTieneTDT(sc.nextDouble());
+            Television tel = crearTelevision(modelo, precioBase, peso, consEnerg, color);
+            electrodomesticos.forEach(e-> {
+                if(tel.equals(e))
+                    System.out.print("\nEsta lavadora ya existe.");
+                else
+                    electrodomesticos.add(tel);
+            });
+        }else{
+            System.out.print("\n!!!***SUPER ERROR INTERNO****!!!");
         }
         
-        
-        // Comprobar si la lavadora ya existe
-        for(Electrodomestico e: electrodomesticos){
-            if(e.equals(elec)){
-                System.out.print("\nEste electrodomestico ya existe. Quiere añadirla de todas formas(si/no)? ");
-                sc.nextLine();
-                if(sc.nextLine().toLowerCase().charAt(0)=='n'){
-                    System.out.println("--Lavadora NO añadida--");
-                    return;
+        System.out.print("\n--Lavadora añadida--");
+    }
+    
+    /**
+     * Metodo que crea una lavadora a partir de un electrodomestico generico.
+     * @param elec electrodomestico generico.
+     * @return la lavadora.
+     */
+    private Lavadora crearLavadora(String modelo, double precioBase, double peso, Character consEnerg, String color){
+        double carga = -1;
+        do{
+            try{
+                System.out.print("Introducir la carga de la lavadora: ");
+                carga = sc.nextDouble();
+                if(carga<0){
+                    System.out.print("Tiene que ser mayor a 0. ");
                 }
+            }catch(InputMismatchException e){
+                System.out.print("Tiene que ser un numero. ");
+                sc.nextLine();
             }
-        }
-        electrodomesticos.add(el);
+        }while(carga<0);
         
-        System.out.println("--Lavadora añadida--");
+        System.out.println("\n--Agregando Lavadora--");
+        return new Lavadora(modelo, precioBase, peso, consEnerg, color, carga);
+    }
+    /**
+     * Metodo que crea una television a partir de un electrodomestico generico.
+     * @param elec electrodomestico generico.
+     * @return la television.
+     */
+    private Television crearTelevision(String modelo, double precioBase, double peso, Character consEnerg, String color){
+        double resolucion = -1;
+        do{
+            try{
+                System.out.print("Introducir la resolucion en pulgadas: ");
+                resolucion = sc.nextDouble();
+                if(resolucion<0){
+                    System.out.print("Tiene que ser mayor a 0. ");
+                }
+            }catch(InputMismatchException e){
+                System.out.print("Tiene que ser un numero. ");
+                sc.nextLine();
+            }
+        }while(resolucion<0);
+        Boolean tieneTDT = null;
+        sc.nextLine();
+        do{
+            System.out.print("Tiene sintonizador TDT? ");
+            String respuesta = sc.nextLine();
+            if(respuesta.equalsIgnoreCase("si")){
+                tieneTDT = true;
+            }else if(respuesta.equalsIgnoreCase("no")){
+                tieneTDT = false;
+            }else{
+                System.out.print("Escribe 'si' o 'no'. ");
+            }
+        }while(tieneTDT == null);
+        
+        System.out.println("\n--Agregando Television--");
+        return new Television(modelo, precioBase, peso, consEnerg, color, resolucion, tieneTDT);
     }
     
     /**
@@ -223,10 +281,10 @@ public class Tienda {
      * Metodo que muestra todas las lavadoras en 'lavadoras'.
      */
     private void mostrarTodo(){
-        System.out.print("\nHay "+electrodomesticos.size()+" lavadora(s).\n");
+        System.out.print("\nHay "+electrodomesticos.size()+" electrodomestico(s).\n");
         int i=1;
         for(Electrodomestico e : electrodomesticos){
-            System.out.print("\nLavadora "+i+":");
+            System.out.print("\nElectrodomestico "+i+":");
             System.out.print(e.toString() + "\n");
             i++;
         }
@@ -237,7 +295,7 @@ public class Tienda {
      * @return devuelve el numero de la opccion que el usuario ha elegido.
      */
     private int menu(){
-        System.out.print("\n\n\n\n\n::--TIENDA DE ELECTRODOMESTICOS--::"
+        System.out.print("\n\n::--TIENDA DE ELECTRODOMESTICOS--::"
                 + "\n--OPCIONES--"
                 + "\n[1] Agregar electrodomestico."
                 + "\n[2] Buscar electrodomestico por modelo."
@@ -247,7 +305,11 @@ public class Tienda {
                 + "\n[6] Mostrar el numero de electrodomesticos solo."
                 + "\n[7] Salir."
                 + "\nSeleccionar una opcion: ");
-        return sc.nextInt(); 
+        try{
+            return sc.nextInt(); 
+        }catch(InputMismatchException e){
+            return 0;
+        }
     }
     
     /**
@@ -300,7 +362,10 @@ public class Tienda {
                 case 7:
                     break;
                 default:
-                    System.out.println("Eliga una opcion valida...");
+                    System.out.print("\nEliga una opcion valida.");
+                    System.out.print("\nPulse intro para continuar...");
+                    sc.nextLine();
+                    sc.nextLine();
             }
         }while(option != 7);
     }    

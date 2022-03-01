@@ -21,6 +21,8 @@
 
 package ejercicio8;
 
+import java.util.Arrays;
+
 
 /**
  *
@@ -33,6 +35,7 @@ public class Main {
 
     public static void main(String[] args) {
         int[] arr = crearVector(100, 10, 80);
+        System.out.println(Arrays.toString(arr));
         System.out.println("El numero con mas frecuencia es el "+hayarNumero(arr));
     }
 
@@ -61,7 +64,7 @@ public class Main {
                 mayor = i;
             }
         }
-        
+        System.out.println(Arrays.toString(freq));
         return mayor+min;
         
     }

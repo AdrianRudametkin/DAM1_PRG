@@ -83,6 +83,18 @@ public final class Lavadora extends Electrodomestico{
         this.carga = l.carga;
     }
     
+    
+    /**
+     * Constructor que copia un objeto 'electrodomestic' ya creado a uno de lavadora.
+     * @param e objeto de electrodomestico.
+     * @param carga carga maxima de la lavadora en kg.
+     */
+    /*public Lavadora(Electrodomestico e, double carga){
+        super(e.getModelo(),e.getPrecioBase(),e.getPeso(),e.consEnerg, e.getColor());
+        this.carga = carga;
+    }
+    */
+    
   
 
     // ***METODOS***
@@ -112,8 +124,8 @@ public final class Lavadora extends Electrodomestico{
         if(carga > 30){
             precioFinal += 50;
         }
-        precioFinal += getPrecioBase();
-        precioFinal += incrementoPrecio();
+        precioFinal += this.getPrecioBase();
+        precioFinal += this.incrementoPrecio();
         
         return precioFinal;
     }

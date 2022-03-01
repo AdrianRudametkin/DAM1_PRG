@@ -82,13 +82,26 @@ public final class Television extends Electrodomestico{
     
     /**
      * Constructor que copia un objeto 'Television' ya creado a otro neuvo.
-     * @param t objeto ya inicializado del la clase Lavadora.
+     * @param t objeto ya inicializado del la clase Television.
      */
     public Television(Television t){
         super(t.getModelo(),t.getPrecioBase(),t.getPeso(),t.consEnerg, t.getColor());
         this.resolucion = t.resolucion;
         this.tieneTDT = t.tieneTDT;
     }
+    
+    /**
+     * Constructor que copia un objeto 'Electrodomestico' ya creado a otro de tipo
+     * television.
+     * @param e objeto ya inicializado del la clase electrodomestico.
+     * @param resolucion resolucion del televisor en pulgadas.
+     * @param tieneTDT si el televisor tiene (true) o no (false) sintonizador TDT.
+     */
+    /*public Television(Electrodomestico e, double resolucion, boolean tieneTDT){
+        super(e.getModelo(),e.getPrecioBase(),e.getPeso(),e.consEnerg, e.getColor());
+        this.resolucion = resolucion;
+        this.tieneTDT = tieneTDT;
+    }*/
     
     // ***METODOS***
     //  getters y setters
