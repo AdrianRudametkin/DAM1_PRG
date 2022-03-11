@@ -1,3 +1,5 @@
+package Timbre;
+
 public class Billete extends Dinero{
     // ***ATRIBUTOS***
     private double altura;
@@ -20,7 +22,7 @@ public class Billete extends Dinero{
 
     /**
      * Constructor que copia el objeto 'o' a otro.
-     * @param o objeto de clase Billete
+     * @param o objeto de clase Timbre.Billete
      */
     public Billete(Billete o) {
         super(o);
@@ -30,7 +32,6 @@ public class Billete extends Dinero{
 
     // ***METODOS***
     //  getters y setters
-
     public double getAltura() {
         return altura;
     }
@@ -45,5 +46,13 @@ public class Billete extends Dinero{
 
     public void setAnchura(double anchura) {
         this.anchura = anchura;
+    }
+
+    @Override
+    public String toString() {
+        return "\nBILLETE: " +
+                super.toString() +
+                "\n Altura: " + df.format(altura) + "mm" +
+                "\n Anchura: " + df.format(anchura) + "g";
     }
 }

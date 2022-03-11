@@ -1,3 +1,5 @@
+package Timbre;
+
 import java.text.DecimalFormat;
 
 public abstract class Dinero {
@@ -37,9 +39,9 @@ public abstract class Dinero {
     }
 
     /**
-     * Metodo que compara dos objetos de Dinero. Devuleve true si son de la misma clase y ademas
+     * Metodo que compara dos objetos de Timbre.Dinero. Devuleve true si son de la misma clase y ademas
      * tengan el mismo valor y año de emision.
-     * @param o objeto que herede de la clase Dinero
+     * @param o objeto que herede de la clase Timbre.Dinero
      * @return si los objetos son iguales
      */
     public boolean equals(Dinero o){
@@ -52,7 +54,7 @@ public abstract class Dinero {
 
     /**
      * Metodo que compara dos objetos de Dinero.
-     * @param o objeto que herede de la clase Dinero
+     * @param o objeto que herede de la clase Timbre.Dinero
      * @return >0 cuando 'o' sea mayor, <0 cuando sea menor y 0 cuando sean iguales.
      */
     public int compareTo(Dinero o){

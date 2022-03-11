@@ -1,3 +1,5 @@
+package Timbre;
+
 public class Moneda extends Dinero{
     // ***Atributos***
     private double diametro;
@@ -19,7 +21,7 @@ public class Moneda extends Dinero{
 
     /**
      * Constructor que copia el objeto 'o' a otro.
-     * @param o objeto de clase Moneda
+     * @param o objeto de clase Timbre.Moneda
      */
     public Moneda(Moneda o) {
         super(o);
