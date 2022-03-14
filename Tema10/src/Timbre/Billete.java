@@ -53,6 +53,6 @@ public class Billete extends Dinero{
         return "\nBILLETE: " +
                 super.toString() +
                 "\n Altura: " + df.format(altura) + "mm" +
-                "\n Anchura: " + df.format(anchura) + "g";
+                "\n Anchura: " + df.format(anchura) + "mm";
     }
 }
