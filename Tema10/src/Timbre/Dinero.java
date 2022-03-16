@@ -7,7 +7,7 @@ public abstract class Dinero {
     private double valor;
     private int anyo;
 
-    protected DecimalFormat df = new DecimalFormat(".##");
+    protected DecimalFormat df = new DecimalFormat("#.##");
 
     // ***CONSTRUCTOR***
     public Dinero(double valor, int anyo) {
@@ -79,7 +79,7 @@ public abstract class Dinero {
      */
     @Override
     public String toString() {
-        return  ("\n Valor: " + df.format(valor) + "€" +
+        return  ("\n Valor: " + df.format(valor) + " €" +
                 "\n Año de emisión: " + anyo);
     }
 }

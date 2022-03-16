@@ -2,6 +2,7 @@ package Timbre;
 
 import Exceptions.NegativeIntegerException;
 import Exceptions.NotAGoodYearException;
+import jdk.swing.interop.SwingInterOpUtils;
 
 import java.util.*;
 
@@ -23,8 +24,9 @@ public class Main {
      * Para pruebas solo
      */
     public static void test(int m, int b){
+        Random r = new Random();
         for(int i = 0; i<m; i++){
-            lista.add(new Moneda(10+i, 2020-i, 10+i, 5+i));
+            lista.add(new Moneda(r.nextDouble(), 2020-i, 10+i, 5+i));
         }
         for(int i = 0; i<b; i++){
             lista.add(new Billete(10+i, 2020-i, 10*i, 10*i));
@@ -46,7 +48,7 @@ public class Main {
         do{
             try {
                 printMenu();
-                option = pedirInt("\n Elejir una opcion: ");
+                option = pedirInt("\n Elejir una opción: ");
                 switch (option){
                     case 1:
                         crearObjeto();
@@ -73,27 +75,22 @@ public class Main {
                         eliminar();
                         break;
                     case 9:
-                        System.out.print("\n\nHasta la proxima!!");
+                        System.out.print("\n\nHasta la próxima!!");
                         break;
                     default:
-                        System.out.print("\nPorfavor, elija una opcion valida.");
+                        System.out.print("\nPor favor, elija una opcion válida.");
                 }
             }catch(IndexOutOfBoundsException e){
-                System.out.print("\nNo existe ese numero en la lista.");
+                System.out.print("\nNo existe ese numero en la lista." +
+                        "\nPulse INTRO para continuar.");
+                sc.nextLine();
                 option = -1;
             }catch(InputMismatchException e){
                 sc.nextLine();
-                System.out.print("\nPorfavor, elija un numero valido.");
-                option = -1;
-            }catch(NotAGoodYearException e){
-                System.out.print("\nEse no es un año valido.");
-                option = -1;
-            }catch (NegativeIntegerException e){
-                System.out.print("\nEl valor no puede ser negativo.");
-                option = -1;
-            }finally{
-                System.out.print("\nPulse Intro para continuar...\n\n");
+                System.out.print("\nPor favor, elija un numero válido." +
+                        "\nPulse INTRO para continuar.");
                 sc.nextLine();
+                option = -1;
             }
         }while(option!=9);
     }
@@ -117,6 +114,7 @@ public class Main {
 
     /**
      * Pedir al usuario un entero.
+     * @param msg mensaje para el usuario
      * @return entero
      */
     public static int pedirInt(String msg) {
@@ -128,7 +126,8 @@ public class Main {
 
     /**
      * Pedir al usuario un entero.
-     * @return entero
+     * @param msg mensaje para el usuario
+     * @return decimal
      */
     public static double pedirDouble(String msg) {
         System.out.print(msg);
@@ -139,6 +138,7 @@ public class Main {
 
     /**
      * Pedir una cadena.
+     * @param msg mensaje para el usuario
      * @return cadena.
      */
     public static String pedirString(String msg) {
@@ -149,7 +149,8 @@ public class Main {
     /**
      * Crear un objeto de dinero y añadirlo a la lista.
      */
-    public static void crearObjeto() throws NotAGoodYearException, NegativeIntegerException {
+    public static void crearObjeto(){
+        boolean correcto;
         System.out.print(
                 "\nCREACION DEL OBJETO" +
                 "\n*******************");
@@ -158,45 +159,92 @@ public class Main {
         double valor;
         int anyo;
         // Pedir tipo de timbre
-        option = pedirString("\nQue quiere crear? Una moneda o un billete? ");
-        if(!(option.equalsIgnoreCase("moneda")|| option.equalsIgnoreCase("billete"))){
-            System.out.print("\nSolo puede elgir entre moneda y billete.");
-            return;
-        }
-        // Pedir el valor
-        valor = pedirDouble("Que valor tiene (en €)? ");
-        if(valor < 0){
-            throw new NegativeIntegerException();
-        }
-        // Pedir el año de emision
-        anyo = pedirInt("En que año fue emitido? ");
-        if(anyo > Calendar.getInstance().get(Calendar.YEAR) || anyo <= 1200){
-            throw new NotAGoodYearException();
-        }
-        if(option.equalsIgnoreCase("moneda")){
-            double p = pedirDouble("Cuanto pesa su moneda (en gramos)? ");
-            if(p < 0){
-                throw new NegativeIntegerException();
-            }
-            double d = pedirDouble("Cual es su diametro (en mm)? ");
-            if(d < 0){
-                throw new NegativeIntegerException();
-            }
+        do {
+            option = pedirString("\nQue quiere crear? Una (M)oneda o un (B)illete? ");
 
+            if(!(option.equalsIgnoreCase("m")|| option.equalsIgnoreCase("b"))){
+                System.out.print("\nSolo puede elgir entre moneda y billete.");
+                correcto = false;
+            }else {
+                correcto = true;
+            }
+        } while (!correcto);
+
+        // Pedir el valor
+        do {
+            valor = pedirDouble("Que valor tiene (en €)? ");
+            if (valor <= 0) {
+                System.out.print("\nEl valor no puede ser ni negativo ni nulo.");
+                correcto = false;
+            }else{
+                correcto = true;
+            }
+        }while (!correcto);
+
+        // Pedir el año de emision
+        do{
+            anyo = pedirInt("En que año fue emitido? ");
+            if(anyo > Calendar.getInstance().get(Calendar.YEAR) || anyo <= -680){
+                System.out.print("\nEse año de emisión no es posible.");
+                correcto = false;
+            }else{
+                correcto = true;
+            }
+        }while(!correcto);
+
+        if(option.equalsIgnoreCase("m")){
+            // Pedir peso
+            double p,d;
+            do {
+                p = pedirDouble("Cuanto pesa su moneda (en gramos)? ");
+                if (p <= 0) {
+                    System.out.print("\nEl peso debe ser superior a 0.");
+                    correcto = false;
+                }else{
+                    correcto = true;
+                }
+            }while(!correcto);
+
+            // Pedir diametro
+            do {
+                d = pedirDouble("Cual es su diametro (en cm)? ");
+                if (d <= 0) {
+                    System.out.print("\nEl diametro debe ser superior a 0.");
+                    correcto = false;
+                }else{
+                    correcto = true;
+                }
+            }while (!correcto);
+
+            // Crear y añadir a la lista
             lista.add(new Moneda(valor, anyo, d, p));
-            System.out.print("\nTimbre añadido.");
-        }else if(option.equalsIgnoreCase("billete")){
-            double ancho = pedirDouble("Cual es la anchura del billete (en mm)? ");
-            if(ancho < 0){
-                throw new NegativeIntegerException();
-            }
-            double alto = pedirDouble("Cual es la altura del billete (en mm)? ");
-            if(alto < 0){
-                throw new NegativeIntegerException();
-            }
+            System.out.print("\nMoneda añadida añadido.");
+        }else if(option.equalsIgnoreCase("b")){
+            double ancho, alto;
+            // Pedir ancho
+            do{
+                ancho = pedirDouble("Cual es la anchura del billete (en cm)? ");
+                if(ancho <= 0){
+                    System.out.println("\nEl ancho debe ser superior a 0.");
+                    correcto = false;
+                }else{
+                    correcto = true;
+                }
+            }while(!correcto);
+
+            // Pedir alto
+            do {
+                alto = pedirDouble("Cual es la altura del billete (en cm)? ");
+                if (alto <= 0) {
+                    System.out.println("\nEl alto debe ser superior a 0.");
+                    correcto = false;
+                }else{
+                    correcto = true;
+                }
+            }while(!correcto);
 
             lista.add(new Billete(valor, anyo, alto, ancho));
-            System.out.print("\nTimbre añadido.");
+            System.out.print("\nBillete añadido.");
         }
     }
 
@@ -235,14 +283,10 @@ public class Main {
                 "\nCOMPROBANDO OBJETOS IGUALES" +
                 "\n***************************");
         boolean hayIgual = false;
-        for(Dinero d1 : lista){
-            for(Dinero d2 : lista){
-                if(d1.equals(d2)){
-                    // Saltar si es la misma instancia del objeto
-                    if(d1==d2){
-                        continue;
-                    }
-                    System.out.print("\nEl objeto "+lista.indexOf(d1)+" y el objeto "+lista.lastIndexOf(d2)+" son igules." +
+        for(int i = 0; i < lista.size(); i++){
+            for(int j = i +1; j < lista .size(); j++){
+                if(lista.get(i).equals(lista.get(j))){
+                    System.out.print("\nEl objeto "+lista.indexOf(lista.get(i))+" y el objeto "+lista.lastIndexOf(lista.get(j))+" son igules." +
                             "\nPuedes eliminar uno de ellos si quieres.\n");
                     hayIgual = true;
                 }
@@ -374,7 +418,7 @@ public class Main {
             double valor = pedirDouble("\nIndique el valor: ");
             System.out.print("\nMostrando timbres: ");
             for(Dinero d: l){
-                if(d.getAnyo()==valor){
+                if(d.getValor()==valor){
                     System.out.print("\n\n--Objeto numero "+lista.lastIndexOf(d) +"--");
                     System.out.print(d.toString());
                     hayTimbre = true;
@@ -396,6 +440,7 @@ public class Main {
                 "\nELIMINANDO OBJETOS" +
                 "\n******************");
         int pos = pedirInt("\nIndique la posición del timbre que quiere eliminar: ");
+        System.out.print("Eliminando Objeto");
         lista.remove(pos);
         System.out.print("\nTimbre eliminado.");
     }
@@ -411,7 +456,8 @@ public class Main {
         if(d instanceof Billete){
             int option = pedirInt("\nQue quiere modificar: " +
                     "\n[1] Ancho" +
-                    "\n[2] Altura");
+                    "\n[2] Altura" +
+                    "\nIntroduzca una opcion: ");
             if(option==1){
                 ((Billete) d).setAnchura(pedirDouble("\nIndique la nueva anchura: "));
                 System.out.print("\nAnchura modificada.");
@@ -436,6 +482,4 @@ public class Main {
             }
         }
     }
-
-
 }

@@ -51,7 +51,7 @@ public class Moneda extends Dinero{
     public String toString() {
         return "\nMONEDA: " +
                 super.toString() +
-                "\n Diametro: " + df.format(diametro) + "mm" +
-                "\n Peso: " + df.format(peso) + "g";
+                "\n Diametro: " + df.format(diametro) + " cm" +
+                "\n Peso: " + df.format(peso) + " g";
     }
 }

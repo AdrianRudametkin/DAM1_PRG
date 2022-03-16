@@ -52,7 +52,7 @@ public class Billete extends Dinero{
     public String toString() {
         return "\nBILLETE: " +
                 super.toString() +
-                "\n Altura: " + df.format(altura) + "mm" +
-                "\n Anchura: " + df.format(anchura) + "mm";
+                "\n Altura: " + df.format(altura) + " cm" +
+                "\n Anchura: " + df.format(anchura) + " cm";
     }
 }
