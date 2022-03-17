@@ -1,5 +1,7 @@
 package Timbre;
 
+import Exceptions.NegativeIntegerException;
+
 public class Billete extends Dinero{
     // ***ATRIBUTOS***
     private double altura;
@@ -44,7 +46,7 @@ public class Billete extends Dinero{
         return anchura;
     }
 
-    public void setAnchura(double anchura) {
+    public void setAnchura(double anchura){
         this.anchura = anchura;
     }
 

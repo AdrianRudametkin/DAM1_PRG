@@ -1,5 +1,7 @@
 package Timbre;
 
+import Exceptions.NegativeIntegerException;
+
 public class Moneda extends Dinero{
     // ***Atributos***
     private double diametro;
@@ -20,7 +22,7 @@ public class Moneda extends Dinero{
     }
 
     /**
-     * Constructor que copia el objeto 'o' a otro.
+     * Constructor que copia el objeto de la lista a otro.
      * @param o objeto de clase Timbre.Moneda
      */
     public Moneda(Moneda o) {
@@ -35,7 +37,7 @@ public class Moneda extends Dinero{
         return diametro;
     }
 
-    public void setDiametro(double diametro) {
+    public void setDiametro(double diametro){
         this.diametro = diametro;
     }
 

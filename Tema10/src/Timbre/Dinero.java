@@ -1,6 +1,10 @@
 package Timbre;
 
+import Exceptions.NegativeIntegerException;
+import Exceptions.NotAGoodYearException;
+
 import java.text.DecimalFormat;
+import java.util.Calendar;
 
 public abstract class Dinero {
     // ***ATRIBUTOS***
@@ -26,7 +30,7 @@ public abstract class Dinero {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(double valor) throws NegativeIntegerException {
         this.valor = valor;
     }
 
@@ -34,7 +38,7 @@ public abstract class Dinero {
         return anyo;
     }
 
-    public void setAnyo(int anyo) {
+    public void setAnyo(int anyo) throws NotAGoodYearException {
         this.anyo = anyo;
     }
 
