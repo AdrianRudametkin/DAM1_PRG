@@ -1,7 +1,5 @@
 package Timbre;
 
-import Exceptions.NegativeIntegerException;
-
 public class Billete extends Dinero{
     // ***ATRIBUTOS***
     private double altura;
@@ -11,10 +9,12 @@ public class Billete extends Dinero{
 
     /**
      * Contructor que instancia todos los atributos del objeto.
+     * Ampliación del constructor {@link Timbre.Dinero#Dinero(double valor, int anyo) Dinero()}
+     *
      * @param valor valor en euros
      * @param anyo año de emision
-     * @param altura dimension X del billete en milimetros
-     * @param anchura dimension Y del billete en milimetros
+     * @param altura alto del billete en centímetros
+     * @param anchura ancho del billete en centímetros
      */
     public Billete(double valor, int anyo, double altura, double anchura) {
         super(valor, anyo);
@@ -23,8 +23,10 @@ public class Billete extends Dinero{
     }
 
     /**
-     * Constructor que copia el objeto 'o' a otro.
-     * @param o objeto de clase Timbre.Billete
+     * Constructor que copia un objeto {@link Timbre.Billete Billete} a este.
+     * Ampliación del constructor copia {@link Timbre.Dinero#Dinero(Dinero o) Dinero()}
+     *
+     * @param o objeto de clase {@link Timbre.Billete Billete}
      */
     public Billete(Billete o) {
         super(o);
@@ -34,22 +36,49 @@ public class Billete extends Dinero{
 
     // ***METODOS***
     //  getters y setters
+
+    /**
+     * Devuleve la altura del billete.
+     *
+     * @return altura en cm
+     */
     public double getAltura() {
         return altura;
     }
 
+    /**
+     * Cambia la altura del billete.
+     *
+     * @param altura altura en cm
+     */
     public void setAltura(double altura) {
         this.altura = altura;
     }
 
+    /**
+     * Devuelve el ancho del billete.
+     *
+     * @return anchura en cm
+     */
     public double getAnchura() {
         return anchura;
     }
 
+    /**
+     * Cambia el ancho del billete.
+     *
+     * @param anchura anchura en cm
+     */
     public void setAnchura(double anchura){
         this.anchura = anchura;
     }
 
+    /**
+     * Devuelve una cadena con la información del billete.
+     * Ampliación de {@link Timbre.Dinero#toString() Dinero.toString()}
+     *
+     * @return cadena formateada
+     */
     @Override
     public String toString() {
         return "\nBILLETE: " +

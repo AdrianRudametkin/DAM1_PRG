@@ -10,9 +10,11 @@ public class Moneda extends Dinero{
     // ***CONSTRUCTORES***
     /**
      * Contructor que instancia todos los atributos del objeto.
+     * Ampliación del constructor {@link Timbre.Dinero#Dinero(double valor, int anyo) Dinero()}
+     *
      * @param valor valor en euros
-     * @param anyo año de emision
-     * @param diametro diametro en milimetros
+     * @param anyo año de emisión
+     * @param diametro diámetro en centímetros
      * @param peso peso en gramos
      */
     public Moneda(double valor, int anyo, double diametro, double peso) {
@@ -23,7 +25,9 @@ public class Moneda extends Dinero{
 
     /**
      * Constructor que copia el objeto de la lista a otro.
-     * @param o objeto de clase Timbre.Moneda
+     * Ampliación del constructor copia {@link Timbre.Dinero#Dinero(Dinero o) Dinero()}
+     *
+     * @param o objeto de clase {@link Timbre.Moneda Moneda}
      */
     public Moneda(Moneda o) {
         super(o);
@@ -33,22 +37,49 @@ public class Moneda extends Dinero{
 
     // ***METODOS***
     //  getters y setters
+
+    /**
+     * Devuelve el díametro de la moneda.
+     *
+     * @return díametro en cm
+     */
     public double getDiametro() {
         return diametro;
     }
 
+    /**
+     * Cambia el diametro de la moneda.
+     *
+     * @param diametro díametro en cm.
+     */
     public void setDiametro(double diametro){
         this.diametro = diametro;
     }
 
+    /**
+     * Devuelve el peso de la moneda.
+     *
+     * @return peso en g
+     */
     public double getPeso() {
         return peso;
     }
 
+    /**
+     * Cambia el peso de la moneda.
+     *
+     * @param peso peso en g
+     */
     public void setPeso(double peso) {
         this.peso = peso;
     }
 
+    /**
+     * Devuelve una cadena con la información del billete.
+     * Ampliación de {@link Timbre.Dinero#toString() Dinero.toString()}
+     *
+     * @return cadena formateada
+     */
     @Override
     public String toString() {
         return "\nMONEDA: " +

@@ -13,12 +13,16 @@ public class Main {
      */
     public static void main(String[] args) {
         init();
+        //TODO Metodo de pruebas, borrar antes de entregar.
         test(5, 5);
+
         loop();
     }
 
     /**
-     * Para pruebas solo
+     * Metodo que crea un número determinado de monedas y billetes con atributos aleatorios (entre rangos posibles).
+     * @param m número de Monedas a crear
+     * @param b número de billetes a crear
      */
     public static void test(int m, int b) {
         Random r = new Random();
@@ -74,50 +78,9 @@ public class Main {
     }
 
     /**
-     * Metodo que borra toda la lista.
-     */
-    public static void eliminarTodo() {
-        String option;
-        boolean correcto;
-        do{
-            option = pedirString("\nEstas seguro que quiere borrar todo (s/n)? ");
-            if(option.equalsIgnoreCase("s")){
-                do{
-                    option = pedirString("\nSe perderá todo tu trabajo. Estas seguro? ");
-                    if(option.equalsIgnoreCase("s")){
-                        lista.clear();
-                        System.out.print("Tu mandas... Lista borrada.");
-                        correcto = true;
-                    }else if(option.equalsIgnoreCase("n")){
-                        System.out.print("\nPerfecto, los objetos permanecerán aquí.");
-                        correcto = true;
-                    }else{
-                        System.out.print("Sí [S] o no [N].");
-                        correcto = false;
-                    }
-                }while(!correcto);
-            }else if(option.equalsIgnoreCase("n")){
-                System.out.print("\nPerfecto, tus objetos no se borrarán.");
-                correcto = true;
-            }else{
-                System.out.print("Opción no válida. Solo sí [S] o no [N].");
-                correcto = false;
-            }
-        }while(!correcto);
-        continuar();
-    }
-
-    /**
-     * Pulse intro para continuar;
-     */
-    public static void continuar(){
-        pedirString("\nPulse INTRO para continuar...");
-    }
-
-    /**
      * Imprimir el menu principal en pantalla.
      */
-    public static void printMenu() {
+    private static void printMenu() {
         System.out.print("\nMENU PRINCIPAL" +
                 "\n**************" +
                 "\n [1] - Crear objeto" +
@@ -137,7 +100,7 @@ public class Main {
      * @param msg mensaje para el usuario
      * @return entero
      */
-    public static int pedirInt(String msg) {
+    private static int pedirInt(String msg) {
         System.out.print(msg);
         int i = sc.nextInt();
         sc.nextLine();
@@ -150,7 +113,7 @@ public class Main {
      * @param msg mensaje para el usuario
      * @return decimal
      */
-    public static double pedirDouble(String msg) {
+    private static double pedirDouble(String msg) {
         System.out.print(msg);
         double d = sc.nextDouble();
         sc.nextLine();
@@ -163,9 +126,16 @@ public class Main {
      * @param msg mensaje para el usuario
      * @return cadena.
      */
-    public static String pedirString(String msg) {
+    private static String pedirString(String msg) {
         System.out.print(msg);
         return sc.nextLine();
+    }
+
+    /**
+     * Pulse intro para continuar;
+     */
+    private static void continuar(){
+        pedirString("\nPulse INTRO para continuar...");
     }
 
     /**
@@ -180,7 +150,7 @@ public class Main {
         String option;
         double valor;
         int anyo;
-        // Pedir tipo de timbre
+        // Pedir tipo de timbre hasta tener una opción correcta
         do {
             option = pedirString("\nQue quiere crear? Una (M)oneda o un (B)illete? ");
 
@@ -192,7 +162,7 @@ public class Main {
             }
         } while (!correcto);
 
-        // Pedir el valor
+        // Pedir el valor hasta tener un valor válido
         do {
             valor = pedirDouble("Que valor tiene (en €)? ");
             if (valor <= 0) {
@@ -203,7 +173,7 @@ public class Main {
             }
         } while (!correcto);
 
-        // Pedir el año de emision
+        // Pedir el año de emisión hasta tener un año válido (superior a -680 e inferior al año actual)
         do {
             anyo = pedirInt("En que año fue emitido? ");
             if (anyo > Calendar.getInstance().get(Calendar.YEAR) || anyo <= -680) {
@@ -214,9 +184,10 @@ public class Main {
             }
         } while (!correcto);
 
+        // En el caso de que se pida un Moneda
         if (option.equalsIgnoreCase("m")) {
-            // Pedir peso
             double p, d;
+            // Pedir peso hasta tener un número válido
             do {
                 p = pedirDouble("Cuanto pesa su moneda (en gramos)? ");
                 if (p <= 0) {
@@ -227,7 +198,7 @@ public class Main {
                 }
             } while (!correcto);
 
-            // Pedir diametro
+            // Pedir diametro hasta tener un número válido
             do {
                 d = pedirDouble("Cual es su diametro (en cm)? ");
                 if (d <= 0) {
@@ -241,9 +212,11 @@ public class Main {
             // Crear y añadir a la lista
             lista.add(new Moneda(valor, anyo, d, p));
             System.out.print("\nMoneda añadida.");
+
+        // En el caso de que sea un Billete
         } else if (option.equalsIgnoreCase("b")) {
             double ancho, alto;
-            // Pedir ancho
+            // Pedir ancho hasta tener un número válido
             do {
                 ancho = pedirDouble("Cual es la anchura del billete (en cm)? ");
                 if (ancho <= 0) {
@@ -254,7 +227,7 @@ public class Main {
                 }
             } while (!correcto);
 
-            // Pedir alto
+            // Pedir alto hasta tener un número válido
             do {
                 alto = pedirDouble("Cual es la altura del billete (en cm)? ");
                 if (alto <= 0) {
@@ -265,6 +238,7 @@ public class Main {
                 }
             } while (!correcto);
 
+            // Crear y añadir a la lista
             lista.add(new Billete(valor, anyo, alto, ancho));
             System.out.print("\nBillete añadido.");
         }
@@ -279,6 +253,7 @@ public class Main {
                 "\nMOSTRANDO TODOS LOS OBJETOS" +
                         "\n***************************");
 
+        // Comprobar si la lista está vacia
         if(lista.isEmpty()){
             System.out.print("\nNo hay nada que mostrar...");
         }else{
@@ -292,7 +267,7 @@ public class Main {
      *
      * @param l sublista
      */
-    public static void mostrarSublista(ArrayList<Dinero> l) {
+    private static void mostrarSublista(ArrayList<Dinero> l) {
         for (Dinero d : l) {
             mostrarObjeto(d);
         }
@@ -304,7 +279,7 @@ public class Main {
      *
      * @param d objeto a mostrar
      */
-    public static void mostrarObjeto(Dinero d) {
+    private static void mostrarObjeto(Dinero d) {
         System.out.print("\n\n--Objeto número " + lista.lastIndexOf(d) + "--");
         System.out.print(d.toString());
     }
@@ -316,14 +291,19 @@ public class Main {
         System.out.print(
                 "\nCOMPROBANDO OBJETOS IGUALES" +
                         "\n***************************");
+
+        // Comprobar si la lista esta vacia
         if(lista.isEmpty()){
             System.out.println("\nNo hay objetos que comparar...");
             continuar();
             return;
         }
+
         boolean hayIgual = false;
+        // Recorrer la lista
         for (int i = 0; i < lista.size(); i++) {
             for (int j = i + 1; j < lista.size(); j++) {
+                // Si los objetos son igules
                 if (lista.get(i).equals(lista.get(j))) {
                     System.out.print("\n --> El objeto " + lista.indexOf(lista.get(i)) + " y el objeto " + lista.lastIndexOf(lista.get(j)) + " son igules: ");
                     mostrarObjeto(lista.get(i));
@@ -333,6 +313,7 @@ public class Main {
                 }
             }
         }
+        // Si no hubo objetos iguales
         if (!hayIgual) {
             System.out.print("\nNo hay objetos iguales.");
         }
@@ -340,37 +321,40 @@ public class Main {
     }
 
     /**
-     * Ordenar la lista de monedas y billetes por valor y luego por año.
+     * Ordenar la lista de monedas y billetes por valor y luego por año, ascendente o descendentemente,
+     * utiliazando el método {@link Timbre.Dinero#compareTo(Dinero) Dinero.compareTo()}
      */
     public static void ordenar() {
         System.out.print(
                 "\nORDENANDO OBJETOS" +
                         "\n*****************");
+        // Comprobar si la lista está vacia
         if(lista.isEmpty()){
             System.out.println("\nNo hay objetos que ordenar...");
             continuar();
-            return;
+        }else {
+            int option;
+            Comparator<Dinero> comp = null;
+            // Pedir como ordenar la lista: ascendiente o descendientemente.
+            do {
+                option = pedirInt("\nComo lo quiere ordenar: " +
+                        "\n[1] Ascendentemente (mas antiguo primero)" +
+                        "\n[2] Descendentemente (mas moderno primero)" +
+                        "\nElija una opción: ");
+
+                if (option == 1) {
+                    comp = (d1, d2) -> -d1.compareTo(d2);
+                } else if (option == 2) {
+                    comp = (d1, d2) -> d1.compareTo(d2);
+                } else {
+                    System.out.println("\nOpción no válida.");
+                }
+            } while (option != 2 && option != 1);
+
+            lista.sort(comp);
+            System.out.print("\nObjetos ordenados.");
+            continuar();
         }
-        int option;
-        Comparator<Dinero> comp = null;
-        do{
-            option = pedirInt("\nComo lo quiere ordenar: " +
-                    "\n[1] Ascendentemente (mas antiguo primero)" +
-                    "\n[2] Descendentemente (mas moderno primero)" +
-                    "\nElija una opción: ");
-
-            if(option == 1){
-                comp = (d1, d2) -> -d1.compareTo(d2);
-            }else if(option == 2){
-                comp = (d1, d2) -> d1.compareTo(d2);
-            }else{
-                System.out.println("\nOpción no válida.");
-            }
-        }while (option != 2  && option != 1);
-
-        lista.sort(comp);
-        System.out.print("\nObjetos ordenados.");
-        continuar();
     }
 
     /**
@@ -380,21 +364,22 @@ public class Main {
         System.out.print(
                 "\nCOPIANDO OBJETOS" +
                         "\n****************");
+        // Comprobar si la lista está vacia
         if(lista.isEmpty()){
             System.out.println("\nNo hay objetos que copiar...");
             continuar();
-            return;
+        }else {
+            // Pedir la posición del objeto
+            int pos = pedirInt("\nIndique la posición del objeto a copiar: ");
+            if (lista.get(pos) instanceof Moneda) {
+                lista.add(new Moneda((Moneda) lista.get(pos)));
+                System.out.print("\nMoneda " + pos + " copiada.");
+            } else if (lista.get(pos) instanceof Billete) {
+                lista.add(new Billete((Billete) lista.get(pos)));
+                System.out.print("\nBillete " + pos + " copiado.");
+            }
+            continuar();
         }
-
-        int obj = pedirInt("\nIndique la posición del objeto a copiar: ");
-        if (lista.get(obj) instanceof Moneda) {
-            lista.add(new Moneda((Moneda) lista.get(obj)));
-            System.out.print("\nMoneda " + obj + " copiada.");
-        } else if (lista.get(obj) instanceof Billete) {
-            lista.add(new Billete((Billete) lista.get(obj)));
-            System.out.print("\nBillete " + obj + " copiado.");
-        }
-        continuar();
     }
 
     /**
@@ -409,13 +394,13 @@ public class Main {
             continuar();
             return;
         }
-        // Lista de monedas o billetes, segun
+        // Sublista de monedas o billetes, segun el tipo elegido
         ArrayList<Dinero> timbres = new ArrayList<>();
 
         boolean correcto;
         String tipo;
 
-        // Pedir que tipo de timbre
+        // Pedir que tipo de timbre hasta tener una opción válida
         do {
             tipo = pedirString("\nEs un (B)illete o una (M)oneda? ");
 
@@ -427,7 +412,7 @@ public class Main {
             }
         } while (!correcto);
 
-        // Crear la sublista de monedas o billetes
+        // Crear la sublista de monedas o billetes según el tipo elegido
         if (tipo.equalsIgnoreCase("m")) {
             for (Dinero d : lista) {
                 if (d instanceof Moneda) {
@@ -442,12 +427,14 @@ public class Main {
             }
         }
 
-        // Seguir buscando si existen
+        // Comprobar si se han encontrado objetos de ese tipo
         if (timbres.isEmpty()) {
             System.out.print("\nNo hay " + (tipo.equals("m") ? "monedas" : "billetes") + " en la lista.");
+        // Si solo hay uno, mostrarlo directamente
         } else if (timbres.size() == 1) {
             mostrarSublista(timbres);
         } else {
+        // Pedir si seguir buscando en la sublista de monedas o billetes
             int option;
             do {
                 option = pedirInt("\nHay " + timbres.size() + " " + (tipo.equals("m") ? "monedas" : "billetes") + " en la lista:" +
@@ -472,7 +459,7 @@ public class Main {
      *
      * @param l sublista de timbre
      */
-    public static void buscarTimbres(ArrayList<Dinero> l) {
+    private static void buscarTimbres(ArrayList<Dinero> l) {
         boolean hayTimbre = false;
         int option;
         do {
@@ -570,7 +557,7 @@ public class Main {
      *
      * @param b el billete
      */
-    public static void modificarBillete(Billete b) {
+    private static void modificarBillete(Billete b) {
         int option;
         double var;
         boolean correcto;
@@ -618,7 +605,7 @@ public class Main {
      *
      * @param m el billete
      */
-    public static void modificarMoneda(Moneda m) {
+    private static void modificarMoneda(Moneda m) {
         int option;
         double var;
         boolean correcto;
@@ -659,5 +646,39 @@ public class Main {
                 System.out.print("\nOpción no valida.");
             }
         } while (option != 3 && option != 2 && option != 1);
+    }
+
+    /**
+     * Metodo que borra toda la lista.
+     */
+    public static void eliminarTodo() {
+        String option;
+        boolean correcto;
+        do{
+            option = pedirString("\nEstas seguro que quiere borrar todo (s/n)? ");
+            if(option.equalsIgnoreCase("s")){
+                do{
+                    option = pedirString("\nSe perderá todo tu trabajo. Estas seguro? ");
+                    if(option.equalsIgnoreCase("s")){
+                        lista.clear();
+                        System.out.print("Tu mandas... Lista borrada.");
+                        correcto = true;
+                    }else if(option.equalsIgnoreCase("n")){
+                        System.out.print("\nPerfecto, los objetos permanecerán aquí.");
+                        correcto = true;
+                    }else{
+                        System.out.print("Sí [S] o no [N].");
+                        correcto = false;
+                    }
+                }while(!correcto);
+            }else if(option.equalsIgnoreCase("n")){
+                System.out.print("\nPerfecto, tus objetos no se borrarán.");
+                correcto = true;
+            }else{
+                System.out.print("Opción no válida. Solo sí [S] o no [N].");
+                correcto = false;
+            }
+        }while(!correcto);
+        continuar();
     }
 }

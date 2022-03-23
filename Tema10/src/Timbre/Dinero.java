@@ -1,10 +1,6 @@
 package Timbre;
 
-import Exceptions.NegativeIntegerException;
-import Exceptions.NotAGoodYearException;
-
 import java.text.DecimalFormat;
-import java.util.Calendar;
 
 public abstract class Dinero {
     // ***ATRIBUTOS***
@@ -14,11 +10,23 @@ public abstract class Dinero {
     protected DecimalFormat df = new DecimalFormat("#.##");
 
     // ***CONSTRUCTOR***
+
+    /**
+     * Contructor de Dinero
+     *
+     * @param valor valor del timbre en €
+     * @param anyo año de emisión
+     */
     public Dinero(double valor, int anyo) {
         this.valor = valor;
         this.anyo = anyo;
     }
 
+    /**
+     * Constructor copia de dinero
+     *
+     * @param o objeto de tipo Dinero
+     */
     public Dinero(Dinero o){
         this.valor = o.getValor();
         this.anyo = o.getAnyo();
@@ -26,38 +34,57 @@ public abstract class Dinero {
 
     // ***METODOS***
     //  gettes y setters
+
+    /**
+     * Devuelve el valor del timbhre.
+     *
+     * @return valor en €
+     */
     public double getValor() {
         return valor;
     }
 
-    public void setValor(double valor) throws NegativeIntegerException {
+    /**
+     * Cambiar el valor del timbre.
+     *
+     * @param valor valor en €
+     */
+    public void setValor(double valor) {
         this.valor = valor;
     }
 
+    /**
+     * Devuleve el año de emisión del timbre.
+     *
+     * @return
+     */
     public int getAnyo() {
         return anyo;
     }
 
-    public void setAnyo(int anyo) throws NotAGoodYearException {
+    /**
+     * Cambiar el año de emisión del timbre.
+     *
+     * @param anyo
+     */
+    public void setAnyo(int anyo) {
         this.anyo = anyo;
     }
 
     /**
      * Metodo que compara dos objetos de Timbre.Dinero. Devuleve true si son de la misma clase y ademas
      * tengan el mismo valor y año de emision.
+     *
      * @param o objeto que herede de la clase Timbre.Dinero
      * @return si los objetos son iguales
      */
     public boolean equals(Dinero o){
-        if(o.getClass().equals(getClass()) && o.getAnyo()==getAnyo() && o.getValor()==getValor()){
-            return true;
-        }else{
-            return false;
-        }
+        return o.getClass().equals(getClass()) && (o.getAnyo() == getAnyo()) && (o.getValor() == getValor());
     }
 
     /**
      * Metodo que compara dos objetos de Dinero.
+     *
      * @param o objeto que herede de la clase Timbre.Dinero
      * @return >0 cuando 'o' sea mayor, <0 cuando sea menor y 0 cuando sean iguales.
      */
@@ -79,6 +106,7 @@ public abstract class Dinero {
 
     /**
      * Metodo que devuelve una cadena don el valor y año de emisión.
+     *
      * @return cadena formateda
      */
     @Override
