@@ -2,13 +2,13 @@ package biblioteca;
 
 import java.util.ArrayList;
 
-public class Usuarios {
+public class UsuariosDB {
     // ***ATRIBUTOS***
     private static ArrayList<Usuario> lista;
-    private static Usuarios usuariosObj = null;
+    private static UsuariosDB usuariosDB = null;
 
     // ***CONSTRUCTOR***
-    private Usuarios(){
+    private UsuariosDB(){
         lista = new ArrayList<>();
         lista.add(new Usuario("usu1"));
         lista.add(new Usuario("usu2"));
@@ -18,11 +18,11 @@ public class Usuarios {
     }
 
     // ***MÉTODOS***
-    public static Usuarios get(){
-        if(usuariosObj == null){
-            usuariosObj = new Usuarios();
+    public static UsuariosDB get(){
+        if(usuariosDB == null){
+            usuariosDB = new UsuariosDB();
         }
-        return usuariosObj;
+        return usuariosDB;
     }
 
     public ArrayList<Usuario> lista(){

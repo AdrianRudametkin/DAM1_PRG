@@ -2,13 +2,13 @@ package biblioteca;
 
 import java.util.ArrayList;
 
-public class Empleados {
+public class EmpleadosDB {
     // ***ATRIBUTOS***
     private static ArrayList<Empleado> lista;
-    private static Empleados empleadosObj = null;
+    private static EmpleadosDB empleadosDB = null;
 
     // ***CONSTRUCTOR***
-    private Empleados(){
+    private EmpleadosDB(){
         lista = new ArrayList<>();
         lista.add(new Empleado("Alberto"));
         lista.add(new Empleado("Encarna"));
@@ -18,11 +18,11 @@ public class Empleados {
     }
 
     // ***MÉTODOS***
-    public static Empleados get(){
-        if(empleadosObj == null){
-            empleadosObj = new Empleados();
+    public static EmpleadosDB get(){
+        if(empleadosDB == null){
+            empleadosDB = new EmpleadosDB();
         }
-        return empleadosObj;
+        return empleadosDB;
     }
 
     public ArrayList<Empleado> lista(){

@@ -124,4 +124,19 @@ public class Libro {
     public void setNombreAcogedor(String nombreAcogedor) {
         this.nombreAcogedor = nombreAcogedor;
     }
+
+    @Override
+    public String toString(){
+        String alquilado = "";
+        if(prestado){
+            alquilado = "\n Alquilado a '"+nombreAcogedor+"' por '"+nombrePrestador+"'";
+        }else{
+            alquilado = "\n Se encuentra en el pasillo Nº"+pasillo+".";
+        }
+        return ("\n-\""+titulo+"\" por "+autor+
+                "\n-Editorial "+editorial+"" +
+                "\n-ISBN "+isbn+"" +
+                "\n-Precio "+precio+"€"+
+                alquilado);
+    }
 }
