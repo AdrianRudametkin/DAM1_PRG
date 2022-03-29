@@ -36,4 +36,13 @@ public class EmpleadosDB {
         // TODO apuntar en la lista, comprobar que no exista
     }
 
+    public boolean existe(String nombre){
+        for(Empleado e: lista){
+            if(e.getNombre().equals(nombre)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

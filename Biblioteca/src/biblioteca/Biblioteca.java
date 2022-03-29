@@ -1,8 +1,6 @@
 package biblioteca;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class Biblioteca {
     // ***ATRIBUTOS***
@@ -13,6 +11,7 @@ public class Biblioteca {
 
     /**
      * Método principal.
+     *
      * @param args argumentos de JVM
      */
     public static void main(String[] args) {
@@ -28,7 +27,7 @@ public class Biblioteca {
     /**
      * Inicialización del programa.
      */
-    public void init(){
+    public void init() {
         empleadosDB = EmpleadosDB.get();
         usuariosDB = UsuariosDB.get();
         librosDB = LibrosDB.get();
@@ -38,30 +37,30 @@ public class Biblioteca {
     /**
      * Método bucle del programa para el programa principal.
      */
-    public void loop(){
+    public void loop() {
         int option;
         do {
             try {
                 printMenu();
-                option = pedirInt("\n Elegir una opción: ");
+                option = pedirInt("\nElegir una opción: ");
                 switch (option) {
                     case 1 -> altaLibro();
-                    case 2 -> busqueda();
+                    case 2 -> busquedaPrincipal();
                     case 3 -> bajaLibro();
                     case 4 -> alquilarLibro();
                     case 5 -> devolucionLibro();
                     case 6 -> gestionEmpleados();
                     case 7 -> gestionUsuarios();
                     case 10 -> System.out.print("\n\nHasta la próxima!!");
-                    default -> System.out.print("\nPor favor, elija una opción válida.");
+                    default -> System.out.print("\n>Por favor, elija una opción válida.");
                 }
             } catch (IndexOutOfBoundsException e) {
-                System.out.print("\nNo existe ese numero en la lista.");
+                System.out.print("\n>No existe ese numero en la lista.");
                 continuar();
                 option = -1;
             } catch (InputMismatchException e) {
                 sc.nextLine();
-                System.out.print("\nPor favor, elija un numero válido.");
+                System.out.print("\n>Por favor, elija un numero válido.");
                 continuar();
                 option = -1;
             }
@@ -86,14 +85,14 @@ public class Biblioteca {
                 i = sc.nextInt();
                 sc.nextLine();
                 if (i < 0) {
-                    System.out.print("\nPor favor, introduzca un número positivo.");
+                    System.out.print("\n>Por favor, introduzca un número positivo.");
                 }
-            }catch(InputMismatchException e){
-                System.out.print("\nPor favor, introduzca un número válido.");
+            } catch (InputMismatchException e) {
+                System.out.print("\n>Por favor, introduzca un número válido.");
                 sc.nextLine();
                 i = -1;
             }
-        }while(i<0);
+        } while (i < 0);
 
         return i;
     }
@@ -112,14 +111,14 @@ public class Biblioteca {
                 d = sc.nextDouble();
                 sc.nextLine();
                 if (d < 0) {
-                    System.out.print("\nPor favor, introduzca un número positivo.");
+                    System.out.print("\n>Por favor, introduzca un número positivo.");
                 }
-            }catch(InputMismatchException e){
-                System.out.print("\nPor favor, introduzca un número válido.");
+            } catch (InputMismatchException e) {
+                System.out.print("\n>Por favor, introduzca un número válido.");
                 sc.nextLine();
                 d = -1;
             }
-        }while(d<0);
+        } while (d < 0);
 
         return d;
     }
@@ -135,10 +134,10 @@ public class Biblioteca {
         do {
             System.out.print(msg);
             s = sc.nextLine();
-            if(s.trim().equalsIgnoreCase("")){
-                System.out.print("\nCadena vacía, por favor introduzca algo.");
+            if (s.trim().equalsIgnoreCase("")) {
+                System.out.print("\n>Cadena vacía, por favor introduzca algo.");
             }
-        }while(s.trim().equalsIgnoreCase(""));
+        } while (s.trim().equalsIgnoreCase(""));
 
         return s;
     }
@@ -146,7 +145,7 @@ public class Biblioteca {
     /**
      * Pulse intro para continuar;
      */
-    private void continuar(){
+    private void continuar() {
         System.out.print("\nPulse INTRO para continuar...");
         sc.nextLine();
     }
@@ -154,11 +153,12 @@ public class Biblioteca {
     //***************************************************
     //                 Mostar por Pantalla
     //***************************************************
+
     /**
      * Imprimir el menu principal en pantalla.
      */
     private static void printMenu() {
-        System.out.print("\n*** MENU PRINCIPAL ***" +
+        System.out.print("\n\n\n*** MENU PRINCIPAL ***" +
                 "\n [1] - Dar de alta un Libro" +
                 "\n [2] - Buscar un Libro" +
                 "\n [3] - Dar de baja un Libro" +
@@ -172,32 +172,32 @@ public class Biblioteca {
     /**
      * Imprime el menú de búsqueda en pantalla
      */
-    private void menuBusqueda(){
-        System.out.print("\n*** MENU BÚSQUEDA ***" +
+    private void menuBusqueda() {
+        System.out.print("\n\n\n*** MENU BÚSQUEDA ***" +
                 "\n [1] - Buscar por Título" +
                 "\n [2] - Buscar por Autor" +
                 "\n [3] - Buscar por Editorial" +
                 "\n [4] - Buscar por Ubicación" +
-                "\n [5] - Buscar por Empleado que lo prestó" +
+                "\n [5] - Buscar por Empleado que alquiló" +
                 "\n [6] - Buscar por Estado de préstamo" +
                 "\n [7] - Buscar por Usuario que lo tiene prestado" +
                 "\n [8] - Salir");
     }
 
     /**
-     * Mostrar una lista de tipo {@link java.util.ArrayList ArrayList} por pantalla.
+     * Mostrar una lista por pantalla con el índice de la base de datos.
      *
-     * @param l un {@link java.util.ArrayList ArrayList}
+     * @param hm un {@link java.util.HashMap HashMap}
      */
-    private static void mostrarLista(ArrayList<Object> l) {
-
-        for (Object o : l) {
+    private static void mostrarLista(HashMap<Integer, Object> hm) {
+        for (Map.Entry e : hm.entrySet()) {
             String s = "";
-            if(o instanceof Libro) s = "Libro";
-            else if(o instanceof Empleado) s = "Empleado";
-            else if(o instanceof Usuario) s = "Usuario";
-            System.out.print("\n\n--"+s+" nº"+l.indexOf(o)+"--");
-            mostrarObjeto(o);
+            if (e.getValue() instanceof Libro) s = "Libro";
+            else if (e.getValue() instanceof Empleado) s = "Empleado";
+            else if (e.getValue() instanceof Usuario) s = "Usuario";
+
+            System.out.print("\n--" + s + " nº" + e.getKey() + "--");
+            mostrarObjeto(e.getValue());
         }
         System.out.println();
     }
@@ -218,7 +218,7 @@ public class Biblioteca {
     /**
      * Pedir datos de un libro al usuario y añadirlo a la base de datos.
      */
-    public void altaLibro(){
+    public void altaLibro() {
         System.out.print("\n\n*** ALTA DE LIBRO ***");
         Libro l = new Libro();
         // Pedir info del libro
@@ -233,115 +233,318 @@ public class Biblioteca {
         System.out.print("\n >>Añadiendo a base de datos...");
         int pos = librosDB.darAlta(l);
         System.out.print("\nLibro añadido con éxito.");
-        System.out.print("\n--Libro nº"+pos+"--");
-        System.out.println(l.toString());
+        System.out.print("\n--Libro nº" + pos + "--");
+        System.out.print(l.toString());
         continuar();
     }
 
     //***************************************************
     //                 Búsqueda Libro
     //***************************************************
-    /**
-     * Buscar un libro en la base de datos por varios atributos a elegir.
-     */
-    public void busqueda(){
-        int option;
-        do {
-            try {
-                menuBusqueda();
-                option = pedirInt("\n Elegir una opción: ");
-                switch (option) {
-                    case 1 -> buscarTitulo();
-                    case 2 -> buscarAutor();
-                    case 3 -> buscarEditorial();
-                    case 4 -> buscarUbicacion();
-                    case 5 -> buscarPrestadoPor();
-                    case 6 -> buscarEstado();
-                    case 7 -> buscarPrestadoA();
-                    case 8 -> System.out.print("\n\nVolviendo al menú principal.");
-                    default -> System.out.print("\nPor favor, elija una opción válida.");
-                }
-            } catch (IndexOutOfBoundsException e) {
-                System.out.print("\nNo existe ese numero en la lista.");
-                continuar();
-                option = -1;
-            } catch (InputMismatchException e) {
-                sc.nextLine();
-                System.out.print("\nPor favor, elija un numero válido.");
-                continuar();
-                option = -1;
-            }
-        } while (option != 10);
+    public void busquedaPrincipal() {
+        HashMap<Integer, Object> hm = busqueda();
+        System.out.print("\n*RESULTADOS:");
+        if (hm.isEmpty()) {
+            System.out.print("\n>No se ha encontrado ningún libro.");
+        } else {
+            mostrarLista(hm);
+        }
         continuar();
     }
 
-    private void buscarTitulo(){
-        //TODO busqueda por titulo
+    /**
+     * Buscar un libro en la base de datos por varios atributos a elegir.
+     *
+     * @return un {@link java.util.HashMap HashMap} con el libro y su posición en la BB-DD
+     */
+    public HashMap<Integer, Object> busqueda() {
+        int option;
+        HashMap<Integer, Object> hm = new HashMap<>();
+
+        if (librosDB.lista().isEmpty()) {
+            System.out.print("\n>No hay libros.");
+            return hm;
+        }
+        do {
+
+            menuBusqueda();
+            option = pedirInt("\n Elegir una opción: ");
+            switch (option) {
+                case 1 -> hm = buscarTitulo();
+                case 2 -> hm = buscarAutor();
+                case 3 -> hm = buscarEditorial();
+                case 4 -> hm = buscarUbicacion();
+                case 5 -> hm = buscarAlquiladoPor();
+                case 6 -> hm = buscarEstado();
+                case 7 -> hm = buscarAlquiladoA();
+                default -> System.out.print("\n>Por favor, elija una opción válida.");
+            }
+        } while (option < 1 || option > 7);
+        return hm;
     }
 
-    private void buscarAutor(){
-        //TODO busqueda por autor
+    /**
+     * Método que busca libros por su título.
+     *
+     * @return un {@link java.util.HashMap HashMap} con el libro y su posición en la BB-DD
+     */
+    private HashMap<Integer, Object> buscarTitulo() {
+        System.out.print("\n-- Buscar por título --");
+        String tit = pedirString("\nIntroduzca el título del libro: ");
+
+        HashMap<Integer, Object> hm = new HashMap<>();
+
+        for (Libro l : librosDB.lista()) {
+            if (l.getTitulo().equalsIgnoreCase(tit)) {
+                hm.put(librosDB.lista().indexOf(l), l);
+            }
+        }
+        return hm;
     }
 
-    private void buscarEditorial(){
-        //TODO busqueda por editorial
+    /**
+     * Método que busca libros por autor.
+     *
+     * @return un {@link java.util.HashMap HashMap} con el libro y su posición en la BB-DD
+     */
+    private HashMap<Integer, Object> buscarAutor() {
+        System.out.print("\n-- Buscar por autor --");
+        String aut = pedirString("\nIntroduzca el autor del libro: ");
+
+        HashMap<Integer, Object> hm = new HashMap<>();
+
+        for (Libro l : librosDB.lista()) {
+            if (l.getAutor().equalsIgnoreCase(aut)) {
+                hm.put(librosDB.lista().indexOf(l), l);
+            }
+        }
+        return hm;
     }
 
-    private void buscarUbicacion(){
-        //TODO busqueda por ubicacion
+    /**
+     * Método que busca libros por editorial.
+     *
+     * @return un {@link java.util.HashMap HashMap} con el libro y su posición en la BB-DD
+     */
+    private HashMap<Integer, Object> buscarEditorial() {
+        System.out.print("\n-- Buscar por editorial --");
+        String edi = pedirString("\nIntroduzca la editorial del libro: ");
+
+        HashMap<Integer, Object> hm = new HashMap<>();
+
+        for (Libro l : librosDB.lista()) {
+            if (l.getEditorial().equalsIgnoreCase(edi)) {
+                hm.put(librosDB.lista().indexOf(l), l);
+            }
+        }
+        return hm;
     }
 
-    private void buscarEstado(){
-        //TODO busqueda por estado
+    /**
+     * Método que busca libros por su posición en la biblioteca.
+     *
+     * @return un {@link java.util.HashMap HashMap} con el libro y su posición en la BB-DD
+     */
+    private HashMap<Integer, Object> buscarUbicacion() {
+        System.out.print("\n-- Buscar por ubicación --");
+        int ubi = pedirInt("\nIntroduzca el número del pasillo: ");
+
+        HashMap<Integer, Object> hm = new HashMap<>();
+
+        for (Libro l : librosDB.lista()) {
+            if (l.getPasillo() == ubi) {
+                hm.put(librosDB.lista().indexOf(l), l);
+            }
+        }
+        return hm;
     }
 
-    private void buscarPrestadoPor(){
-        //TODO busqueda por empleddo
+    /**
+     * Método que busca libros que estén o no prestados.
+     *
+     * @return un {@link java.util.HashMap HashMap} con el libro y su posición en la BB-DD
+     */
+    private HashMap<Integer, Object> buscarEstado() {
+        // Preguntar por el estado que se pretende buscar
+        int option;
+        do {
+            try {
+                option = pedirInt("\n-- Buscar por estado --" +
+                        "\n[1] Libros prestados." +
+                        "\n[2] Libros en la biblioteca." +
+                        "\nIntroduzca una opción: ");
+            } catch (InputMismatchException e) {
+                sc.nextLine();
+                System.out.print("\n>Por favor, elija un numero válido.");
+                continuar();
+                option = -1;
+            }
+        } while (option != 1 && option != 2);
+
+        HashMap<Integer, Object> hm = new HashMap<>();
+
+        if (option == 1) {
+            for (Libro l : librosDB.lista()) {
+                if (l.isPrestado()) {
+                    hm.put(librosDB.lista().indexOf(l), l);
+                }
+            }
+        } else {
+            for (Libro l : librosDB.lista()) {
+                if (!l.isPrestado()) {
+                    hm.put(librosDB.lista().indexOf(l), l);
+                }
+            }
+        }
+        return hm;
     }
 
-    private void buscarPrestadoA(){
-        //TODO busqueda por usuario
+    /**
+     * Método que busca libros por empleado que lo ha alquilado.
+     *
+     * @return un {@link java.util.HashMap HashMap} con el libro y su posición en la BB-DD
+     */
+    private HashMap<Integer, Object> buscarAlquiladoPor() {
+        System.out.print("\n-- Buscar por empleado que alquiló --");
+        HashMap<Integer, Object> hm = new HashMap<>();
+
+        // Verificar que haya libros prestados
+        boolean hayLibro = false;
+        for (Libro l : librosDB.lista()) {
+            if (l.isPrestado()) {
+                hayLibro = true;
+                break;
+            }
+        }
+        if (!hayLibro) {
+            System.out.print("\n>No hay libros alquilados.");
+            return hm;
+        }
+
+        // Verificar que el empleado exista
+        String empleado = pedirString("\nIntroduzca el nombre del empleado: ");
+        if (!empleadosDB.existe(empleado)) {
+            System.out.print("\n>No se ha encontrado a ningún empleado con ese nombre.");
+            return hm;
+        }
+
+        // Devolver todos los libros que tengan ese empleado
+        for (Empleado e : buscarEmpleado(empleado)) {
+            for (Libro l : librosDB.lista()) {
+                if (l.getEmpleado() == e) {
+                    hm.put(librosDB.lista().indexOf(l), l);
+                }
+            }
+        }
+        return hm;
+    }
+
+    /**
+     * Método que busca los libros que un usuario haya alquilado
+     *
+     * @return un {@link java.util.HashMap HashMap} con el libro y su posición en la BB-DD
+     */
+    private HashMap<Integer, Object> buscarAlquiladoA() {
+        System.out.print("\n-- Buscar por usuario que lo tiene alquilado --");
+        HashMap<Integer, Object> hm = new HashMap<>();
+
+        // Verificar que hay libros prestados
+        boolean hayLibro = false;
+        for (Libro l : librosDB.lista()) {
+            if (l.isPrestado()) {
+                hayLibro = true;
+            }
+        }
+        if (!hayLibro) {
+            System.out.print("\n>No hay libros prestados.");
+            return hm;
+        }
+
+        // Verificar que exista el usuario
+        String usuario = pedirString("\nIntroduzca el nombre del usuario: ");
+        if (!empleadosDB.existe(usuario)) {
+            System.out.print("\n>No se ha encontrado a ningún usuario con ese nombre.");
+            return hm;
+        }
+
+        // Devolver todos los libros vinculados a ese usuario
+        for (Usuario u : buscarUsuarios(usuario)) {
+            for (Libro l : librosDB.lista()) {
+                if (l.getUsuario() == u) {
+                    hm.put(librosDB.lista().indexOf(l), l);
+                }
+            }
+        }
+        return hm;
     }
 
 
     //***************************************************
     //                 Baja Libro
     //***************************************************
-    public void bajaLibro(){
+    public void bajaLibro() {
         //TODo baja libro
     }
 
     //***************************************************
     //                 Alquilar Libro
     //***************************************************
-    public void alquilarLibro(){
+    public void alquilarLibro() {
         //TODO alquiler libro
     }
 
     //***************************************************
     //                 Devolver Libro
     //***************************************************
-    public void  devolucionLibro(){
+    public void devolucionLibro() {
         //TODO devolucion libro
     }
 
     //***************************************************
     //                 Gestión de Empleados
     //***************************************************
-    public void gestionEmpleados(){
+    public void gestionEmpleados() {
         //TODO gestion empleados
+    }
+
+    /**
+     * Buscar empleados que tengan el nombre indicado.
+     *
+     * @param nombre nombre del empleado
+     * @return sublista de empleados
+     */
+    public ArrayList<Empleado> buscarEmpleado(String nombre) {
+        ArrayList<Empleado> al = new ArrayList<>();
+        for (Empleado e : empleadosDB.lista()) {
+            if (e.getNombre().equals(nombre)) {
+                al.add(e);
+            }
+        }
+        return al;
     }
 
     //***************************************************
     //                Gestión de Usuarios
     //***************************************************
-    public void gestionUsuarios(){
+    public void gestionUsuarios() {
         //TODO gestion usuarios
     }
 
-
-
-
+    /**
+     * Buscar usuarios que tengan el nombre indicado.
+     *
+     * @param nombre nombre del usuario
+     * @return sublista de usuarios
+     */
+    public ArrayList<Usuario> buscarUsuarios(String nombre) {
+        ArrayList<Usuario> al = new ArrayList<>();
+        for (Usuario u : usuariosDB.lista()) {
+            if (u.getNombre().equals(nombre)) {
+                al.add(u);
+            }
+        }
+        return al;
+    }
 
 
 }

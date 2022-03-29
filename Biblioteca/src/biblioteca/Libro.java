@@ -9,8 +9,8 @@ public class Libro {
     private int pasillo;
     private String isbn;
     private double precio;
-    private String nombrePrestador;
-    private String nombreAcogedor;
+    private Empleado empleado;
+    private Usuario usuario;
 
     // ***CONSTRUCTORES***
 
@@ -31,8 +31,8 @@ public class Libro {
         this.isbn = isbn;
         this.precio = precio;
         prestado = false;
-        nombrePrestador = null;
-        nombreAcogedor = null;
+        empleado = null;
+        usuario = null;
     }
 
     /**
@@ -46,8 +46,8 @@ public class Libro {
         pasillo = 0;
         isbn = null;
         precio = 0;
-        nombrePrestador = null;
-        nombreAcogedor = null;
+        empleado = null;
+        usuario = null;
     }
 
     // ***MÉTODOS***
@@ -109,27 +109,27 @@ public class Libro {
         this.precio = precio;
     }
 
-    public String getNombrePrestador() {
-        return nombrePrestador;
+    public Empleado getEmpleado() {
+        return empleado;
     }
 
-    public void setNombrePrestador(String nombrePrestador) {
-        this.nombrePrestador = nombrePrestador;
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
     }
 
-    public String getNombreAcogedor() {
-        return nombreAcogedor;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setNombreAcogedor(String nombreAcogedor) {
-        this.nombreAcogedor = nombreAcogedor;
+    public void setUsuario(Usuario empleado) {
+        this.usuario = usuario;
     }
 
     @Override
     public String toString(){
         String alquilado = "";
         if(prestado){
-            alquilado = "\n Alquilado a '"+nombreAcogedor+"' por '"+nombrePrestador+"'";
+            alquilado = "\n Alquilado a \""+ usuario +"\" por \""+ empleado +"\".";
         }else{
             alquilado = "\n Se encuentra en el pasillo Nº"+pasillo+".";
         }

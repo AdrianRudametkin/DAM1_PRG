@@ -35,4 +35,13 @@ public class UsuariosDB {
     public void darAlta(String nombre){
         // TODO apuntar en la lista, comprobar que no exista
     }
+
+    public boolean existe(String nombre){
+        for(Usuario u: lista){
+            if(u.getNombre().equals(nombre)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

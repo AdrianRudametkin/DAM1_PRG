@@ -1,5 +1,7 @@
 package biblioteca;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class LibrosDB {
@@ -33,5 +35,16 @@ public class LibrosDB {
         return lista;
     }
 
+    public void prestar(Empleado empleado, Usuario usuario, Libro l){
+        l.setPrestado(true);
+        l.setEmpleado(empleado);
+        l.setUsuario(usuario);
+    }
+
+    public void devolver(Libro l){
+        l.setPrestado(false);
+        l.setEmpleado(null);
+        l.setUsuario(null);
+    }
 
 }
