@@ -146,7 +146,7 @@ public class Biblioteca {
      * Pulse intro para continuar;
      */
     private void continuar() {
-        System.out.print("\nPulse INTRO para continuar...");
+        System.out.print("\n\nPulse INTRO para continuar...");
         sc.nextLine();
     }
 
@@ -219,22 +219,22 @@ public class Biblioteca {
      * Pedir datos de un libro al usuario y añadirlo a la base de datos.
      */
     public void altaLibro() {
-        System.out.print("\n\n*** ALTA DE LIBRO ***");
+        System.out.print("\n\n*** ALTA DE LIBRO ***\n");
         Libro l = new Libro();
         // Pedir info del libro
-        l.setTitulo(pedirString("\nIntroduzca el título: "));
-        l.setAutor(pedirString("\nIntroduzca el autor: "));
-        l.setEditorial(pedirString("\nIntroduzca la editorial: "));
-        l.setPasillo(pedirInt("\nIntroduzca su ubicación (número del pasillo): "));
-        l.setIsbn(pedirString("\nIntroduzca el ISBN: "));
-        l.setPrecio(pedirDouble("\nIntroduzca su precio: "));
+        l.setTitulo(pedirString("Introduzca el título: "));
+        l.setAutor(pedirString("Introduzca el autor: "));
+        l.setEditorial(pedirString("Introduzca la editorial: "));
+        l.setPasillo(pedirInt("Introduzca su ubicación (número del pasillo): "));
+        l.setIsbn(pedirString("Introduzca el ISBN: "));
+        l.setPrecio(pedirDouble("Introduzca su precio: "));
 
         // Añadir a la base de datos
-        System.out.print("\n >>Añadiendo a base de datos...");
+        System.out.print("\n>>Añadiendo a base de datos...");
         int pos = librosDB.darAlta(l);
-        System.out.print("\nLibro añadido con éxito.");
+        System.out.print("\n>>Libro añadido con éxito.");
         System.out.print("\n--Libro nº" + pos + "--");
-        System.out.print(l.toString());
+        mostrarObjeto(l);
         continuar();
     }
 

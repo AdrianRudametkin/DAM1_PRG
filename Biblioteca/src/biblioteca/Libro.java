@@ -129,14 +129,12 @@ public class Libro {
     public String toString(){
         String alquilado = "";
         if(prestado){
-            alquilado = "\n Alquilado a \""+ usuario +"\" por \""+ empleado +"\".";
+            alquilado = "\n -> Alquilado a \""+ usuario +"\" por \""+ empleado +"\".";
         }else{
-            alquilado = "\n Se encuentra en el pasillo Nº"+pasillo+".";
+            alquilado = "\n -> Se encuentra en el pasillo Nº"+pasillo+".";
         }
-        return ("\n-\""+titulo+"\" por "+autor+
-                "\n-Editorial "+editorial+"" +
-                "\n-ISBN "+isbn+"" +
-                "\n-Precio "+precio+"€"+
-                alquilado);
+        return ("\n ·\""+titulo+"\" por "+autor+ ", Editorial: "+editorial+"" +
+                "\n ·ISBN: "+isbn+"" + ", Precio: "+precio+"€"+
+                 alquilado);
     }
 }
