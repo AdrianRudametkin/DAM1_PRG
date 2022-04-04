@@ -54,6 +54,7 @@ public class Main {
                 fos.close();
 
                 System.out.println("\nFichero copiado...\n\n");
+                valido = true;
             } catch (FileNotFoundException e) {
                 System.out.print("\nEse fichero no existe...");
                 valido = false;
