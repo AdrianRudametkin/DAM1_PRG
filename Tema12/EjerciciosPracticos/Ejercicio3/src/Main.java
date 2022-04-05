@@ -21,7 +21,7 @@ public class Main {
         }while(!valido);
 
         do {
-            System.out.print("\nIndique la ruta del fichero 2: ");
+            System.out.print("Indique la ruta del fichero 2: ");
             fp2 = sc.nextLine();
             f2 = new File(fp2);
             if (!f2.exists()) {
@@ -37,7 +37,7 @@ public class Main {
             des = generarNombre(fp1, fp2, sc.nextLine());
             fDes = new File(des);
             if (fDes.exists()) {
-                System.out.print("\nEse fichero existe, ¿desea sobreescribirlo?(s/n)");
+                System.out.print("\nEse fichero existe, ¿desea sobreescribirlo?(s/n) ");
                 String respuesta = sc.nextLine();
                 if(respuesta.equalsIgnoreCase("s")){
                     valido = true;
@@ -47,14 +47,10 @@ public class Main {
                     System.out.print("Opción no válida.");
                     return;
                 }
-                valido = false;
             }else{
                 valido = true;
             }
         }while(!valido);
-        System.out.print("Indique la ruta de destino: ");
-        des = generarNombre(fp1, fp2, sc.nextLine());
-
 
         generarArchivo(f1, f2, fDes);
         System.out.print("\nFichero copiado con éxito.");
@@ -63,15 +59,15 @@ public class Main {
     private static String generarNombre(String fp1, String fp2, String des) {
         String cad1="", cad2="", rutaCompleta = "";
 
-        cad1 = fp1.substring(0, des.lastIndexOf("."));
-        cad2 = fp2.substring(0, des.lastIndexOf("."));
+        cad1 = fp1.substring(0, fp1.lastIndexOf("."));
+        cad2 = fp2.substring(0, fp2.lastIndexOf("."));
 
         if(des.trim().equals("")){
             rutaCompleta += cad1 + cad2 + ".txt";
         } else if(des.charAt(des.length()-1) == '/'){
             rutaCompleta += des + cad1 + cad2 + ".txt";
         } else {
-            rutaCompleta += "/" + des + cad1 + cad2 + ".txt";
+            rutaCompleta += des + "/" + cad1 + cad2 + ".txt";
         }
 
         return rutaCompleta;
