@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a6a466a-5e96-4146-975d-1f700cb88eef" name="Changes" comment="Ejercicios prácticos del tema 12: ejercicio 7 casi">
+    <list default="true" id="8a6a466a-5e96-4146-975d-1f700cb88eef" name="Changes" comment="Ejercicios prácticos del tema 12: ejercicio 7 hecho">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ejercicio7/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ejercicio7/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ejercicio7/src/Vehiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ejercicio7/src/Vehiculo.java" afterDir="false" />
@@ -140,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649660582316</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Ejercicios prácticos del tema 12: ejercicio 7 hecho">
+      <created>1649662492391</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1649662492391</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -161,6 +168,7 @@
     <MESSAGE value="Ejercicios prácticos del tema 12: ejercicio 3 terminado y el 6 a punto" />
     <MESSAGE value="Ejercicios prácticos del tema 12: terminado el ejercicio 6" />
     <MESSAGE value="Ejercicios prácticos del tema 12: ejercicio 7 casi" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ejercicios prácticos del tema 12: ejercicio 7 casi" />
+    <MESSAGE value="Ejercicios prácticos del tema 12: ejercicio 7 hecho" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ejercicios prácticos del tema 12: ejercicio 7 hecho" />
   </component>
 </project>
