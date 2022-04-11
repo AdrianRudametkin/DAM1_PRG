@@ -101,7 +101,7 @@ public class Main {
                 oos.writeObject(v);
                 oos.close();
             }else{
-                VehiculoOutputStream vos = new VehiculoOutputStream(new FileOutputStream(f));
+                VehiculoOutputStream vos = new VehiculoOutputStream(new FileOutputStream(f, true));
                 vos.writeObject(v);
                 vos.close();
             }
@@ -134,6 +134,8 @@ public class Main {
             ois.close();
         } catch (IOException e) {
             System.out.print("Error al leer archivo.");
+            System.out.println(e.getCause());
+            System.out.println(e.getMessage());
         }
     }
 }

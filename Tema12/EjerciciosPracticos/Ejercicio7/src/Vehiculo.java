@@ -1,6 +1,8 @@
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
-public class Vehiculo {
+public class Vehiculo implements Serializable {
+    private static final long serialVersionUID = 23L;
     private String matricula;
     private String marca;
     private String modelo;

@@ -3,10 +3,8 @@ package streams;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.io.Serializable;
 
-public class VehiculoOutputStream extends ObjectOutputStream implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class VehiculoOutputStream extends ObjectOutputStream{
 
     public VehiculoOutputStream(OutputStream out) throws IOException {
         super(out);

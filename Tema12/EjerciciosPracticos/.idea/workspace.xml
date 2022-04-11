@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a6a466a-5e96-4146-975d-1f700cb88eef" name="Changes" comment="Ejercicios prácticos del tema 12: ejercicio 3 terminado y el 6 a punto">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="8a6a466a-5e96-4146-975d-1f700cb88eef" name="Changes" comment="Ejercicios prácticos del tema 12: ejercicio 7 casi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ejercicio6/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ejercicio6/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ejercicio7/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ejercicio7/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ejercicio7/src/Vehiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ejercicio7/src/Vehiculo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ejercicio7/src/streams/VehiculoOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ejercicio7/src/streams/VehiculoOutputStream.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,17 +50,10 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.Main (5)">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Ejercicio1" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Ejercicio5" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -85,13 +79,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Ejercicio7" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main (5)" />
         <item itemvalue="Application.Main (4)" />
         <item itemvalue="Application.Main (3)" />
         <item itemvalue="Application.Main (1)" />
-        <item itemvalue="Application.Main (2)" />
       </list>
     </recent_temporary>
   </component>
@@ -125,7 +126,21 @@
       <option name="project" value="LOCAL" />
       <updated>1649160092224</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Ejercicios prácticos del tema 12: terminado el ejercicio 6">
+      <created>1649660544923</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1649660544923</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Ejercicios prácticos del tema 12: ejercicio 7 casi">
+      <created>1649660582316</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1649660582316</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -144,6 +159,8 @@
     <MESSAGE value="Ejercicios prácticos del tema 12: archivos de proyecto" />
     <MESSAGE value="Ejercicios prácticos del tema 12: ejercicio 3" />
     <MESSAGE value="Ejercicios prácticos del tema 12: ejercicio 3 terminado y el 6 a punto" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ejercicios prácticos del tema 12: ejercicio 3 terminado y el 6 a punto" />
+    <MESSAGE value="Ejercicios prácticos del tema 12: terminado el ejercicio 6" />
+    <MESSAGE value="Ejercicios prácticos del tema 12: ejercicio 7 casi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ejercicios prácticos del tema 12: ejercicio 7 casi" />
   </component>
 </project>
