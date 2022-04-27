@@ -1,4 +1,6 @@
-package biblioteca;
+package database;
+
+import biblioteca.Empleado;
 
 import java.util.ArrayList;
 

@@ -1,14 +1,19 @@
-package biblioteca;
+package database;
 
+import biblioteca.Usuario;
+
+import java.io.File;
 import java.util.ArrayList;
 
 public class UsuariosDB {
     // ***ATRIBUTOS***
     private static ArrayList<Usuario> lista;
     private static UsuariosDB usuariosDB = null;
+    private final static String filepath = "usuarios.db";
 
     // ***CONSTRUCTOR***
     private UsuariosDB(){
+        if()
         lista = new ArrayList<>();
         lista.add(new Usuario("usu1"));
         lista.add(new Usuario("usu2"));
@@ -43,5 +48,9 @@ public class UsuariosDB {
             }
         }
         return false;
+    }
+
+    private void leerArchivo(File f){
+        File f = new File(filepath);
     }
 }

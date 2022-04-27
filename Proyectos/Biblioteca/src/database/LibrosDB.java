@@ -1,6 +1,8 @@
-package biblioteca;
+package database;
 
-import org.jetbrains.annotations.NotNull;
+import biblioteca.Empleado;
+import biblioteca.Libro;
+import biblioteca.Usuario;
 
 import java.util.ArrayList;
 
@@ -23,6 +25,7 @@ public class LibrosDB {
     }
 
     public int darAlta(Libro l){
+        if(lista.contains(l))
         lista.add(l);
         return lista.indexOf(l);
     }

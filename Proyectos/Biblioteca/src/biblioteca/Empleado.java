@@ -1,6 +1,9 @@
 package biblioteca;
 
-public class Empleado extends Persona{
+import java.io.Serializable;
+
+public class Empleado extends Persona implements Serializable {
+    private static final long serialVersionUID = 41L;
     public Empleado(String nombre) {
         super(nombre);
     }
