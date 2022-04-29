@@ -1,6 +1,17 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        imprimirCuadrado(5);
+        int num;
+        try {
+            System.out.print("Indique el número: ");
+            Scanner sc = new Scanner(System.in);
+            num = sc.nextInt();
+            imprimirCuadrado(num);
+        }catch (InputMismatchException e){
+            System.out.println("Muy mal :(");
+        }
     }
 
     public static void imprimirCuadrado(int num) {
