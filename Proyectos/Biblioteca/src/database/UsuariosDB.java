@@ -3,6 +3,8 @@ package database;
 import biblioteca.Usuario;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 public class UsuariosDB {
@@ -13,7 +15,6 @@ public class UsuariosDB {
 
     // ***CONSTRUCTOR***
     private UsuariosDB(){
-        if()
         lista = new ArrayList<>();
         lista.add(new Usuario("usu1"));
         lista.add(new Usuario("usu2"));
@@ -50,7 +51,13 @@ public class UsuariosDB {
         return false;
     }
 
-    private void leerArchivo(File f){
+    private void leerArchivo(){
         File f = new File(filepath);
+
+
+    }
+
+    private void actualizarArchivo(){
+        //TODO
     }
 }

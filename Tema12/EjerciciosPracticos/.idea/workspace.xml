@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a6a466a-5e96-4146-975d-1f700cb88eef" name="Changes" comment="Ejercicios prácticos del tema 12: ejercicio 7 hecho" />
+    <list default="true" id="8a6a466a-5e96-4146-975d-1f700cb88eef" name="Changes" comment="Ejercicios prácticos del tema 12: ejercicio 7 hecho">
+      <change beforePath="$PROJECT_DIR$/../../Proyectos/Biblioteca/src/database/UsuariosDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Proyectos/Biblioteca/src/database/UsuariosDB.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
