@@ -31,7 +31,16 @@ public class Main {
         int mod = num % base;
 
         if (base == 16) {
-            String s = Integer.toHexString(mod).toUpperCase();
+            String s;
+            switch(mod){
+                case 10 -> s="A";
+                case 11 -> s="B";
+                case 12 -> s="C";
+                case 13 -> s="D";
+                case 14 -> s="E";
+                case 15 -> s="F";
+                default -> s=String.valueOf(mod);
+            }
             if (num < base)
                 return s;
 

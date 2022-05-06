@@ -15,15 +15,19 @@ public class Main {
     }
 
     public static void imprimirPiramide(int num) {
+        int suma = 0;
         for (int i = 1; i <= num; i++) {
             for (int k = num * 2; k > i * 2; k--)
                 System.out.print(" ");
 
-            for (int j = 0; j < (i * 2 - 1); j++)
-                System.out.print(piramide(i-1, j) + " ");
-
+            for (int j = 0; j < (i * 2 - 1); j++) {
+                System.out.print(piramide(i - 1, j) + " ");
+                suma += piramide(i - 1, j);
+            }
             System.out.println();
         }
+
+        System.out.println("\nSuma Total: "+suma);
     }
 
     public static int piramide(int i, int j) {
