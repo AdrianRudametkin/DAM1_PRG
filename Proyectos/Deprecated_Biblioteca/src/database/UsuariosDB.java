@@ -1,13 +1,13 @@
 package database;
 
-import biblioteca.Usuario;
+import objetos.Usuario;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class UsuariosDB {
+public class UsuariosDB implements Serializable {
+
     // ***ATRIBUTOS***
     private static ArrayList<Usuario> lista;
     private static UsuariosDB usuariosDB = null;

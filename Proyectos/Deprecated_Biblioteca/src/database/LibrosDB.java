@@ -1,8 +1,8 @@
 package database;
 
-import biblioteca.Empleado;
-import biblioteca.Libro;
-import biblioteca.Usuario;
+import objetos.Empleado;
+import objetos.Libro;
+import objetos.Usuario;
 
 import java.util.ArrayList;
 

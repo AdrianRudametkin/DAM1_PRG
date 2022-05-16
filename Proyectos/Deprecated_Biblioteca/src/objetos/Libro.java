@@ -1,4 +1,4 @@
-package biblioteca;
+package objetos;
 
 public class Libro {
     // ***ATRIBUTOS***
@@ -15,7 +15,7 @@ public class Libro {
     // ***CONSTRUCTORES***
 
     /**
-     * Contructor que inicializa todos los parámetros.
+     * Constructor que inicializa todos los parámetros.
      * @param titulo            título del libro
      * @param autor             autor del libro
      * @param editorial         editorial del libro

@@ -1,4 +1,4 @@
-package biblioteca;
+package objetos;
 
 import java.io.Serializable;
 

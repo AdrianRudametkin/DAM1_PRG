@@ -1,4 +1,4 @@
-package biblioteca;
+package objetos;
 
 public abstract class Persona {
     private String nombre;

@@ -1,7 +1,7 @@
-import biblioteca.Empleado;
-import biblioteca.Libro;
+import objetos.Empleado;
+import objetos.Libro;
 import database.LibrosDB;
-import biblioteca.Usuario;
+import objetos.Usuario;
 import database.EmpleadosDB;
 import database.UsuariosDB;
 
