@@ -1,11 +1,10 @@
-package Objetos;
+package objetos;
 
-import Sistema.Utilidades;
+import java.io.Serializable;
 
-import java.text.DecimalFormat;
-import static Sistema.Utilidades.*;
+import static sistema.Utilidades.*;
 
-public class Libro {
+public class Libro implements Serializable {
     private String titulo;
     private String autor;
     private String editorial;
@@ -15,6 +14,7 @@ public class Libro {
     private Usuario usuario;
     private Empleado empleado;
     private boolean prestado;
+    static final long serialVersionUID = 98712938741L;
 
     public Libro(String titulo, String autor, String editorial, int pasillo, String isbn, double precio) {
         this.titulo = titulo;
@@ -81,8 +81,8 @@ public class Libro {
         if(isPrestado())
             p = "Prestado por "+empleado.getNombre()+" a "+usuario.getNombre();
 
-        return "\n\""+titulo+"\" por "+autor+". Editorial "+editorial+"."+
-                ". \nISBN:[" + isbn + "]. Precio: "+df.format(precio)+"€. Ubicación: pasillo nº "+pasillo+
+        return "\n\""+titulo+"\" por "+autor+". Editorial "+editorial+""+
+                ". \nISBN:[" + isbn + "] Precio: "+df.format(precio)+"€ Ubicación: pasillo nº "+pasillo+
                 "\n"+p;
     }
 }
