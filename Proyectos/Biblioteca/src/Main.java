@@ -6,5 +6,6 @@ public class Main {
         Aplicacion app = new Aplicacion();
         app.init();
         app.start();
+        app.close();
     }
 }

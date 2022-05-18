@@ -79,10 +79,10 @@ public class Libro implements Serializable {
     public String toString(){
         String p = "";
         if(isPrestado())
-            p = "Prestado por "+empleado.getNombre()+" a "+usuario.getNombre();
+            p = "\nPrestado por "+empleado.getNombre()+" a "+usuario.getNombre();
 
         return "\""+titulo+"\" por "+autor+". Editorial "+editorial+""+
-                ". \nISBN:[" + isbn + "] Precio: "+df.format(precio)+"€ Ubicación: pasillo nº "+pasillo+
-                "\n"+p;
+                ". \nISBN:[" + isbn + "], Precio: "+df.format(precio)+"€, Ubicación: pasillo nº "+pasillo+
+                p+"\n";
     }
 }

@@ -52,9 +52,7 @@ public class GestionDatos {
     }
 
     public void cargarDatosPredeterminados(){
-        System.out.println("\n [SISTEMA: Cargando datos predeterminados...]");
         listasDefault();
-        System.out.print("\n\t[SISTEMA: Proceso terminado.]");
     }
 
     public void setFilePath(String fp){
@@ -80,11 +78,11 @@ public class GestionDatos {
                 throw new EmptyFileException();
             }
         } catch (ClassNotFoundException e) {
-            System.out.print(" ***[ERROR INESPERADO (Leyendo Fichero 1): \"" + e.getMessage() + "\"]***");
+            System.out.print("\n ***[ERROR INESPERADO (Leyendo Fichero 1): \"" + e.getMessage() + "\"]***");
         } catch (FileNotFoundException e) {
-            System.out.print(" ***[ERROR INESPERADO (Leyendo Fichero 2): \"" + e.getMessage() + "\"]***");
+            System.out.print("\n ***[ERROR INESPERADO (Leyendo Fichero 2): \"" + e.getMessage() + "\"]***");
         } catch (IOException e) {
-            System.out.print(" ***[ERROR INESPERADO (Leyendo Fichero 3): \"" + e.getMessage() + "\"]***");
+            System.out.print("\n ***[ERROR INESPERADO (Leyendo Fichero 3): \"" + e.getMessage() + "\"]***");
         }
     }
 
@@ -104,6 +102,10 @@ public class GestionDatos {
             System.out.print("\n ***[ERROR INESPERADO (Guardando Fichero 1): \"" + e.getMessage() + "\"]***");
         }catch (IOException e){
             System.out.print("\n ***[ERROR INESPERADO (Guardando Fichero 2): \"" + e.getMessage() + "\"]***");
+            String err = e.getMessage().toLowerCase();
+            if(err.contains("denied") || err.contains("denegado")){
+                System.out.println("aaaaa");
+            }
         }
     }
 
@@ -132,7 +134,7 @@ public class GestionDatos {
     public ArrayList<Libro> busquedaLibroTitulo(String s) {
         ArrayList<Libro> resultados = new ArrayList<>();
         for (Libro l : libros) {
-            if (l.getTitulo().equalsIgnoreCase(s)) {
+            if (l.getTitulo().toLowerCase().contains(s)) {
                 resultados.add(l);
             }
         }
@@ -143,7 +145,7 @@ public class GestionDatos {
     public ArrayList<Libro> busquedaLibroAutor(String s) {
         ArrayList<Libro> resultados = new ArrayList<>();
         for (Libro l : libros) {
-            if (l.getAutor().equalsIgnoreCase(s)) {
+            if (l.getAutor().toLowerCase().contains(s)) {
                 resultados.add(l);
             }
         }
@@ -154,7 +156,7 @@ public class GestionDatos {
     public ArrayList<Libro> busquedaLibroEditorial(String s) {
         ArrayList<Libro> resultados = new ArrayList<>();
         for (Libro l : libros) {
-            if (l.getEditorial().equalsIgnoreCase(s)) {
+            if (l.getEditorial().toLowerCase().contains(s)) {
                 resultados.add(l);
             }
         }

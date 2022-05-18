@@ -40,7 +40,7 @@ public class Utilidades {
                     res = null;
                 }
             } catch (InputMismatchException e) {
-                System.out.print("\n [SISTEMA: Solo números. Y punto para números decimales]");
+                System.out.print("\n [SISTEMA: Solo números o puntos para números decimales]");
                 res = null;
             } finally {
                 sc.nextLine();
@@ -57,13 +57,12 @@ public class Utilidades {
             s = sc.nextLine();
 
             if (s.trim().isEmpty()) {
-                String res;
+                Integer res;
                 do {
-                    System.out.print("\n [SISTEMA: No ha escrito nada. ¿Quiere dejarlo así?(sí/no)]: ");
-                    res = sc.nextLine();
-                    if (res.toLowerCase().contains("s"))
+                    res = pedirInt("\n [SISTEMA: No ha escrito nada. ¿Quiere dejarlo así? (1)Sí (2)No]: ");
+                    if (res == 1)
                         s = "";
-                    else if (res.toLowerCase().contains("n"))
+                    else if (res == 2)
                         s = null;
                     else {
                         System.out.print("\n [SISTEMA: Por favor, no me haga perder el tiempo...]");
@@ -76,8 +75,9 @@ public class Utilidades {
         return s;
     }
 
-    public void continuar(){
-        System.out.print("Pulse INTRO para continuar.");
+    public static void continuar(){
+        System.out.print("\nPulse INTRO para continuar.");
         sc.nextLine();
     }
+
 }
