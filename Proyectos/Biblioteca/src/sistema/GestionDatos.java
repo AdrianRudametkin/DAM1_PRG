@@ -1,5 +1,6 @@
 package sistema;
 
+import excepciones.EmptyFileException;
 import excepciones.NameAlreadyUsedException;
 import objetos.Empleado;
 import objetos.Libro;
@@ -12,7 +13,7 @@ public class GestionDatos {
     private static ArrayList<Empleado> empleados;
     private static ArrayList<Usuario> usuarios;
     private static ArrayList<Libro> libros;
-    private static final String fp = "datos.db";
+    private static String fp = "datos.db";
 
 
     public GestionDatos() {
@@ -27,6 +28,12 @@ public class GestionDatos {
 
     private void listasDefault() {
         try {
+            altaLibro("El Quijote", "Miguel Cervantes", "SM", 12, "E1212412FK", 32.5);
+            altaLibro("Romeo y Julieta", "William Shakespeare", "Anaya", 1, "LLO908234K", 14.09);
+            altaLibro("1984", "George Orwell", "Libro de Bolsillo", 11, "P0890123123", 19.99);
+            altaLibro("Fuente Ovejuna", "Lope de Vega", "Clásicos Españoles", 12, "E1213242FK", 32.5);
+            altaLibro("Narrativa Completa", "H.P. Lovecraft", "Plutón Editores", -5, " ", 0);
+
             altaEmpleado("Alberto");
             altaEmpleado("Encarna");
             altaEmpleado("Estela");
@@ -38,21 +45,26 @@ public class GestionDatos {
             altaUsuario("usu3");
             altaUsuario("usu4");
             altaUsuario("usu5");
-
-            altaLibro("El Quijote", "Miguel Cervantes", "SM", 12, "E1212412FK", 32.5);
-            altaLibro("Romeo y Julieta", "William Shakespeare", "Anaya", 1, "LLO908234K", 14.09);
-            altaLibro("1984", "George Orwell", "Libro de Bolsillo", 11, "P0890123123", 19.99);
-            altaLibro("Fuente Ovejuna", "Lope de Vega", "Clásicos Españoles", 12, "E1213242FK", 32.5);
-            altaLibro("Narrativa Completa", "H.P. Lovecraft", "Plutón Editores", -5, " ", 0);
         }catch (NameAlreadyUsedException e){
-            System.out.print(" ***[ERROR INESPERADO (Creando predeterminados): \"" + e.getMessage() + "\"]***");
+            System.out.print("\n ***[ERROR INESPERADO (Creando predeterminados): \"" + e.getMessage() + "\"]***" +
+                    "\n\t[SISTEMA: Abortando carga de valores predeterminados]");
         }
+    }
+
+    public void cargarDatosPredeterminados(){
+        System.out.println("\n [SISTEMA: Cargando datos predeterminados...]");
+        listasDefault();
+        System.out.print("\n\t[SISTEMA: Proceso terminado.]");
+    }
+
+    public void setFilePath(String fp){
+        GestionDatos.fp = fp;
     }
 
     //*************************************
     //      GESTIÓN DE FICHEROS
     //*************************************
-    public void cargarFichero() {
+    public void cargarFichero() throws EmptyFileException {
         File f = new File(fp);
         try {
             if (f.exists() && f.length()>0) {
@@ -64,10 +76,8 @@ public class GestionDatos {
 
                 ois.close();
             } else {
-                System.out.print("\n [ERROR: No se encontró una base de datos adecuada]" +
-                        "\n\t[Cargando datos predeterminados...]");
-                listasDefault();
-                System.out.print("\n\t[Datos cargados correctamente]");
+                System.out.print("\n [ERROR: No se encontró una base de datos adecuada]");
+                throw new EmptyFileException();
             }
         } catch (ClassNotFoundException e) {
             System.out.print(" ***[ERROR INESPERADO (Leyendo Fichero 1): \"" + e.getMessage() + "\"]***");
@@ -75,9 +85,7 @@ public class GestionDatos {
             System.out.print(" ***[ERROR INESPERADO (Leyendo Fichero 2): \"" + e.getMessage() + "\"]***");
         } catch (IOException e) {
             System.out.print(" ***[ERROR INESPERADO (Leyendo Fichero 3): \"" + e.getMessage() + "\"]***");
-            e.printStackTrace();
         }
-
     }
 
     public void guardarFichero() {
@@ -101,7 +109,10 @@ public class GestionDatos {
 
     //*************************************
     //      GESTIÓN DE LIBROS
-    //*************************************
+    //************************************
+    public ArrayList<Libro> listaLibros(){
+        return libros;
+    }
     public void altaLibro(String titulo, String autor, String editorial, int ubicacion, String isbn, double precio){
         libros.add(new Libro(titulo, autor, editorial, ubicacion, isbn, precio));
     }
@@ -195,7 +206,7 @@ public class GestionDatos {
         return resultados;
     }
 
-    public ArrayList<Libro> busquedaLibroEstado(boolean b) {
+    public ArrayList<Libro> busquedaLibroIsPrestado(boolean b) {
         ArrayList<Libro> resultados = new ArrayList<>();
         for (Libro l : libros) {
             if (l.isPrestado() == b) {

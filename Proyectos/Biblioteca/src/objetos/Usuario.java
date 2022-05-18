@@ -15,6 +15,6 @@ public class Usuario implements Serializable {
     }
 
     public String toString(){
-        return "\nUsuario: "+nombre;
+        return "Usuario: "+nombre;
     }
 }

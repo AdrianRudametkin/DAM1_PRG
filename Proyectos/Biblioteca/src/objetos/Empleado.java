@@ -15,6 +15,6 @@ public class Empleado implements Serializable {
     }
 
     public String toString(){
-        return "\nEmpleado: "+nombre;
+        return "Empleado: "+nombre;
     }
 }

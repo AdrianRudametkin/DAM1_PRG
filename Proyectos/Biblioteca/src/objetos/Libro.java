@@ -81,7 +81,7 @@ public class Libro implements Serializable {
         if(isPrestado())
             p = "Prestado por "+empleado.getNombre()+" a "+usuario.getNombre();
 
-        return "\n\""+titulo+"\" por "+autor+". Editorial "+editorial+""+
+        return "\""+titulo+"\" por "+autor+". Editorial "+editorial+""+
                 ". \nISBN:[" + isbn + "] Precio: "+df.format(precio)+"€ Ubicación: pasillo nº "+pasillo+
                 "\n"+p;
     }
