@@ -1,6 +1,7 @@
 package sistema;
 
 import excepciones.EmptyFileException;
+import excepciones.EmptyNameException;
 import excepciones.NameAlreadyUsedException;
 import objetos.Empleado;
 import objetos.Libro;
@@ -26,7 +27,7 @@ public class GestionDatos {
         libros = new ArrayList<>();
     }
 
-    private void listasDefault() {
+    public void cargarDatosPredeterminados(){
         try {
             altaLibro("El Quijote", "Miguel Cervantes", "SM", 12, "E1212412FK", 32.5);
             altaLibro("Romeo y Julieta", "William Shakespeare", "Anaya", 1, "LLO908234K", 14.09);
@@ -48,11 +49,10 @@ public class GestionDatos {
         }catch (NameAlreadyUsedException e){
             System.out.print("\n ***[ERROR INESPERADO (Creando predeterminados): \"" + e.getMessage() + "\"]***" +
                     "\n\t[SISTEMA: Abortando carga de valores predeterminados]");
+        } catch (EmptyNameException e) {
+            System.out.print("\n ***[ERROR INESPERADO (Creando predeterminados): \"" + e.getMessage() + "\"]***" +
+                    "\n\t[SISTEMA: Abortando carga de valores predeterminados]");
         }
-    }
-
-    public void cargarDatosPredeterminados(){
-        listasDefault();
     }
 
     public void setFilePath(String fp){
@@ -228,7 +228,9 @@ public class GestionDatos {
         return usuarios;
     }
 
-    public void altaUsuario(String nombre) throws NameAlreadyUsedException {
+    public void altaUsuario(String nombre) throws NameAlreadyUsedException, EmptyNameException {
+        if(nombre.trim().isEmpty())
+            throw new EmptyNameException();
         for(Usuario u: usuarios){
             if(u.getNombre().equals(nombre))
                 throw new NameAlreadyUsedException();
@@ -255,7 +257,9 @@ public class GestionDatos {
         return empleados;
     }
 
-    public void altaEmpleado(String nombre) throws NameAlreadyUsedException {
+    public void altaEmpleado(String nombre) throws NameAlreadyUsedException, EmptyNameException {
+        if(nombre.trim().isEmpty())
+            throw new EmptyNameException();
         for(Empleado e: empleados){
             if(e.getNombre().equals(nombre))
                 throw new NameAlreadyUsedException();

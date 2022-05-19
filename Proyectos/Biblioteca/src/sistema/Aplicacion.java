@@ -1,6 +1,8 @@
 package sistema;
 
 import excepciones.EmptyFileException;
+import excepciones.EmptyNameException;
+import excepciones.NameAlreadyUsedException;
 import objetos.Empleado;
 import objetos.Libro;
 import objetos.Usuario;
@@ -143,7 +145,7 @@ public class Aplicacion {
         ubicacion = pedirInt("\nIndique el pasillo donde se encuentra el libro: ");
         precio = pedirDouble("\nIndique el precio del libro: ");
 
-        gd.altaLibro(titulo, autor,editorial, ubicacion, isbn, precio);
+        gd.altaLibro(titulo, autor, editorial, ubicacion, isbn, precio);
         System.out.print("\nOperación completada [libro añadido]");
         continuar();
     }
@@ -151,32 +153,69 @@ public class Aplicacion {
     private void darBajaLibro() {
         System.out.print("\n---DAR BAJA LIBRO---");
         System.out.print("\nRedirigiendo a la búsqueda...");
-        ArrayList<Libro> al = busquedaDeLibros();
-        if(al==null || al.isEmpty()){
+        ArrayList<Libro> al = new ArrayList<>();
+        int opc;
+        do {
+            opc = pedirInt(Menu.menuBusqueda());
+            switch (opc) {
+                case 1 -> al = buscarTitulo();
+                case 2 -> al = buscarAutor();
+                case 3 -> al = buscarEditorial();
+                case 4 -> al = buscarUbucacion();
+                case 5 -> al = buscarIsbn();
+                case 6 -> al = buscarEmpleado();
+                case 7 -> al = buscarUsuario();
+                case 8 -> al = buscarEstado();
+                default -> opc = -1;
+            }
+            if (opc < 0) {
+                System.out.print("\n [SISTEMA: Por favor, elija una opción válida]");
+            }
+        } while (opc < 0);
+
+        if (al == null || al.isEmpty()) {
             System.out.print("\nVolviendo a la gestión de libros");
             continuar();
-        }else if(al.size()==1){
-            gd.bajaLibro(al.get(0));
-            System.out.print("\nOperación completada [libro eliminado]: " + "\n" + al.get(0).toString() + "\n");
-            continuar();
-        }else{
-            int opc, i=0;
-            for (Libro l : al) {
-                System.out.print("\n*("+i+")" + l.toString());
-                i++;
-            }
-            String msj = "\nElija el número del libro que quiere dar de baja: ";
+        } else if (al.size() == 1) {
             do {
-                try {
-                    opc = pedirInt(msj);
-                    gd.bajaLibro(al.get(opc));
-                    System.out.print("\nOperación completada [libro eliminado]: " + "\n" + al.get(opc).toString() + "\n");
+                opc = pedirInt("\n¿Desea eliminarlo?(1)Sí (2)No: ");
+                if (opc == 1) {
+                    gd.bajaLibro(al.get(0));
+                    System.out.print("\nOperación completada [libro eliminado]: " + "\n" + al.get(0).toString() + "\n");
                     continuar();
-                } catch (IndexOutOfBoundsException exc) {
-                    msj = "\nEse numero número no existe. Elija un numero válido: ";
+                } else if (opc == 2) {
+                    return;
+                } else {
                     opc = -1;
+                    System.out.print("\nOpción no válida.");
                 }
             } while (opc < 0);
+
+        } else {
+            String msj = "\nElija el número del libro que quiere dar de baja: ";
+            int num = pedirInt(msj);
+            do {
+                try {
+                    do {
+                        opc = pedirInt("\n¿Desea eliminarlo?(1)Sí (2)No: ");
+                        if (opc == 1) {
+                            gd.bajaLibro(al.get(num));
+                            System.out.print("\nOperación completada [libro eliminado]: " + "\n" + al.get(opc).toString() + "\n");
+                            continuar();
+                            return;
+                        } else if (opc == 2) {
+                            return;
+                        } else {
+                            opc = -1;
+                            System.out.print("\nOpción no válida.");
+                        }
+                    } while (opc < 0);
+
+                } catch (IndexOutOfBoundsException exc) {
+                    msj = "\nEse numero número no está. Elija un numero válido: ";
+                    num = -1;
+                }
+            } while (num < 0);
         }
     }
 
@@ -198,12 +237,39 @@ public class Aplicacion {
     }
 
     private void darAltaUsuario() {
+        System.out.print("\n---ALTA USUARIO---");
+        String s = pedirString("\nIndique el nombre del usuario: ");
+        try {
+            gd.altaUsuario(s);
+            System.out.print("\nUsuario creado.");
+            continuar();
+        } catch (NameAlreadyUsedException e) {
+            System.out.print("\nEse usuario ya existe.");
+        } catch (EmptyNameException e) {
+            System.out.print("\nEl nombre de un usuario no puede estar en blanco.");
+        }
     }
 
     private void darBajaUsuario() {
+        System.out.print("\n---BAJA USUARIO---");
+        String s = pedirString("\nIndique el nombre del usuario: ");
+        Usuario u = gd.buscarUsuario(s);
+        if (u == null) {
+            System.out.print("\nEse usuario no existe.");
+            return;
+        }
+
+        gd.bajaUsuario(u);
+        System.out.print("\nUsuario \"" + u.getNombre() + "\" eliminado.");
+        continuar();
     }
 
     private void mostrarUsuarios() {
+        System.out.print("\n---LISTA DE USUARIOS---");
+        for(Usuario u: gd.listaUsuarios()){
+            System.out.print("\n* "+u.getNombre());
+        }
+        continuar();
     }
 
     private void gestionEmpleados() {
@@ -224,12 +290,39 @@ public class Aplicacion {
     }
 
     private void darAltaEmpleado() {
+        System.out.print("\n---ALTA EMPLEADO---");
+        String s = pedirString("\nIndique el nombre del empleado: ");
+        try {
+            gd.altaEmpleado(s);
+            System.out.print("\nEmpleado creado.");
+            continuar();
+        } catch (NameAlreadyUsedException e) {
+            System.out.print("\nEse empleado ya existe.");
+        } catch (EmptyNameException e) {
+            System.out.print("\nEl nombre de un empleado no puede estar en blanco.");
+        }
     }
 
     private void darBajaEmpleado() {
+        System.out.print("\n---BAJA EMPLEADO---");
+        String s = pedirString("\nIndique el nombre del empleado: ");
+        Empleado e = gd.buscarEmpleado(s);
+        if (e == null) {
+            System.out.print("\nEse empleado no existe.");
+            return;
+        }
+
+        gd.bajaEmpleado(e);
+        System.out.print("\nEmpleado \"" + e.getNombre() + "\" eliminado.");
+        continuar();
     }
 
     private void mostrarEmpleados() {
+        System.out.print("\n---LISTA DE EMPLEADOS---");
+        for(Empleado e: gd.listaEmpleados()){
+            System.out.print("\n* "+e.getNombre());
+        }
+        continuar();
     }
 
     //*************************************
@@ -276,7 +369,7 @@ public class Aplicacion {
             System.out.print("\nResultados de la búsqueda \"" + s + "\":");
             int i = 0;
             for (Libro l : al) {
-                System.out.print("\n*("+i+")" + l.toString());
+                System.out.print("\n*(" + i + ")" + l.toString());
                 i++;
             }
         }
@@ -293,7 +386,7 @@ public class Aplicacion {
             System.out.print("\nResultado(s) de la búsqueda \"" + s + "\":");
             int i = 0;
             for (Libro l : al) {
-                System.out.print("\n*("+i+")"+ l.toString());
+                System.out.print("\n*(" + i + ")" + l.toString());
                 i++;
             }
         }
@@ -310,7 +403,7 @@ public class Aplicacion {
             System.out.print("\nResultados de la búsqueda \"" + s + "\":");
             int i = 0;
             for (Libro l : al) {
-                System.out.print("\n*("+i+")" + l.toString());
+                System.out.print("\n*(" + i + ")" + l.toString());
             }
         }
         return al;
@@ -326,7 +419,7 @@ public class Aplicacion {
             System.out.print("\nResultados de la búsqueda \"Pasillo nº " + i + "\":");
             i = 0;
             for (Libro l : al) {
-                System.out.print("\n*("+i+")" + l.toString());
+                System.out.print("\n*(" + i + ")" + l.toString());
                 i++;
             }
         }
@@ -343,7 +436,7 @@ public class Aplicacion {
             System.out.print("\nResultados de la búsqueda \"" + s + "\":");
             int i = 0;
             for (Libro l : al) {
-                System.out.print("\n*("+i+")" + l.toString());
+                System.out.print("\n*(" + i + ")" + l.toString());
                 i++;
             }
         }
@@ -367,7 +460,7 @@ public class Aplicacion {
             System.out.print("\nResultados de la búsqueda \"Prestado por " + s + "\":");
             int i = 0;
             for (Libro l : al) {
-                System.out.print("\n*("+i+")" + l.toString());
+                System.out.print("\n*(" + i + ")" + l.toString());
                 i++;
             }
         }
@@ -391,7 +484,7 @@ public class Aplicacion {
             System.out.print("\nResultados de la búsqueda \"Alquilado por " + s + "\":");
             int i = 0;
             for (Libro l : al) {
-                System.out.print("\n*("+i+")" + l.toString());
+                System.out.print("\n*(" + i + ")" + l.toString());
                 i++;
             }
         }
@@ -430,7 +523,7 @@ public class Aplicacion {
             System.out.print("\nResultados de la búsqueda \"" + s + "\":");
             int i = 0;
             for (Libro l : al) {
-                System.out.print("\n*("+i+")" + l.toString());
+                System.out.print("\n*(" + i + ")" + l.toString());
                 i++;
             }
         }
@@ -469,11 +562,11 @@ public class Aplicacion {
         }
 
         Libro libro;
-        ArrayList<Libro> al = gd.busquedaLibroIsPrestado(true);
+        ArrayList<Libro> al = gd.busquedaLibroIsPrestado(false);
         System.out.print("Libros Disponibles: ");
         int opc, i = 0;
         for (Libro l : al) {
-            System.out.print("\n*("+i+")" + l.toString());
+            System.out.print("\n*(" + i + ")" + l.toString());
             i++;
         }
 
@@ -495,11 +588,11 @@ public class Aplicacion {
     private void devolverLibro() {
         System.out.print("\n---DEVOLVER LIBRO---");
         Libro libro;
-        ArrayList<Libro> al = gd.busquedaLibroIsPrestado(false);
+        ArrayList<Libro> al = gd.busquedaLibroIsPrestado(true);
         System.out.print("Libros Prestados: ");
         int opc, i = 0;
         for (Libro l : al) {
-            System.out.print("\n*("+i+")" + l.toString());
+            System.out.print("\n*(" + i + ")" + l.toString());
             i++;
         }
 

@@ -69,19 +69,4 @@ public class Menu {
                 "\n (9) Salir" +
                 "\nIndique la opción deseada: ";
     }
-
-    //*************************************
-    //      ALQUILAR/DEVOLVER
-    //*************************************
-    public static String menuAlquilar(){
-        return  "\n" +
-                "\n---ALQUILAR LIBRO---" +
-                "\nIntroduzca el título del libro que quiere alquilar: ";
-    }
-
-    public static String menuDevolver(){
-        return  "\n" +
-                "\n---DEVOLVER LIBRO---" +
-                "\nIntroduzca el título del libro que quiere devolver: ";
-    }
 }
