@@ -134,7 +134,7 @@ public class GestionDatos {
     public ArrayList<Libro> busquedaLibroTitulo(String s) {
         ArrayList<Libro> resultados = new ArrayList<>();
         for (Libro l : libros) {
-            if (l.getTitulo().toLowerCase().contains(s)) {
+            if (l.getTitulo().toLowerCase().contains(s.toLowerCase())) {
                 resultados.add(l);
             }
         }
@@ -145,7 +145,7 @@ public class GestionDatos {
     public ArrayList<Libro> busquedaLibroAutor(String s) {
         ArrayList<Libro> resultados = new ArrayList<>();
         for (Libro l : libros) {
-            if (l.getAutor().toLowerCase().contains(s)) {
+            if (l.getAutor().toLowerCase().contains(s.toLowerCase())) {
                 resultados.add(l);
             }
         }
@@ -156,7 +156,7 @@ public class GestionDatos {
     public ArrayList<Libro> busquedaLibroEditorial(String s) {
         ArrayList<Libro> resultados = new ArrayList<>();
         for (Libro l : libros) {
-            if (l.getEditorial().toLowerCase().contains(s)) {
+            if (l.getEditorial().toLowerCase().contains(s.toLowerCase())) {
                 resultados.add(l);
             }
         }

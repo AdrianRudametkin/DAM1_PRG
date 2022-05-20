@@ -123,14 +123,17 @@ public class Aplicacion {
             switch (opc) {
                 case 1 -> darAltaLibro();
                 case 2 -> darBajaLibro();
-                case 3 -> opc = 3;
+                case 3 -> mostrarLibros();
+                case 4 -> opc = 4;
                 default -> opc = -1;
             }
             if (opc < 0) {
                 System.out.print("\n [SISTEMA: Por favor, elija una opción válida]");
             }
-        } while (opc != 3);
+        } while (opc != 4);
     }
+
+
 
     private void darAltaLibro() {
         System.out.print("\n---DAR ALTA LIBRO---");
@@ -217,6 +220,14 @@ public class Aplicacion {
                 }
             } while (num < 0);
         }
+    }
+
+    private void mostrarLibros() {
+        System.out.print("\n---LISTA DE LIBROS---");
+        for(Libro l: gd.listaLibros()){
+            System.out.print("\n* "+l.toString());
+        }
+        continuar();
     }
 
     private void gestionUsuarios() {

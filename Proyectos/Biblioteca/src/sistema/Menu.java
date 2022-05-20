@@ -2,8 +2,9 @@ package sistema;
 
 public class Menu {
     public static String menuPrincipal(){
-        return  "\n" +
-                "\n---MENU PRINCIPAL---" +
+        return  "\n--------------------" +
+                "\n--*MENU PRINCIPAL*--" +
+                "\n--------------------" +
                 "\n (1) Gestión de Datos" +
                 "\n (2) Búsqueda de Libros" +
                 "\n (3) Alquilar Libro" +
@@ -17,7 +18,7 @@ public class Menu {
     //*************************************
     public static String menuGestion(){
         return  "\n" +
-                "\n---GESTIÓN DE DATOS---" +
+                "\n--*GESTIÓN DE DATOS*--" +
                 "\n (1) Gestión de Libros" +
                 "\n (2) Gestión de Usuarios" +
                 "\n (3) Gestión de Empleados" +
@@ -29,7 +30,8 @@ public class Menu {
                 "\n---GESTIÓN DE DATOS: LIBROS---" +
                 "\n (1) Dar alta un libro" +
                 "\n (2) Dar baja un libro" +
-                "\n (3) Salir" +
+                "\n (3) Mostrar libros" +
+                "\n (4) Salir" +
                 "\nIndique la opción deseada: ";
     }
     public static String menuGesEmpleados(){
@@ -55,8 +57,7 @@ public class Menu {
     //      BÚSQUEDA
     //*************************************
     public static String menuBusqueda(){
-        return  "\n" +
-                "\n---BÚSQUEDA DE LIBROS---" +
+        return  "\n--*BÚSQUEDA DE LIBROS*--" +
                 "\nBuscar por:" +
                 "\n (1) Título" +
                 "\n (2) Autor" +
@@ -64,8 +65,8 @@ public class Menu {
                 "\n (4) Ubicación en biblioteca" +
                 "\n (5) ISBN" +
                 "\n (6) Empleado que lo alquiló" +
-                "\n (7) Usuario que lo prestó" +
-                "\n (8) Estado de préstamo" +
+                "\n (7) Usuario que lo alquiló" +
+                "\n (8) Estado del libro" +
                 "\n (9) Salir" +
                 "\nIndique la opción deseada: ";
     }
