@@ -1,10 +1,13 @@
-package TimeAndDate;
+package tiempo;
+
+import java.io.Serializable;
 
 /**
  * Clase que almacena la fecha.
  */
-public class Date {
+public class Date implements Serializable {
     // ***ATRIBUTOS***
+    static final long serialVersionUID = 31L;
     private int day;
     private int month;
     private int year;
@@ -29,4 +32,10 @@ public class Date {
     public int getYear() {
         return year;
     }
+
+    @Override
+    public String toString(){
+        return day+"/"+month+"/"+year;
+    }
+
 }

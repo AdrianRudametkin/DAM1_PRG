@@ -1,10 +1,13 @@
-package TimeAndDate;
+package tiempo;
+
+import java.io.Serializable;
 
 /**
  * Clase que almacena la hora.
  */
-public class Hour {
+public class Hour implements Serializable {
     // ***ATRIBUTOS***
+    static final long serialVersionUID = 32L;
     private int hour;
     private int minute;
 
@@ -22,5 +25,10 @@ public class Hour {
 
     public int getMinute() {
         return minute;
+    }
+
+    @Override
+    public String toString(){
+        return hour+":"+minute;
     }
 }

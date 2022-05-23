@@ -1,16 +1,17 @@
-package TimeAndDate;
+package tiempo;
 
+import java.io.Serializable;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 /**
  * Clase que almacena la fecha y la hora utilizando la clase java.time.LocalDateTime. Implementa métodos
  * para facilitar la legibilidad y uso de esta librería.
  */
-public class Time {
+public class Tiempo implements Serializable {
     // ***ATRIBUTOS***
+    static final long serialVersionUID = 3L;
     private LocalDateTime ldt;
     private Hour hour;
     private Date date;
@@ -25,7 +26,7 @@ public class Time {
      * @param hour      hora del día (0-23)
      * @param minute    minuto de la hora (0-59)
      */
-    public Time(int day, int month, int year, int hour, int minute) throws DateTimeException {
+    public Tiempo(int day, int month, int year, int hour, int minute) throws DateTimeException {
         ldt = LocalDateTime.of(year, month, day, hour, minute);
 
         this.hour = new Hour(hour, minute);
@@ -35,7 +36,7 @@ public class Time {
     /**
      * Constructor para crear la fecha y hora actual.
      */
-    public Time(){
+    public Tiempo(){
         ldt = LocalDateTime.now();
 
         this.hour = new Hour(ldt.getHour(), ldt.getMinute());
@@ -50,7 +51,7 @@ public class Time {
      * @param tObj objeto a comparar
      * @return la diferencia en minutos
      */
-    public long minutesDifference(Time tObj){
+    public long minutesDifference(Tiempo tObj){
         return ChronoUnit.MINUTES.between(this.ldt, tObj.ldt);
     }
 
@@ -76,6 +77,6 @@ public class Time {
      */
     @Override
     public String toString(){
-        return ldt.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+        return date.toString()+" "+hour.toString();
     }
 }
