@@ -4,6 +4,9 @@ import java.text.DecimalFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Clase estática para facilitar ciertos aspectos de programar interfaces en consola.
+ */
 public class Utilities {
     public static Scanner sc = new Scanner(System.in);
     public static DecimalFormat df = new DecimalFormat("0.##");

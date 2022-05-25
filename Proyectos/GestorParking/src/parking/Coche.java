@@ -4,6 +4,9 @@ import tiempo.Tiempo;
 
 import java.io.Serializable;
 
+/**
+ * Clase del objeto coche, con todos los atributos y métodos necesarios para su manipulación y uso.
+ */
 public class Coche implements Serializable {
     //***ATRIBUTOS***
     static final long serialVersionUID = 1L;
@@ -69,4 +72,9 @@ public class Coche implements Serializable {
                 "\nEntrada: "+entrada.toString()+
                 "\nDueño(DNI): " + dni;
     }
+
+    public boolean equals(Coche c){
+        if(c.getMatricula().equals(this.matricula) );
+    }
+
 }
