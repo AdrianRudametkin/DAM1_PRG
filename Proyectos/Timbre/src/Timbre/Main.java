@@ -13,9 +13,6 @@ public class Main {
      */
     public static void main(String[] args) {
         init();
-        //TODO Metodo de pruebas, borrar antes de entregar.
-        test(5, 5);
-
         loop();
     }
 
@@ -200,9 +197,9 @@ public class Main {
 
             // Pedir diametro hasta tener un número válido
             do {
-                d = pedirDouble("Cual es su diametro (en cm)? ");
+                d = pedirDouble("Cual es su diámetro (en cm)? ");
                 if (d <= 0) {
-                    System.out.print("\nEl diametro debe ser superior a 0. ");
+                    System.out.print("\nEl diámetro debe ser superior a 0. ");
                     correcto = false;
                 } else {
                     correcto = true;
@@ -246,7 +243,7 @@ public class Main {
     }
 
     /**
-     * Mostrar todas las monedas y billes de la lista.
+     * Mostrar todas las monedas y billetes de la lista.
      */
     public static void mostrarTodo() {
         System.out.print(
@@ -263,7 +260,7 @@ public class Main {
     }
 
     /**
-     * Muestra por pantalla los objetos de la sublista y su posicion en la lista.
+     * Muestra por pantalla los objetos de la sublista y su posición en la lista.
      *
      * @param l sublista
      */
@@ -275,7 +272,7 @@ public class Main {
     }
 
     /**
-     * Muestra solo un objeto y su numero en la lista
+     * Muestra solo un objeto y su número en la lista
      *
      * @param d objeto a mostrar
      */
@@ -322,7 +319,7 @@ public class Main {
 
     /**
      * Ordenar la lista de monedas y billetes por valor y luego por año, ascendente o descendentemente,
-     * utiliazando el método {@link Dinero#compareTo(Dinero) Dinero.compareTo()}
+     * utilizando el método {@link Dinero#compareTo(Dinero) Dinero.compareTo()}
      */
     public static void ordenar() {
         System.out.print(

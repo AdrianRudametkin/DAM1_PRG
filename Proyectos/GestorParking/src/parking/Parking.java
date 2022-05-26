@@ -3,6 +3,8 @@ package parking;
 import exceptions.ArrayFullException;
 import exceptions.NoCarException;
 
+import java.util.ArrayList;
+
 /**
  * Clase que guarda una colección de coches, con los métodos todos necesarios para su manipulación.
  */
@@ -26,10 +28,7 @@ public class Parking {
      * @param c coche a añadir
      * @throws ArrayFullException cuando el parking está lleno
      */
-    public void anyadirCoche(Coche c) throws ArrayFullException {
-        if (isFull())
-            throw new ArrayFullException();
-
+    public void anyadirCoche(Coche c) {
         for (int i = 0; i < plazas.length; i++) {
             if (plazas[i] == null) {
                 plazas[i] = c;
@@ -40,20 +39,62 @@ public class Parking {
 
     /**
      * Método para quitar un coche determinado por su posición en el parking.
-     * @param pos posición del coche a eliminar
+     * @param c posición del coche a eliminar
      * @throws NoCarException cuando no hay coches en el parking
      * @throws IndexOutOfBoundsException cuando se elige una posición inválida.
      */
-    public void quitarCoche(int pos) throws NoCarException, IndexOutOfBoundsException {
-        if (plazas[pos] == null)
+    public void quitarCoche(Coche c) throws NoCarException {
+        int pos = posCoche(c);
+        if(pos<0)
             throw new NoCarException();
 
         plazas[pos] = null;
     }
 
+    public int posCoche(Coche c){
+        for( int i=0; i<plazas.length; i++){
+            if(plazas[i]==c)
+                return i;
+        }
+
+        return -1;
+    }
+
+    /**
+     * Método que busca un coche dentro del parking que coincida con la matrícula introducida. Devuelve el coche
+     * , o NULL cuando no se ha encontrado ningún coche.
+     * @param mat matrícula del coche a buscar
+     * @return la posición del coche en el parking
+     */
+    public Coche buscarMatricula(String mat){
+        for(int i=0; i<plazas.length; i++){
+            if(mat.equalsIgnoreCase(plazas[i].getMatricula())){
+                return plazas[i];
+            }
+        }
+        return null;
+    }
+
+    public Coche getCoche(int pos){
+        if(pos<0 || pos>=plazas.length)
+            return null;
+
+        return plazas[pos];
+    }
+
+    public ArrayList<Coche> buscarDni(String dni){
+        ArrayList<Coche> lista = new ArrayList<>();
+        for(int i=0; i<plazas.length; i++){
+            if(dni.equalsIgnoreCase(plazas[i].getDni())){
+                lista.add(plazas[i]);
+            }
+        }
+        return lista;
+    }
+
     /**
      * Método que devuelve verdadero si el parking está lleno y falso si hay mínimo una plaza libre.
-     * @return falso si hay un valor nulo en "plazas"
+     * @return falso si hay alguna plaza libre
      */
     public boolean isFull() {
         for (Coche c : plazas) {
@@ -110,18 +151,5 @@ public class Parking {
         return s;
     }
 
-    /**
-     * Método que busca un coche dentro del parking que coincida con la matrícula introducida. Devuelve la posición del
-     * coche en el parking, o -1 cuando no se ha encontrado ningún coche.
-     * @param mat matrícula del coche a buscar
-     * @return la posición del coche en el parking
-     */
-    public int buscarMatricula(String mat){
-        for(int i=0; i<plazas.length; i++){
-            if(mat.equalsIgnoreCase(plazas[i].getMatricula())){
-                return i;
-            }
-        }
-        return -1;
-    }
+
 }

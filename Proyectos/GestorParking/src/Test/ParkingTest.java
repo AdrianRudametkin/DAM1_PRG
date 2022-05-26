@@ -1,7 +1,6 @@
 package Test;
 
 import exceptions.ArrayFullException;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import parking.Coche;
@@ -30,11 +29,13 @@ class ParkingTest {
 
     @Test
     void anyadirCoche() throws ArrayFullException {
-        Parking instance = new Parking(numPlazas);
+        Parking instance = new Parking(numPlazas+10);
         instance.anyadirCoche(coches.get(0));
         instance.anyadirCoche(coches.get(1));
         instance.anyadirCoche(coches.get(1));
         instance.anyadirCoche(coches.get(2));
+        instance.anyadirCoche(coches.get(2));
+        System.out.println(instance.toString());
     }
 
     @Test

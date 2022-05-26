@@ -74,7 +74,7 @@ public class Coche implements Serializable {
     }
 
     public boolean equals(Coche c){
-        if(c.getMatricula().equals(this.matricula) );
+        return c.getMatricula().equals(this.matricula);
     }
 
 }
