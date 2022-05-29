@@ -35,7 +35,13 @@ public class Date implements Serializable {
 
     @Override
     public String toString() {
-        return day + "/" + month + "/" + year;
+        String d = "", m = "";
+        if (day < 10)
+            d = "0";
+        if (month < 10)
+            m = "0";
+
+        return d + day + "/" + m + month + "/" + year;
     }
 
 }

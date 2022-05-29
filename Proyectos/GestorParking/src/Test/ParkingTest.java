@@ -31,11 +31,11 @@ class ParkingTest {
     @Test
     void anyadirCoche() throws ArrayFullException {
         Parking instance = new Parking(numPlazas + 10);
-        instance.anyadirCoche(coches.get(0));
-        instance.anyadirCoche(coches.get(1));
-        instance.anyadirCoche(coches.get(1));
-        instance.anyadirCoche(coches.get(2));
-        instance.anyadirCoche(coches.get(2));
+        instance.anyadirCoche(coches.get(0),0);
+        instance.anyadirCoche(coches.get(1),1);
+        instance.anyadirCoche(coches.get(1),2);
+        instance.anyadirCoche(coches.get(2),3);
+        instance.anyadirCoche(coches.get(2),4);
         System.out.println(instance.toString());
         System.out.print(coches.get(0));
     }

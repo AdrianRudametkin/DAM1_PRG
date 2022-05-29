@@ -60,6 +60,10 @@ public class Coche implements Serializable {
         return entrada;
     }
 
+    public void setEntrada(Tiempo entrada) {
+        this.entrada = entrada;
+    }
+
     @Override
     public String toString() {
         String obs = "";
@@ -70,7 +74,8 @@ public class Coche implements Serializable {
                 "\n" + marca + " " + modelo + ", " + color +
                 obs +
                 "\nEntrada: " + entrada.toString() +
-                "\nDueño: " + cliente.toString();
+                "\nDueño: " +
+                "\n"+cliente.toString();
     }
 
     public boolean equals(Coche c) {

@@ -3,7 +3,7 @@ package parking;
 import java.io.Serializable;
 
 /**
- * Clase del objeto vecino, con los atributos y métodos necesarios para su manipulation.
+ * Clase del objeto Cliente que contiene más información. Necesario para vecinos.
  */
 public class Vecino extends Cliente implements Serializable {
     //***ATRIBUTOS***
@@ -26,7 +26,7 @@ public class Vecino extends Cliente implements Serializable {
 
     //***MÉTODOS***
     public String toString() {
-        return "\n - " + nombre + " " + apellido +
+        return " - " + nombre + " " + apellido +
                 "\n -DNI: " + super.getDni() +
                 "\n -Dirección: " + direccion +
                 "\n -Teléfono: " + telefono +

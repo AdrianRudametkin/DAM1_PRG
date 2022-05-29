@@ -29,6 +29,12 @@ public class Hour implements Serializable {
 
     @Override
     public String toString() {
-        return hour + ":" + minute;
+        String h = "", m = "";
+        if (hour < 10)
+            h = "0";
+        if (minute < 10)
+            m = "0";
+
+        return h + hour + ":" + m + minute;
     }
 }

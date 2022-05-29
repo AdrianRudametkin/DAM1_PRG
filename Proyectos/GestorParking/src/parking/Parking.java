@@ -2,6 +2,7 @@ package parking;
 
 import exceptions.ArrayFullException;
 import exceptions.NoCarException;
+import tiempo.Tiempo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -27,18 +28,19 @@ public class Parking implements Serializable {
 
     //***MÉTODOS***
 
+    //----------------------------
+    //    GESTIÓN COCHES
+    //----------------------------
     /**
      * Método para añadir un coche automáticamente a la plaza libre más cercana.
      *
      * @param c coche a añadir
-     * @throws ArrayFullException cuando el parking está lleno
      */
-    public void anyadirCoche(Coche c) {
-        for (int i = 0; i < plazas.length; i++) {
-            if (plazas[i] == null) {
-                plazas[i] = c;
-                return;
-            }
+    public void anyadirCoche(Coche c, int pos) {
+        try {
+            plazas[pos] = c;
+        }catch(ArrayIndexOutOfBoundsException e ){
+            System.out.print("\n [ERROR FATAL: No se pudo introducir el coche en la posición deseada]");
         }
     }
 
@@ -56,6 +58,25 @@ public class Parking implements Serializable {
         plazas[pos] = null;
     }
 
+    /**
+     * Método que cambia el tiempo de entrada de un coche. Debe ser utilizado solo para los vecinos.
+     *
+     * @param c coche a cambiar el tiempo
+     * @param t tiempo nuevo
+     */
+    public void cambiarTiempo(Coche c, Tiempo t){
+        plazas[posCoche(c)].setEntrada(t);
+    }
+
+    //----------------------------
+    //    BÚSQUEDA COCHES
+    //----------------------------
+
+    /**
+     * Método que indica la posición en el parking de un coche.
+     * @param c coche
+     * @return posición en el parking
+     */
     public int posCoche(Coche c) {
         for (int i = 0; i < plazas.length; i++) {
             if (plazas[i] == c) return i;
@@ -73,6 +94,8 @@ public class Parking implements Serializable {
      */
     public Coche buscarMatricula(String mat) {
         for (int i = 0; i < plazas.length; i++) {
+            if(plazas[i]==null)
+                continue;
             if (mat.equalsIgnoreCase(plazas[i].getMatricula())) {
                 return plazas[i];
             }
@@ -80,46 +103,35 @@ public class Parking implements Serializable {
         return null;
     }
 
+    /**
+     * Método que devuelve el Coche de una determinada posición.
+     *
+     * @param pos posición
+     * @return coche
+     */
     public Coche getCoche(int pos) {
         if (pos < 0 || pos >= plazas.length) return null;
 
         return plazas[pos];
     }
 
-    public ArrayList<Coche> buscarDni(String dni) {
-        ArrayList<Coche> lista = new ArrayList<>();
-        for (int i = 0; i < plazas.length; i++) {
-            if (dni.equalsIgnoreCase(plazas[i].getCliente().getDni())) {
-                lista.add(plazas[i]);
-            }
-        }
-        return lista;
+
+    /**
+     * Método que devuelve la lista de coches del parking.
+     *
+     * @return lista de coches
+     */
+    public Coche[] getCoches(){
+        return plazas;
     }
 
     /**
-     * Método que devuelve verdadero si el parking está lleno y falso si hay mínimo una plaza libre.
+     * Método que devuelve el número de plazas en este parking.
      *
-     * @return falso si hay alguna plaza libre
+     * @return número plazas
      */
-    public boolean isFull() {
-        for (Coche c : plazas) {
-            if (c == null) return false;
-        }
-
-        return true;
-    }
-
-    /**
-     * Método que devuelve verdadero si el parking está vacío y falso si hay mínimo una plaza llena.
-     *
-     * @return falso sí hay algún coche
-     */
-    public boolean isEmpty() {
-        for (Coche c : plazas) {
-            if (c != null) return false;
-        }
-
-        return true;
+    public int getPlazas(){
+        return plazas.length;
     }
 
     /**
@@ -144,7 +156,7 @@ public class Parking implements Serializable {
                 ocupadas++;
             }
 
-            s += (i + 1) + "(" + x + ")\t";
+            s += (i+1) + "(" + x + ")\t";
         }
 
         s += "|\n";

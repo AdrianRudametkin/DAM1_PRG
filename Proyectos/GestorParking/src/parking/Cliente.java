@@ -2,6 +2,9 @@ package parking;
 
 import java.io.Serializable;
 
+/**
+ * Clase que almacena la información de un cliente.
+ */
 public class Cliente implements Serializable {
     //***ATRIBUTOS***
     private String dni;

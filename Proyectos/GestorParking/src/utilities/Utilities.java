@@ -62,7 +62,7 @@ public class Utilities {
             if (s.trim().isEmpty()) {
                 Integer res;
                 do {
-                    res = pedirInt("\n [SISTEMA: No ha escrito nada. ¿Quiere dejarlo así? (1)Sí (2)No]: ");
+                    res = pedirInt("\n [SISTEMA: No ha escrito nada. ¿Quiere dejarlo vacío? (1)Sí (2)No]: ");
                     if (res == 1)
                         s = "";
                     else if (res == 2)
@@ -102,7 +102,7 @@ public class Utilities {
     }
 
     public static void continuar() {
-        System.out.print("\nPulse INTRO para continuar.");
+        System.out.print("\n\nPulse INTRO para continuar.");
         sc.nextLine();
     }
 
