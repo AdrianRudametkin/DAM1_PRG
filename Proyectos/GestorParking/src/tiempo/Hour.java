@@ -28,7 +28,7 @@ public class Hour implements Serializable {
     }
 
     @Override
-    public String toString(){
-        return hour+":"+minute;
+    public String toString() {
+        return hour + ":" + minute;
     }
 }

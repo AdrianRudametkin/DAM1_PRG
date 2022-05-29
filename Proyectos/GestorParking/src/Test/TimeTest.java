@@ -13,16 +13,16 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 class TimeTest {
     @Test
-    void differenceTest(){
+    void differenceTest() {
         Tiempo t1 = new Tiempo();
         Tiempo t2 = new Tiempo();
         int expected = 0;
 
-        assertEquals(expected,t1.minutesDifference(t2),"Error");
+        assertEquals(expected, t1.minutesDifference(t2), "Error");
     }
 
     @Test
-    void constructorExceptionTest(){
+    void constructorExceptionTest() {
         int[] bisiesto = {29, 2, 2019, 11, 30};
 
         int[] malDiaMin = {0, 5, 2019, 11, 30};
@@ -40,22 +40,22 @@ class TimeTest {
         int[] test = bisiesto;
         String expected = "Se esperaba DateTimeException";
 
-        DateTimeException thrown = Assertions.assertThrows(DateTimeException.class, ()->{
+        DateTimeException thrown = Assertions.assertThrows(DateTimeException.class, () -> {
             Tiempo t = new Tiempo(test[0], test[1], test[2], test[3], test[4]);
         });
         assertTrue(thrown.getMessage().contains("Invalid"));
     }
 
     @Test
-    void getHourDateTest(){
-        Tiempo t = new Tiempo(12,1, 2019, 12, 30);
+    void getHourDateTest() {
+        Tiempo t = new Tiempo(12, 1, 2019, 12, 30);
         Hour h = t.getHour();
         Date d = t.getDate();
         String s = t.toString();
 
-        assertTrue(d!=null && h!=null && !s.isEmpty());
-        assertEquals("12:30",h.toString());
-        assertEquals("12/1/2019",d.toString());
+        assertTrue(d != null && h != null && !s.isEmpty());
+        assertEquals("12:30", h.toString());
+        assertEquals("12/1/2019", d.toString());
     }
 
 }

@@ -1,12 +1,8 @@
 package aplicacion;
 
-import exceptions.ArrayFullException;
-import exceptions.NoCarException;
 import exceptions.WrongOwnerException;
 import parking.Coche;
 import parking.Parking;
-
-import java.util.ArrayList;
 
 /**
  * Clase que maneja todos los datos del parking y el manejo de ficheros.
@@ -14,7 +10,7 @@ import java.util.ArrayList;
 public class GestionParking {
     //***ATRIBUTOS***
     private Parking[] plantas;
-    private Parking vip;
+    private int reservados;
     private final String fpDefault = "datos.db";
 
     //***CONSTRUCTORES***
@@ -23,49 +19,68 @@ public class GestionParking {
     }
 
     //***MÉTODOS***
-    public void entradaCoche(Coche c) throws ArrayFullException {
-        for(Parking p: plantas){
-            if(!p.isFull()){
-                p.anyadirCoche(c);
-                return;
-            }
-        }
-        if(vip.posCoche(c)>=0) {
-            System.out.print(" [SISTEMA: Vehículo autorizado para entrar]");
-            return;
-        }
 
-        throw new ArrayFullException();
+
+    public boolean existeMatricula(String mat) {
+        return false;
     }
 
-    public void salidaCoche(Coche c, String dni) throws NoCarException, WrongOwnerException {
-        for(Parking p: plantas){
-            if(p.posCoche(c)>=0){
-                if(p.getCoche(p.posCoche(c)).getDni().equalsIgnoreCase(dni)) {
-                    p.quitarCoche(c);
-                }else{
-                    throw new WrongOwnerException();
-                }
-            }
-        }
-
-        if(vip.posCoche(c)>=0) {
-            if(!vip.getCoche(vip.posCoche(c)).getDni().equalsIgnoreCase(dni))
-                throw new WrongOwnerException();
-            else
-                System.out.print(" [SISTEMA: Vehículo autorizado para salir]");
-            return;
-        }
-
-        throw new NoCarException();
+    public int[] agregarCoche(Coche c) {
+        return null;
     }
 
-    public String consultarPlazas(){
-        return "PLANTA 1:" +
-                "\n"+plantas[0]+
-                "\nPLANTA 2:"+
-                "\n"+plantas[1]+
-                "\nZONA VIP:"+
-                "\n"+vip;
+    public boolean hayEspacioParking() {
+        return false;
+    }
+
+    public boolean hayEspacioVecinos() {
+        return false;
+    }
+
+    public boolean esVecino(String mat) {
+        return false;
+    }
+
+    public Coche getCoche(String mat) {
+        return null;
+    }
+
+    public void revisarDNI(Coche coche, String dni) throws WrongOwnerException{
+    }
+
+    public void eliminarCoche(String mat) {
+    }
+
+    public String mostrarPlazas() {
+        return null;
+    }
+
+    public String datosCoche(int pos, int planta) {
+        return null;
+    }
+
+    public int numPlazas(int planta) {
+        return -1;
+    }
+
+    public int numPlantas() {
+    }
+
+    public boolean existeCliente(String dni) {
+    }
+
+    public boolean datosCochePorDni(String dni) {
+    }
+
+    public boolean estadisticasColor() {
+    }
+
+    public boolean estadisticasMarca() {
+    }
+
+    public boolean estadisticasHora() {
+    }
+
+    public boolean mostrarTodo() {
     }
 }

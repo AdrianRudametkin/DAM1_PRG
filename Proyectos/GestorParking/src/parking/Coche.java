@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class Coche implements Serializable {
     //***ATRIBUTOS***
     static final long serialVersionUID = 1L;
-    private String dni;
+    private Cliente cliente;
     private String matricula;
     private String marca;
     private String modelo;
@@ -20,8 +20,8 @@ public class Coche implements Serializable {
 
     //***CONSTRUCTORES***
 
-    public Coche(String dni, String matricula, String marca, String modelo, String color, String defectos, Tiempo entrada) {
-        this.dni = dni;
+    public Coche(Cliente cliente, String matricula, String marca, String modelo, String color, String defectos, Tiempo entrada) {
+        this.cliente = cliente;
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
@@ -32,8 +32,8 @@ public class Coche implements Serializable {
 
     //***MÉTODOS***
     //  getters
-    public String getDni() {
-        return dni;
+    public Cliente getCliente() {
+        return cliente;
     }
 
     public String getMatricula() {
@@ -61,19 +61,19 @@ public class Coche implements Serializable {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String obs = "";
-        if(!defectos.isEmpty())
-            obs = "\nObservaciones: "+defectos;
+        if (!defectos.isEmpty())
+            obs = "\nObservaciones: " + defectos;
 
-        return "Matricula: "+matricula+
-                "\n"+marca+" "+modelo+", "+color+
-                obs+
-                "\nEntrada: "+entrada.toString()+
-                "\nDueño(DNI): " + dni;
+        return "Matricula: " + matricula +
+                "\n" + marca + " " + modelo + ", " + color +
+                obs +
+                "\nEntrada: " + entrada.toString() +
+                "\nDueño: " + cliente.toString();
     }
 
-    public boolean equals(Coche c){
+    public boolean equals(Coche c) {
         return c.getMatricula().equals(this.matricula);
     }
 

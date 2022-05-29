@@ -78,7 +78,30 @@ public class Utilities {
         return s;
     }
 
-    public static void continuar(){
+    public static boolean pedirSiONo(String msg) {
+        String s;
+        boolean res = false;
+        do {
+            System.out.print(msg);
+            s = sc.nextLine();
+
+            if (s.trim().isEmpty()) {
+                System.out.print("\n [SISTEMA: No ha escrito nada...]");
+                s = null;
+            } else if (s.equalsIgnoreCase("sí") | s.equalsIgnoreCase("si") | s.equalsIgnoreCase("s"))
+                res = true;
+            else if (s.equalsIgnoreCase("no") | s.equalsIgnoreCase("n"))
+                res = false;
+            else {
+                System.out.print("\n[SISTEMA: 'SI' o 'NO']");
+                s = null;
+            }
+        } while (s == null);
+
+        return res;
+    }
+
+    public static void continuar() {
         System.out.print("\nPulse INTRO para continuar.");
         sc.nextLine();
     }
