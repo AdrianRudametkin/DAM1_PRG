@@ -1,9 +1,13 @@
 package Timbre;
 
-public class Billete extends Dinero{
+import java.io.Serial;
+import java.io.Serializable;
+
+public class Billete extends Dinero implements Serializable {
     // ***ATRIBUTOS***
     private double altura;
     private double anchura;
+    static final long serialVersionUID = 11L;
 
     // ***CONSTRUCTORES***
 

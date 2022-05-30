@@ -1,18 +1,20 @@
 package Timbre;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
-public abstract class Dinero {
+public abstract class Dinero implements Serializable {
     // ***ATRIBUTOS***
     private double valor;
     private int anyo;
+    static final long serialVersionUID = 1L;
 
     protected DecimalFormat df = new DecimalFormat("#.##");
 
     // ***CONSTRUCTOR***
 
     /**
-     * Contructor de Dinero
+     * Constructor de Dinero
      *
      * @param valor valor del timbre en €
      * @param anyo año de emisión

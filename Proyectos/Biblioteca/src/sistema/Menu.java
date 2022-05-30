@@ -66,7 +66,7 @@ public class Menu {
                 "\n (5) ISBN" +
                 "\n (6) Empleado que lo alquiló" +
                 "\n (7) Usuario que lo alquiló" +
-                "\n (8) Estado del libro" +
+                "\n (8) Disponibles/Alquilados" +
                 "\n (9) Salir" +
                 "\nIndique la opción deseada: ";
     }

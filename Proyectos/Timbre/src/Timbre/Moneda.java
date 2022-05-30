@@ -2,10 +2,14 @@ package Timbre;
 
 import Exceptions.NegativeIntegerException;
 
-public class Moneda extends Dinero{
+import java.io.Serial;
+import java.io.Serializable;
+
+public class Moneda extends Dinero implements Serializable {
     // ***Atributos***
     private double diametro;
     private double peso;
+    static final long serialVersionUID = 12L;
 
     // ***CONSTRUCTORES***
     /**

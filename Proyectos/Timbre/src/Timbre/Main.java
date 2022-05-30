@@ -1,10 +1,14 @@
 package Timbre;
 
+import Exceptions.EmptyFileException;
+
+import java.io.*;
 import java.util.*;
 
 public class Main {
     public static Scanner sc;
     public static ArrayList<Dinero> lista;
+    public static String fp = "dineros.money";
 
     /**
      * Metodo main del programa.
@@ -14,6 +18,7 @@ public class Main {
     public static void main(String[] args) {
         init();
         loop();
+        close();
     }
 
     /**
@@ -32,11 +37,69 @@ public class Main {
     }
 
     /**
-     * Inicializacion del programa.
+     * Inicialización del programa.
      */
     public static void init() {
         lista = new ArrayList<>();
         sc = new Scanner(System.in);
+        String s = pedirString("\n¿Desea cargar un fichero predeterminado? Sí o No ");
+        if(s.equalsIgnoreCase("no") || s.equalsIgnoreCase("n")){
+            fp = pedirString("\n¿Indique la ruta del archivo?");
+        }else{
+            System.out.print("\nOK. Cargando fichero predeterminado :D");
+        }
+
+        try {
+            cargarFichero();
+        } catch (EmptyFileException e) {
+            System.out.print("[ERROR: Archivo vacío]");
+        }
+    }
+
+    public static void cargarFichero() throws EmptyFileException {
+        File f = new File(fp);
+        try {
+            if (f.exists() && f.length()>0) {
+                ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fp));
+                lista = (ArrayList<Dinero>) ois.readObject();
+                ois.close();
+            } else {
+                System.out.print("\n [ERROR: No se encontró una base de datos adecuada]");
+                throw new EmptyFileException();
+            }
+        } catch (ClassNotFoundException e) {
+            System.out.print("\n ***[ERROR INESPERADO (Leyendo Fichero 1): \"" + e.getMessage() + "\"]***");
+        } catch (FileNotFoundException e) {
+            System.out.print("\n ***[ERROR INESPERADO (Leyendo Fichero 2): \"" + e.getMessage() + "\"]***");
+        } catch (IOException e) {
+            System.out.print("\n ***[ERROR INESPERADO (Leyendo Fichero 3): \"" + e.getMessage() + "\"]***\n\n\n");
+        }
+    }
+
+    public static void close(){
+        System.out.print("\nGuardando datos...");
+        guardarFichero();
+    }
+
+    public static void guardarFichero() {
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fp));
+
+            oos.writeObject(lista);
+
+            oos.flush();
+            oos.close();
+
+            System.out.print("\n [SISTEMA: Datos guardados correctamente]");
+        }catch (FileNotFoundException e){
+            System.out.print("\n ***[ERROR INESPERADO (Guardando Fichero 1): \"" + e.getMessage() + "\"]***");
+        }catch (IOException e){
+            System.out.print("\n ***[ERROR INESPERADO (Guardando Fichero 2): \"" + e.getMessage() + "\"]***");
+            String err = e.getMessage().toLowerCase();
+            if(err.contains("denied") || err.contains("denegado")){
+                System.out.println("aaaaa");
+            }
+        }
     }
 
     /**
@@ -88,7 +151,8 @@ public class Main {
                 "\n [6] - Buscar un objeto" +
                 "\n [7] - Modificar un objeto" +
                 "\n [8] - Eliminar un objeto" +
-                "\n [9] - Salir");
+                "\n [9] - Eliminar TODO" +
+                "\n [10]- Salir");
     }
 
     /**
