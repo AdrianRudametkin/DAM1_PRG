@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Almacen/Almacen.iml" filepath="$PROJECT_DIR$/Almacen/Almacen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ExamenFinal.iml" filepath="$PROJECT_DIR$/ExamenFinal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Recursividad/Recursividad.iml" filepath="$PROJECT_DIR$/Recursividad/Recursividad.iml" />
+    </modules>
+  </component>
+</project>
