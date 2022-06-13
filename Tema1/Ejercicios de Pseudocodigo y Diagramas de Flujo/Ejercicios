@@ -1,0 +1,321 @@
+//------------
+// Ejercicio 1
+//------------
+
+Inicio
+    Entero num1, num2
+
+    imprimir("Teclear el primer numero:")
+    leer(num1)
+    imprimir("Teclear el segundo numero:")
+    leer(num2)
+    
+    Si (num1 = num2) Entonces
+        imprimir("Los dos numeros son iguales.")
+    Si no
+        Si (num1 > num2) Entonces
+            imprimir("El primer numero es mayor.")
+        Si No
+            imprimir("El segundo numero es mayor.")
+        Fin Si
+    Fin Si
+Fin
+
+//------------
+// Ejercicio 2
+//------------
+
+Inicio
+    Entero num1, num2
+
+    Repetir
+        imprimir("Escribir el primer numero:")
+        leer(num1)
+        imprimir("Escribir el segundo numero:")
+        leer(num2)
+    Hasta Que (num1 = num2)
+
+    imprimir("Los dos numeros son iguales!!")
+Fin
+
+//------------
+// Ejercicio 3
+//------------
+
+Inicio
+    Entero i, suma, num
+
+    suma <- 0
+    
+    Para (i <- 1) Hasta 10 Incremento 1 Hacer
+        imprimir("Escriba el numero " + i " :")
+        leer(num)
+        suma <- suma + num
+    Fin Para
+    
+    imprimir("La suma total es: " suma)
+Fin
+
+//------------
+// Ejercicio 4
+//------------
+
+Inicio
+    Entero num
+    
+    imprimir("Escribir un numero del 1 al 7: ")
+    leer(num)
+
+    Segun (num) Hacer
+        Caso 1
+            imprimir("Lunes")
+        Caso 2
+            imprimir("Martes")
+        Caso 3
+            imprimir("Miercoles")
+        Caso 4
+            imprimir("Jueves")
+        Caso 5
+            imprimir("Viernes")
+        Caso 6
+            imprimir("Sabado")
+        Caso 7
+            imprimir("Domingo")
+        Otro Caso
+            imprimir("No valido")
+    Fin Segun
+Fin
+
+//------------
+// Ejercicio 5
+//------------
+
+Inicio
+    Entero num
+    
+    imprimir("Escribir un numero del 1 al 7: ")
+    leer(num)
+
+    Si (num = 1) Entonces
+        imprimir("Lunes")
+    Si No
+        Si (num = 2) Entonces
+            imprimir("Martes")
+        Si No
+            Si (num = 3) Entonces
+                imprimir("Miercoles")
+            Si No
+                Si (num = 4) Entonces
+                    imprimir("Jueves")
+                Si No
+                    Si (num = 5) Entonces
+                        Imprimir("Viernes")
+                    Si No
+                        Si (num = 6) Entonces   
+                            Imprimir("Sabado")
+                        Si No
+                            Si (num = 7) Entonces
+                                imprimir("Domingo")
+                            Si No
+                                imprimir("Numero no valido.")
+                            Fin Si
+                        Fin Si
+                    Fin Si
+                Fin Si
+            Fin Si
+        Fin Si    
+    Fin Si
+Fin
+
+//------------
+// Ejercicio 6
+//------------
+
+Inicio
+    Constante Real GRAVEDAD <- 9.8
+    Real velocidad, tiempo
+    
+    imprimir("Introducir el tiempo de caida en segundos:")
+    leer(tiempo)
+
+    Si (tiempo = 0) Entonces
+        imprimir("Eso no es posible...")
+    Si No
+        velocidad <- GRAVEDAD * tiempo
+        imprimir("La velocidad del objeto es: " + velocidad + " m/s")
+    Fin Si
+Fin
+
+//------------
+// Ejercicio 7
+//------------
+
+Procedimiento menu_pantalla()
+    imprimir("Funciones disponibles:")
+    imprimir(" 1.Calcular diametro")
+    imprimir(" 2.Calcular circumferencia")
+    imprimir(" 3.Calcular area")
+    imprimir("---------------------------")
+    imprimir("Introducir numero de la opcion deseada:")
+Fin Procedimiento
+
+Funcion pi():Real
+    Retornar 3.14
+Fin Funcion
+
+Funcion diametro(Real r):Real
+    Retornar 2 * r
+Fin Funcion
+
+Funcion circumferencia(Real r):Real
+    Retornar 2 * pi() * r
+Fin Funcion
+
+Funcion area(Real r):Real
+    Retornar pi() * r ^ 2
+Fin Funcion
+
+Inicio
+    Entero opcion
+    Real r
+
+    imprimir("Intoduzca el radio del circulo: ")
+    leer(r)
+
+    menu_pantalla()
+    leer(opcion)
+    
+    Segun opcion Hacer
+        Caso 1
+            imprimir("El diametro es: " + diametro(r))
+        Caso 2
+            imprimir("La circumferencia es: " + circumferencia(r))
+        Caso 3
+            imprimir("El area es: " + area(r))
+        Otro Caso
+            imprimir("Opcion no valida.")
+    Fin Segun
+Fin
+
+//------------
+// Ejercicio 8
+//------------
+
+Procedimiento menu_pantalla()
+    imprimir("Funciones disponibles:")
+    imprimir(" 1.Calcular diametro")
+    imprimir(" 2.Calcular circumferencia")
+    imprimir(" 3.Calcular area")
+    imprimir(" 4.Salir")
+    imprimir("---------------------------")
+    imprimir("Introducir numero de la opcion deseada:")
+Fin Procedimiento
+
+Funcion pi():Real
+    Retornar 3.14
+Fin Funcion
+
+Funcion diametro(Real r):Real
+    Retornar 2 * r
+Fin Funcion
+
+Funcion circumferencia(Real r):Real
+    Retornar 2 * pi() * r
+Fin Funcion
+
+Funcion area(Real r):Real
+    Retornar pi() * r ^ 2
+Fin Funcion
+
+Inicio
+    Entero opcion
+    Real r
+    
+    Repetir
+        imprimir("Intoduzca el radio del circulo: ")
+        leer(r)
+
+        menu_pantalla()
+        leer(opcion)
+        
+        Segun opcion Hacer
+            Caso 1
+                imprimir("El diametro es: " diametro(r))
+            Caso 2
+                imprimir("El circumferencia es: " circumferencia(r))
+            Caso 3
+                imprimir("El area es: " area(r))
+            Caso 4
+                imprimir("Saliendo del programa...")
+            Otro Caso
+                imprimir("Opcion no valida.")
+        Fin Segun
+    Hasta Que opcion = 4
+Fin
+
+//------------
+// Ejercicio 9
+//------------
+
+Inicio
+    Cadena dia
+
+    Imprimir("Introduzca el dia de la semana: ")
+    Leer(dia)
+    
+    Imprimir("Este dia hay: ")
+
+    Segun dia Hacer
+        Caso "lunes"
+            Imprimir("Psicomotricidad")
+        Caso "martes"
+            Imprimir("Natación")
+        Caso "miercoles"
+            Imprimir("Música")
+        Caso "jueves"
+            Imprimir("Natación")
+        Caso "viernes"
+            Imprimir("Descanso")
+        Caso "sabado"
+            Imprimir("Día sin actividades")
+        Caso "domingo"
+            Imprimir("Día sin actividades")
+        Otro Caso
+            Imprimir("Dia incorrecto")
+    Fin Segun
+Fin
+
+//-------------
+// Ejercicio 10
+//-------------
+
+Inicio
+    Entero num, i, pos <- 0, neg <- 0, cero <- 0
+
+    Para i <- 1 Hasta 10 Incremento 1 Hacer
+        Imprimir("Introduzca el numero " + i + " :")
+        Leer(num)
+        
+        Si (num = 0) Entonces
+            cero <- cero + 1
+        Si No
+            Si (num > 0) Entonces
+                pos <- pos + 1
+            Si No
+                neg <- neg + 1
+            Fin Si
+        Fin Si
+    Fin Para
+    
+    Imprimir("Numero de ceros: " + ceros)
+    Imprimir("Numeros positivos: " + pos)
+    Imprimir("Numeros negativos: " + neg)
+Fin
+
+
+
+
+
+
+
+

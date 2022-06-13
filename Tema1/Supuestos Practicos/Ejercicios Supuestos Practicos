@@ -1,0 +1,70 @@
+//------------
+// Ejercicio 1
+//------------
+
+Inicio
+    Entero año
+    
+    Imprimir("Introduzca un año: ")
+    Leer(año)
+
+    Si (año % 4 <> 0) Entonces
+        Imprimir("Este año NO ES bisiesto.")
+    Si No
+        Si ((año % 100 = 0) and (año % 400 <> 0)) Entonces
+            Imprimir("Este año NO ES bisiesto.")
+        Si No
+            Imprimir("Este año ES bisiesto.")
+        Fin Si
+    Fin Si
+Fin
+
+// Alternativa::
+Inicio
+    Entero año
+    
+    Imprimir("Introduzca un año: ")
+    Leer(año)
+
+    Si ((año%4=0 AND año%100<>0) OR año%400) Entonces
+        Imprimir("Este año ES bisiesto.")
+    Si No
+        Imprimir("Este año NO ES bisiesto.")
+    Fin Si
+Fin
+
+//------------
+// Ejercicio 4
+//------------
+
+Funcion algoritmo_bisiesto(Entero año): Booleano
+    Booleano: respuesta
+
+    Si (año % 4 <> 0) Entonces
+        respuesta <- False
+    Si No
+        Si ((año % 100 = 0) and (año % 400 <> 0)) Entonces
+            respuesta <- False
+        Si No
+            respuesta <- True
+        Fin Si
+    Fin Si
+
+    Retornar respuesta
+Fin
+
+Inicio
+    Entero año
+    
+    Imprimir("Introduzca el año:")
+    Leer(año)
+
+    Segun algoritmo_bisiesto(año) Hacer
+        Caso True
+            Imprimir("Este año ES bisiesto.")
+        Caso False
+            Imprimir("Este año NO ES bisiesto.")
+        Otro Caso
+            Imprimir("ERROR!!")
+    Fin Segun
+Fin

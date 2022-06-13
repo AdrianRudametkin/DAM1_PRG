@@ -1,0 +1,48 @@
+// Entrada: 2 numeros del usuario (num1 y num2)
+// Salida: Mostrar en pantalla las operaciones suma, resta, multiplicacion y division
+
+Funcion suma(Entero a, Entero b): Cadena
+    Cadena resultado
+    resultado <- ("El resultado de la suma es: " a + b)
+    Retornar resultado
+Fin
+
+Funcion resta(Entero a, Entero b): Cadena
+Cadena resultado
+    resultado <- ("El resultado de la resta es: " a - b)
+    Retornar resultado
+Fin
+
+Funcion multiplicacion(Entero a, Entero b): Cadena
+    Cadena resultado
+    resultado <- ("El resultado de la multiplicacion es: " a * b)
+    Retornar resultado
+Fin
+
+Funcion division(Entero a, Entero b): Cadena
+    Cadena resultado
+    
+    Si num2 = 0 entonces
+        resultado <- ("La divsion por 0 no es posible.")
+    Si no
+        resultado <- ("El resultado de la division es: " a/b)
+    Fin Si
+    Retornar resultado
+Fin
+
+Inicio 
+    Entero num1, num2, suma, resta, div, mult
+
+    imprimir("Introduzca primer numero:")
+    leer(num1)
+    imprimir("Introduzca segundo numero numero:")
+    leer(num2)
+
+    imprimir(suma(num1, num2))
+    imprimir(resta(num1, num2))
+    imprimir(multiplicacion(num1, num2))
+    imprimir(division(num1, num2))
+Fin
+
+
+
