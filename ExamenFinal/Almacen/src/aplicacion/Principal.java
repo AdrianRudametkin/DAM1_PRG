@@ -12,9 +12,9 @@ public class Principal {
     public static void main(String[] args) {
 
         //INICIO del tratamiento de ficheros
-        File fich = new File(RUTA);
+        File fichero = new File(RUTA);
 
-        if (!fich.exists() || fich.length() < 1) {
+        if (!fichero.exists() || fichero.length() < 1) {
             System.out.print("\nNo existe fichero o esta vacío. Creando almacén nuevo...");
             crearAlmacen();
         } else {
@@ -24,6 +24,7 @@ public class Principal {
                 try {
                     ObjectInputStream ois = new ObjectInputStream(new FileInputStream(RUTA));
                     almacen = (Almacen) ois.readObject();
+                    Bebida.setNum((Integer)ois.readObject());
                     ois.close();
                 } catch (ClassNotFoundException e) {
                     System.out.print("Clase no coincide: " + e.getMessage() + "\nCreando un almacén nuevo...");
@@ -76,7 +77,7 @@ public class Principal {
     }
 
     //Métodos que utiliza main
-    public static int mostrarMenu() {
+    private static int mostrarMenu() {
         int opcion;
         do {
             System.out.println("\nALMACÉN DE BEBIDAS");
@@ -157,7 +158,7 @@ public class Principal {
     private static void precioTotal() {
         //Calcular precio total y mostrarlo
         System.out.print("\n**PRECIO TOTAL DEL ALMACÉN**");
-        System.out.print("\nTotal: " + Utilidades.formatDecimal(almacen.precioTotal()) + "€");
+        System.out.print("\nTotal: " + Utilidades.formatDecimal(almacen.precio()) + "€");
         Utilidades.continuar();
     }
 
@@ -165,7 +166,7 @@ public class Principal {
         //Calcular precio marca: solicitar marca y mostrar precio
         System.out.print("\n**PRECIO TOTAL POR MARCA**");
         String marca = Utilidades.pedirStringNoVacio("\nIndique la marca: ");
-        System.out.print("\nTotal: " + Utilidades.formatDecimal(almacen.precioTotalPorMarca(marca)) + "€");
+        System.out.print("\nTotal: " + Utilidades.formatDecimal(almacen.precio(marca)) + "€");
         Utilidades.continuar();
     }
 
@@ -176,7 +177,7 @@ public class Principal {
         do {
             estante = Utilidades.pedirIntPositivo("\nIndique el número del estante (1 a " + max + "): ");
         } while (estante <= 0 || estante > max);
-        System.out.print("\nTotal: " + Utilidades.formatDecimal(almacen.precioTotalEstante(estante - 1)) + "€");
+        System.out.print("\nTotal: " + Utilidades.formatDecimal(almacen.precio(estante - 1)) + "€");
         Utilidades.continuar();
     }
 
@@ -242,6 +243,7 @@ public class Principal {
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(RUTA));
             oos.writeObject(almacen);
+            oos.writeObject((Integer)Bebida.getNum());
             oos.close();
             System.out.print("\n*Fichero guardado correctamente.");
         } catch (IOException e) {

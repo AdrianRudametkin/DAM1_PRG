@@ -40,7 +40,7 @@ public class Almacen implements Serializable {
         return false;
     }
 
-    public double precioTotal() {
+    public double precio() {
         double total = 0;
         // Recorrer filas
         for (int i = 0; i < almacen.length; i++) {
@@ -57,7 +57,7 @@ public class Almacen implements Serializable {
         return total;
     }
 
-    public double precioTotalPorMarca(String marca) {
+    public double precio(String marca) {
         double total = 0;
         // Recorrer filas
         for (int i = 0; i < almacen.length; i++) {
@@ -75,7 +75,7 @@ public class Almacen implements Serializable {
         return total;
     }
 
-    public double precioTotalEstante(int estante) {
+    public double precio(int estante) {
         double total = 0;
         // Recorrer columnas
         for (int j = 0; j < almacen[estante].length; j++) {

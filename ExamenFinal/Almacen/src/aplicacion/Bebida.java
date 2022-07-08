@@ -41,6 +41,10 @@ public abstract class Bebida implements Serializable {
         return num;
     }
 
+    public static void setNum(int num){
+        Bebida.num = num;
+    }
+
     @Override
     public String toString() {
         return ("\n -ID:" + identificador +
